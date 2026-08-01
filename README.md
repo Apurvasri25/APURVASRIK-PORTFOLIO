@@ -12,42 +12,11 @@ an immersive WebGL experience.
 <p align="center">
 
 [![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-apurvasrik--portfolio.vercel.app-6366F1?style=for-the-badge)](https://apurvasrik-portfolio.vercel.app)
-![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
-![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?style=for-the-badge&logo=three.js&logoColor=white)
-![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Framer Motion](https://img.shields.io/badge/Framer-Motion-0055FF?style=for-the-badge&logo=framer&logoColor=white)
-![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge)
-![Spline](https://img.shields.io/badge/Spline-3D-FF6B6B?style=for-the-badge)
-![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 </p>
 
 ------------------------------------------------------------------------
 
-# 📸 Portfolio Preview
-
-## 🏠 Hero Section
-
-![Hero](screenshots/home_page.png)
-
-## 🌌 Tech Stack Visualization
-
-![Tech Stack](screenshots/tech_stack.png)
-
-## ✨ Intro Animation
-
-![Intro Animation](screenshots/domain_animation.png)
-
-## 📦 Featured Projects
-
-![Projects](screenshots/projects.png)
-
-## ✉️ Contact Section
-
-![Contact](screenshots/contact.png)
-
-------------------------------------------------------------------------
 
 # 💡 Why This Portfolio?
 
