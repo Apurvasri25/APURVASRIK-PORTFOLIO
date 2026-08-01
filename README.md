@@ -1,6 +1,6 @@
-# 🚀 Mallikarjun \| AI & ML Engineer --- 3D Interactive Portfolio
+# 🚀 Apurvasri K | Computer Science Engineer --- 3D Interactive Portfolio
 
-> **Building intelligent AI solutions and immersive web experiences.**
+> **Building practical software solutions through an immersive web experience.**
 
 A modern **3D developer portfolio** crafted with **React, Three.js,
 React Three Fiber, Spline, Framer Motion, GSAP, and Tailwind CSS** to
@@ -11,7 +11,7 @@ an immersive WebGL experience.
 
 <p align="center">
 
-[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-mallugze.vercel.app-6366F1?style=for-the-badge)](https://mallugze.vercel.app)
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-apurvasrik--portfolio.vercel.app-6366F1?style=for-the-badge)](https://apurvasrik-portfolio.vercel.app)
 ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Three.js](https://img.shields.io/badge/Three.js-WebGL-000000?style=for-the-badge&logo=three.js&logoColor=white)
@@ -35,9 +35,9 @@ an immersive WebGL experience.
 
 ![Tech Stack](screenshots/tech_stack.png)
 
-## ✨ Domain Animation
+## ✨ Intro Animation
 
-![Domain Animation](screenshots/domain_animation.png)
+![Intro Animation](screenshots/domain_animation.png)
 
 ## 📦 Featured Projects
 
@@ -52,8 +52,8 @@ an immersive WebGL experience.
 # 💡 Why This Portfolio?
 
 Rather than creating a traditional static portfolio, I wanted to build
-an experience that reflects both my passion for **Artificial
-Intelligence** and **modern frontend engineering**.
+an experience that reflects both my passion for **Computer Science
+Engineering** and **modern frontend engineering**.
 
 The result is a highly interactive WebGL-powered portfolio that blends
 smooth animations, immersive 3D visuals, and responsive design while
@@ -75,22 +75,6 @@ maintaining excellent performance across devices.
 
 ------------------------------------------------------------------------
 
-# 🏗️ Architecture
-
-``` mermaid
-flowchart TD
-A[Visitor] --> B[React + Vite]
-B --> C[Reusable Components]
-C --> D[Three.js]
-D --> E[React Three Fiber]
-C --> F[Spline]
-C --> G[Framer Motion + GSAP]
-B --> H[Tailwind CSS]
-B --> I[Vercel Deployment]
-```
-
-------------------------------------------------------------------------
-
 # 🛠️ Tech Stack
 
 **Frontend:** React, Vite, JavaScript, HTML5, CSS3
@@ -103,16 +87,14 @@ B --> I[Vercel Deployment]
 
 **Deployment:** Vercel
 
-
-
 ------------------------------------------------------------------------
 
 # 💻 Local Development
 
-``` bash
-git clone https://github.com/mallugze/Portfolio.git
+```bash
+git clone https://github.com/Apurvasri25/APURVASRIK-PORTFOLIO.git
 
-cd Portfolio
+cd APURVASRIK-PORTFOLIO
 
 npm install
 
@@ -123,8 +105,8 @@ npm run dev
 
 # 📂 Project Structure
 
-``` text
-mallu_portfolio/
+```text
+APURVASRIK-PORTFOLIO/
 ├── public/
 │   ├── favicon.svg
 │   ├── hero_ai_graphic.png
@@ -146,29 +128,26 @@ mallu_portfolio/
 └── README.md
 ```
 
-
 ------------------------------------------------------------------------
 
 # 🌐 Live Website
 
-### https://mallugze.vercel.app
+### https://apurvasrik-portfolio.vercel.app
 
 ------------------------------------------------------------------------
 
 # 👨‍💻 Developed By
 
-**Mallikarjun**
+**Apurvasri K**
 
-AI & Machine Learning Engineer
+Computer Science Engineer
 
-📧 mallikarjunpx@gmail.com
+📧 apurvasrikanakasabapathi@gmail.com
 
-💼 https://www.linkedin.com/in/mallikarjun-842509326
+💼 https://www.linkedin.com/in/apurvasri-k-921876293
 
-🌐 https://mallugze.vercel.app
+🌐 https://apurvasrik-portfolio.vercel.app
 
 ------------------------------------------------------------------------
 
-
 ### ⭐ If you like this project, consider giving it a Star!
-
