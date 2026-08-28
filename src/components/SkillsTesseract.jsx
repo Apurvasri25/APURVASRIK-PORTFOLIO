@@ -1,60 +1,91 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
+
+import {
+  FaJava,
+  FaPython,
+  FaHtml5,
+  FaCss3Alt,
+  FaJs,
+  FaReact,
+  FaNodeJs,
+  FaGitAlt,
+  FaGithub,
+  FaFigma,
+} from 'react-icons/fa';
+
+import {
+  SiC,
+  SiExpress,
+  SiMysql,
+  SiTailwindcss,
+  SiVite,
+  SiPostman,
+} from 'react-icons/si';
 
 const skillGroups = [
   {
     title: 'PROGRAMMING',
     skills: [
-      { name: 'Java', icon: '☕' },
-      { name: 'Python', icon: '🐍' },
-      { name: 'C', icon: 'C' },
+      { name: 'Java', icon: FaJava },
+      { name: 'Python', icon: FaPython },
+      { name: 'C', icon: SiC },
     ],
   },
+
   {
     title: 'FRONTEND',
     skills: [
-      { name: 'HTML5', icon: 'HTML' },
-      { name: 'CSS3', icon: 'CSS' },
-      { name: 'JavaScript', icon: 'JS' },
-      { name: 'React', icon: '⚛' },
-      { name: 'Tailwind CSS', icon: 'TW' },
+      { name: 'HTML5', icon: FaHtml5 },
+      { name: 'CSS3', icon: FaCss3Alt },
+      { name: 'JavaScript', icon: FaJs },
+      { name: 'React', icon: FaReact },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
     ],
   },
+
   {
     title: 'BACKEND',
     skills: [
-      { name: 'Node.js', icon: 'JS' },
-      { name: 'Express.js', icon: 'EX' },
+      { name: 'Node.js', icon: FaNodeJs },
+      { name: 'Express.js', icon: SiExpress },
     ],
   },
+
   {
     title: 'DATABASE',
     skills: [
-      { name: 'MySQL', icon: 'SQL' },
+      { name: 'MySQL', icon: SiMysql },
     ],
   },
+
   {
     title: 'TOOLS',
     skills: [
-      { name: 'Git', icon: 'Git' },
-      { name: 'GitHub', icon: 'GH' },
-      { name: 'Postman', icon: 'PM' },
-      { name: 'Figma', icon: 'Fi' },
-      { name: 'Vite', icon: 'V' },
+      { name: 'Git', icon: FaGitAlt },
+      { name: 'GitHub', icon: FaGithub },
+      { name: 'Postman', icon: SiPostman },
+      { name: 'Figma', icon: FaFigma },
+      { name: 'Vite', icon: SiVite },
     ],
   },
 ];
 
+/* ================================
+   SKILL CARD
+================================ */
+
 function SkillCard({ skill, index }) {
+  const Icon = skill.icon;
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 8 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.15 }}
       transition={{
         duration: 0.3,
-        delay: index * 0.02,
+        delay: index * 0.025,
       }}
       whileHover={{
         y: -3,
@@ -64,25 +95,26 @@ function SkillCard({ skill, index }) {
         group
         relative
         flex
-        h-[78px]
+        h-[82px]
         flex-col
         items-center
         justify-center
         overflow-hidden
         rounded-lg
         border
-        border-white/[0.07]
-        bg-white/[0.02]
-        p-2
+        border-white/[0.08]
+        bg-white/[0.025]
+        px-2
+        py-2
         backdrop-blur-md
         transition-all
         duration-300
         hover:border-purple-400/40
         hover:bg-purple-500/[0.05]
-        hover:shadow-[0_0_18px_rgba(168,85,247,0.1)]
+        hover:shadow-[0_0_20px_rgba(168,85,247,0.12)]
       "
     >
-      {/* Hover Glow */}
+      {/* Small hover glow */}
       <div
         className="
           pointer-events-none
@@ -100,29 +132,22 @@ function SkillCard({ skill, index }) {
         "
       />
 
-      {/* Icon */}
-      <div
+      {/* ORIGINAL LOGO */}
+      <Icon
         className="
           relative
           z-10
-          mb-1
-          flex
-          h-7
-          items-center
-          justify-center
-          text-[20px]
-          font-bold
-          text-gray-400
+          mb-1.5
+          text-[25px]
+          text-gray-300
           transition-all
           duration-300
           group-hover:scale-110
           group-hover:text-purple-300
         "
-      >
-        {skill.icon}
-      </div>
+      />
 
-      {/* Name */}
+      {/* NAME */}
       <span
         className="
           relative
@@ -131,7 +156,7 @@ function SkillCard({ skill, index }) {
           text-[10px]
           font-medium
           tracking-wide
-          text-gray-500
+          text-gray-400
           transition-colors
           duration-300
           group-hover:text-white
@@ -143,6 +168,10 @@ function SkillCard({ skill, index }) {
   );
 }
 
+/* ================================
+   SKILL GROUP
+================================ */
+
 function SkillGroup({ group, groupIndex }) {
   return (
     <motion.div
@@ -153,11 +182,10 @@ function SkillGroup({ group, groupIndex }) {
         duration: 0.35,
         delay: groupIndex * 0.04,
       }}
-      className="relative"
     >
-      {/* Category */}
-      <div className="mb-2 flex items-center gap-2">
-        <span className="h-px w-5 bg-purple-500/70" />
+      {/* CATEGORY */}
+      <div className="mb-2.5 flex items-center gap-2">
+        <span className="h-px w-5 bg-purple-500/80" />
 
         <h3
           className="
@@ -171,10 +199,10 @@ function SkillGroup({ group, groupIndex }) {
           {group.title}
         </h3>
 
-        <div className="h-px flex-1 bg-white/[0.05]" />
+        <div className="h-px flex-1 bg-white/[0.06]" />
       </div>
 
-      {/* Cards */}
+      {/* SKILLS */}
       <div
         className="
           grid
@@ -197,6 +225,10 @@ function SkillGroup({ group, groupIndex }) {
   );
 }
 
+/* ================================
+   MAIN SKILLS SECTION
+================================ */
+
 export default function SkillsTesseract() {
   return (
     <section
@@ -206,14 +238,12 @@ export default function SkillsTesseract() {
         overflow-hidden
         bg-black
         px-5
-        py-14
+        py-16
         sm:px-8
-        sm:py-16
         lg:px-16
-        lg:py-20
       "
     >
-      {/* Background Glow */}
+      {/* BACKGROUND GLOW */}
       <div
         className="
           pointer-events-none
@@ -224,20 +254,20 @@ export default function SkillsTesseract() {
           w-[280px]
           -translate-x-1/2
           rounded-full
-          bg-purple-600/[0.04]
-          blur-[90px]
+          bg-purple-600/[0.045]
+          blur-[100px]
         "
       />
 
       <div className="relative z-10 mx-auto max-w-5xl">
 
-        {/* Header */}
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
-          className="mb-7"
+          className="mb-8"
         >
           <div className="mb-2 flex items-center gap-2">
             <span className="h-px w-6 bg-purple-500" />
@@ -264,8 +294,7 @@ export default function SkillsTesseract() {
               lg:text-6xl
             "
           >
-            Skills
-            <span className="text-purple-500">.</span>
+            Skills<span className="text-purple-500">.</span>
           </h2>
 
           <p
@@ -283,7 +312,7 @@ export default function SkillsTesseract() {
           </p>
         </motion.div>
 
-        {/* Skills */}
+        {/* SKILL GROUPS */}
         <div className="space-y-6">
           {skillGroups.map((group, index) => (
             <SkillGroup
@@ -294,7 +323,7 @@ export default function SkillsTesseract() {
           ))}
         </div>
 
-        {/* Bottom */}
+        {/* BOTTOM */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -302,7 +331,7 @@ export default function SkillsTesseract() {
           transition={{ duration: 0.4 }}
           className="mt-8 flex items-center gap-2"
         >
-          <div className="h-px flex-1 bg-white/[0.06]" />
+          <div className="h-px flex-1 bg-white/[0.07]" />
 
           <span
             className="
@@ -315,7 +344,7 @@ export default function SkillsTesseract() {
             ALWAYS LEARNING
           </span>
 
-          <div className="h-px flex-1 bg-white/[0.06]" />
+          <div className="h-px flex-1 bg-white/[0.07]" />
         </motion.div>
 
       </div>
