@@ -72,22 +72,22 @@ const SkillCard = ({ skill, index }) => {
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 25 }}
+      initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{ once: true }}
       transition={{
-        duration: 0.45,
-        delay: index * 0.05,
+        duration: 0.5,
+        delay: index * 0.06,
       }}
       whileHover={{
-        y: -6,
-        scale: 1.02,
+        y: -8,
       }}
       className="
         group
         relative
         flex
-        min-h-[125px]
+        min-h-[170px]
+        cursor-pointer
         flex-col
         items-center
         justify-center
@@ -96,24 +96,27 @@ const SkillCard = ({ skill, index }) => {
         border
         border-white/[0.08]
         bg-white/[0.025]
-        p-5
+        px-5
+        py-7
         backdrop-blur-md
         transition-all
-        duration-300
-        hover:border-purple-400/40
-        hover:bg-purple-500/[0.05]
-        hover:shadow-[0_0_35px_rgba(168,85,247,0.12)]
+        duration-500
+        hover:border-purple-400/50
+        hover:bg-purple-500/[0.06]
+        hover:shadow-[0_0_45px_rgba(168,85,247,0.18)]
       "
     >
-      {/* Hover glow */}
+      {/* Purple glow behind logo */}
       <div
         className="
           pointer-events-none
           absolute
-          -right-10
-          -top-10
+          left-1/2
+          top-1/2
           h-24
           w-24
+          -translate-x-1/2
+          -translate-y-1/2
           rounded-full
           bg-purple-500/0
           blur-3xl
@@ -123,42 +126,74 @@ const SkillCard = ({ skill, index }) => {
         "
       />
 
-      {/* Logo */}
-      <Icon
+      {/* Actual technology logo */}
+      <div
         className="
           relative
           z-10
-          mb-3
-          text-[38px]
-          text-gray-300
+          flex
+          h-20
+          w-20
+          items-center
+          justify-center
+          rounded-2xl
+          border
+          border-white/[0.06]
+          bg-black/40
           transition-all
-          duration-300
-          group-hover:scale-110
-          group-hover:text-purple-300
+          duration-500
+          group-hover:border-purple-400/30
+          group-hover:bg-purple-500/[0.08]
         "
-      />
+      >
+        <Icon
+          className="
+            text-[52px]
+            text-gray-300
+            transition-all
+            duration-500
+            group-hover:scale-110
+            group-hover:text-purple-300
+          "
+        />
+      </div>
 
-      {/* Name */}
+      {/* Skill name */}
       <span
         className="
           relative
           z-10
-          text-center
+          mt-5
           text-sm
-          font-medium
+          font-semibold
           tracking-wide
           text-gray-400
-          transition-colors
+          transition-all
           duration-300
           group-hover:text-white
         "
       >
         {skill.name}
       </span>
+
+      {/* Bottom purple line */}
+      <div
+        className="
+          absolute
+          bottom-0
+          left-1/2
+          h-[2px]
+          w-0
+          -translate-x-1/2
+          bg-purple-500
+          transition-all
+          duration-500
+          group-hover:w-1/2
+        "
+      />
     </motion.div>
   );
 };
-
 const SkillGroup = ({ group, groupIndex }) => {
   return (
     <motion.div
