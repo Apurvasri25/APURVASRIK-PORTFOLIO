@@ -34,31 +34,33 @@ export default function App() {
             <Navbar /> 
  
             {/* Page Sections */} 
-           <main className="relative overflow-hidden">
+<div className="portfolio-content">
+  <Navbar />
 
-  {/* ✨ Subtle Background Sparkles */}
-  <div className="portfolio-sparkles" aria-hidden="true">
-    {Array.from({ length: 35 }).map((_, i) => (
+  <div className="sparkle-layer" aria-hidden="true">
+    {Array.from({ length: 70 }).map((_, i) => (
       <span
         key={i}
-        className="sparkle"
+        className="light-sparkle"
         style={{
-          left: `${(i * 37) % 100}%`,
-          top: `${(i * 61) % 100}%`,
-          animationDelay: `${(i * 0.37) % 5}s`,
-          animationDuration: `${3 + ((i * 0.7) % 4)}s`,
-          transform: `scale(${0.4 + ((i * 13) % 10) / 10})`,
+          left: `${(i * 47.3) % 100}%`,
+          top: `${(i * 31.7) % 100}%`,
+          animationDelay: `${(i % 8) * 0.6}s`,
+          animationDuration: `${3 + (i % 5)}s`,
         }}
       />
     ))}
   </div>
 
-  <Hero />
-  <SkillsTesseract />
-  <Projects />
-  <Experience />
-  <Highlights />
-  <Contact />
+  <main>
+    <Hero />
+    <SkillsTesseract />
+    <Projects />
+    <Experience />
+    <Highlights />
+    <Contact />
+  </main>
+</div>
 
 </main>
           </motion.div> 
