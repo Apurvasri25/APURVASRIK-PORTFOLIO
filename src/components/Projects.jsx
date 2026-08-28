@@ -4,27 +4,26 @@ import Pattern3DCard from '@/components/ui/Pattern3DCard';
 
 const FEATURED_PROJECTS = [
   {
-    id: 2,
-    number: '02',
-    category: 'PROJECT',
-  title: "Smart Campus Pass",
-  description:
-    "A full-stack digital campus pass system using QR codes to track student outpass history and streamline gate verification. Emergency passes are flagged and prioritized for faster processing.",
-  tech: ["TypeScript", "React", "Vite", "Supabase"],
-  date: "June 2026 – July 2026",
-  features: [
-    "QR-based student outpass tracking",
-    "Emergency gate pass prioritization",
-    "Real-time authentication and database management",
-    "Deployed on Vercel for live access tracking",
-  ],
-},
-  {
     id: 1,
     number: '01',
     category: 'PROJECT',
+    title: 'Smart Campus Pass',
+    description:
+      'A full-stack digital campus pass system using QR codes to track student outpass history and streamline gate verification. Emergency passes are flagged and prioritized for faster processing.',
+    tags: ['TypeScript', 'React', 'Vite', 'Supabase'],
+    githubUrl: 'https://github.com/Apurvasri25',
+    boxBg: 'linear-gradient(135deg, #312e81 0%, #7c3aed 100%)',
+    textColor: '#ffffff',
+    accentBorder: '#a78bfa',
+  },
+
+  {
+    id: 2,
+    number: '02',
+    category: 'PROJECT',
     title: 'Hand Gesture Recognition System',
-    description: 'A real-time hand gesture recognition system built with computer vision to enable touchless user interaction. Integrated MediaPipe landmark tracking with OpenCV processing, improving gesture detection accuracy and boosting interaction responsiveness by 30%.',
+    description:
+      'A real-time hand gesture recognition system built with computer vision to enable touchless user interaction. Integrated MediaPipe landmark tracking with OpenCV processing, improving gesture detection accuracy and boosting interaction responsiveness by 30%.',
     tags: ['Python', 'OpenCV', 'MediaPipe', 'Computer Vision'],
     githubUrl: 'https://github.com/Apurvasri25',
     boxBg: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)',
@@ -35,28 +34,40 @@ const FEATURED_PROJECTS = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="relative min-h-screen py-24 px-6 bg-black dots-bg">
+    <section
+      id="projects"
+      className="relative min-h-screen py-24 px-6 bg-black dots-bg"
+    >
       <div className="w-full max-w-6xl mx-auto">
+
         {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="font-display font-extrabold text-4xl sm:text-5xl text-white mt-2 mb-4">
             Featured Projects
           </h2>
+
           <p className="text-gray-400 text-sm sm:text-base max-w-md mx-auto mb-4">
-            Applying full-stack development and computer vision skills to build practical, real-world solutions.
+            Applying full-stack development and computer vision skills to build
+            practical, real-world solutions.
           </p>
+
           <div className="w-20 h-1 bg-gradient-to-r from-neonBlue to-neonPurple mx-auto rounded-full" />
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 max-w-xl mx-auto gap-10 lg:gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10">
+
           {FEATURED_PROJECTS.map((project) => (
             <motion.div
               key={project.id}
               initial={{ opacity: 0, y: 25 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.5, delay: project.id * 0.1 }}
+              transition={{
+                duration: 0.5,
+                delay: (project.id - 1) * 0.1,
+              }}
+              className="w-full"
             >
               <Pattern3DCard
                 number={project.number}
@@ -71,6 +82,7 @@ export default function Projects() {
               />
             </motion.div>
           ))}
+
         </div>
       </div>
     </section>
