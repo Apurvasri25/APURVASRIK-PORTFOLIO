@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileText, ArrowRight, X, Download } from 'lucide-react';
+import { FileText, ArrowRight, X, Download, Linkedin, Github, Mail } from 'lucide-react';
 import { SplineScene } from '@/components/ui/splite';
 import GlassDock from '@/components/ui/glass-dock';
 import CreepyButton from '@/components/ui/CreepyButton';
@@ -9,36 +9,38 @@ import CreepyButton from '@/components/ui/CreepyButton';
 export default function Hero() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
-  const dockItems = [
-    {
-      title: 'LinkedIn',
-      icon: () => null,
-      onClick: () => {
-        window.open(
-          'https://www.linkedin.com/in/apurvasri-k-921876293',
-          '_blank'
-        );
-      },
+ const dockItems = [
+  {
+    title: 'LinkedIn',
+    icon: Linkedin,
+    onClick: () => {
+      window.open(
+        'https://www.linkedin.com/in/apurvasri-k-921876293/',
+        '_blank',
+        'noopener,noreferrer'
+      );
     },
-    {
-      title: 'GitHub',
-      icon: () => null,
-      onClick: () => {
-        window.open(
-          'https://github.com/Apurvasri25',
-          '_blank'
-        );
-      },
+  },
+  {
+    title: 'GitHub',
+    icon: Github,
+    onClick: () => {
+      window.open(
+        'https://github.com/Apurvasri25',
+        '_blank',
+        'noopener,noreferrer'
+      );
     },
-    {
-      title: 'Email',
-      icon: () => null,
-      onClick: () => {
-        window.location.href =
-          'mailto:apurvasrikanakasabapathi@gmail.com';
-      },
+  },
+  {
+    title: 'Email',
+    icon: Mail,
+    onClick: () => {
+      window.location.href =
+        'mailto:apurvasrikanakasabapathi@gmail.com';
     },
-  ];
+  },
+];
 
   return (
     <>
