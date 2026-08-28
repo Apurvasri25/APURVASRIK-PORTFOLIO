@@ -1,313 +1,366 @@
+'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, useAnimation } from 'framer-motion';
 
 export default function HollowPurpleIntro({ onComplete }) {
-  const [step, setStep] = useState(0);
   const [show, setShow] = useState(true);
 
+  const ringControls = useAnimation();
+  const monogramControls = useAnimation();
+  const nameControls = useAnimation();
+  const roleControls = useAnimation();
+  const lineControls = useAnimation();
+  const overlayControls = useAnimation();
+
   useEffect(() => {
-    const timers = [];
+    let cancelled = false;
 
-    timers.push(
-      setTimeout(() => setStep(1), 500)
-    );
+    const wait = (ms) =>
+      new Promise((resolve) => setTimeout(resolve, ms));
 
-    timers.push(
-      setTimeout(() => setStep(2), 1200)
-    );
+    async function sequence() {
+      // Initial state
+      ringControls.set({
+        scale: 0.55,
+        opacity: 0,
+        rotate: -25,
+      });
 
-    timers.push(
-      setTimeout(() => setStep(3), 1900)
-    );
+      monogramControls.set({
+        scale: 0.7,
+        opacity: 0,
+        y: 12,
+      });
 
-    timers.push(
-      setTimeout(() => setStep(4), 2600)
-    );
+      nameControls.set({
+        opacity: 0,
+        y: 20,
+        letterSpacing: '0.5em',
+      });
 
-    timers.push(
-      setTimeout(() => setStep(5), 3300)
-    );
+      roleControls.set({
+        opacity: 0,
+        y: 12,
+      });
 
-    timers.push(
-      setTimeout(() => {
-        setShow(false);
-        onComplete?.();
-      }, 4400)
-    );
+      lineControls.set({
+        scaleX: 0,
+        opacity: 0,
+      });
+
+      overlayControls.set({
+        opacity: 1,
+      });
+
+      // 1. Ring reveal
+      await ringControls.start({
+        scale: 1,
+        opacity: 1,
+        rotate: 0,
+        transition: {
+          duration: 1.1,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      });
+
+      if (cancelled) return;
+
+      // 2. AK monogram
+      await monogramControls.start({
+        scale: 1,
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.65,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      });
+
+      if (cancelled) return;
+
+      // Small pause
+      await wait(250);
+
+      // 3. Horizontal line
+      lineControls.start({
+        scaleX: 1,
+        opacity: 1,
+        transition: {
+          duration: 0.65,
+          ease: 'easeOut',
+        },
+      });
+
+      // 4. Name reveal
+      await nameControls.start({
+        opacity: 1,
+        y: 0,
+        letterSpacing: '0.22em',
+        transition: {
+          duration: 0.85,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      });
+
+      if (cancelled) return;
+
+      // 5. Role
+      await roleControls.start({
+        opacity: 1,
+        y: 0,
+        transition: {
+          duration: 0.6,
+          ease: 'easeOut',
+        },
+      });
+
+      if (cancelled) return;
+
+      await wait(900);
+
+      // 6. Exit
+      await Promise.all([
+        ringControls.start({
+          scale: 1.15,
+          opacity: 0,
+          transition: {
+            duration: 0.55,
+            ease: 'easeInOut',
+          },
+        }),
+
+        monogramControls.start({
+          scale: 1.08,
+          opacity: 0,
+          y: -8,
+          transition: {
+            duration: 0.45,
+            ease: 'easeInOut',
+          },
+        }),
+
+        nameControls.start({
+          opacity: 0,
+          y: -12,
+          transition: {
+            duration: 0.4,
+            ease: 'easeInOut',
+          },
+        }),
+
+        roleControls.start({
+          opacity: 0,
+          y: -8,
+          transition: {
+            duration: 0.35,
+            ease: 'easeInOut',
+          },
+        }),
+
+        lineControls.start({
+          scaleX: 0,
+          opacity: 0,
+          transition: {
+            duration: 0.35,
+            ease: 'easeInOut',
+          },
+        }),
+      ]);
+
+      if (cancelled) return;
+
+      await overlayControls.start({
+        opacity: 0,
+        transition: {
+          duration: 0.45,
+          ease: 'easeInOut',
+        },
+      });
+
+      if (cancelled) return;
+
+      setShow(false);
+
+      if (onComplete) {
+        onComplete();
+      }
+    }
+
+    sequence();
 
     return () => {
-      timers.forEach(clearTimeout);
+      cancelled = true;
     };
-  }, [onComplete]);
+  }, [
+    ringControls,
+    monogramControls,
+    nameControls,
+    roleControls,
+    lineControls,
+    overlayControls,
+    onComplete,
+  ]);
 
   if (!show) return null;
 
   return (
     <motion.div
-      initial={{ opacity: 1 }}
-      animate={{ opacity: show ? 1 : 0 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.6 }}
-      className="fixed inset-0 z-[9999] bg-[#050507] flex items-center justify-center overflow-hidden"
+      animate={overlayControls}
+      className="fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden bg-black select-none"
     >
-
-      {/* =========================================
-          SUBTLE BACKGROUND GLOW
-      ========================================= */}
-
-      <div className="absolute inset-0 pointer-events-none">
-
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-purple-600/[0.06] blur-[120px]" />
-
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.07),transparent_60%)]" />
-
-      </div>
-
-      {/* =========================================
-          SUBTLE GRID
-      ========================================= */}
-
+      {/* Very subtle background glow */}
       <div
-        className="absolute inset-0 opacity-[0.025] pointer-events-none"
-        style={{
-          backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
-          backgroundSize: '50px 50px',
-        }}
+        className="
+          absolute inset-0
+          bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.10)_0%,rgba(0,0,0,0)_48%)]
+          pointer-events-none
+        "
       />
 
-      {/* =========================================
-          TERMINAL
-      ========================================= */}
+      {/* Subtle grain / depth */}
+      <div
+        className="
+          absolute inset-0
+          bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.65)_100%)]
+          pointer-events-none
+        "
+      />
 
-      <motion.div
-        initial={{ opacity: 0, y: 15, scale: 0.98 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-        }}
-        className="relative w-[90%] max-w-[620px] rounded-xl border border-white/[0.08] bg-[#09090c]/90 backdrop-blur-xl shadow-[0_0_80px_rgba(139,92,246,0.12)] overflow-hidden"
-      >
+      {/* Main Identity */}
+      <div className="relative flex flex-col items-center justify-center">
 
-        {/* =====================================
-            TERMINAL HEADER
-        ===================================== */}
-
-        <div className="h-11 flex items-center px-4 border-b border-white/[0.07] bg-white/[0.025]">
-
-          <div className="flex gap-1.5">
-
-            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
-            <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
-
-          </div>
-
-          <div className="absolute left-1/2 -translate-x-1/2 text-[10px] text-gray-500 font-mono tracking-wider">
-            apurvasri@portfolio
-          </div>
-
-        </div>
-
-        {/* =====================================
-            TERMINAL CONTENT
-        ===================================== */}
-
-        <div className="p-6 sm:p-8 font-mono text-sm sm:text-[15px] min-h-[270px]">
-
-          {/* LINE 1 */}
-
-          <AnimatePresence>
-            {step >= 1 && (
-              <motion.div
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="flex gap-2 mb-4"
-              >
-                <span className="text-purple-400">
-                  $
-                </span>
-
-                <span className="text-gray-300">
-                  initializing portfolio...
-                </span>
-
-                <motion.span
-                  animate={{ opacity: [0, 1, 0] }}
-                  transition={{
-                    repeat: Infinity,
-                    duration: 0.8,
-                  }}
-                  className="text-purple-400"
-                >
-                  ▌
-                </motion.span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* LINE 2 */}
-
-          <AnimatePresence>
-            {step >= 2 && (
-              <motion.div
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="flex gap-2 mb-4"
-              >
-                <span className="text-purple-400">
-                  $
-                </span>
-
-                <span className="text-gray-400">
-                  loading components...
-                </span>
-
-                <span className="text-green-400 text-xs">
-                  [OK]
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* LINE 3 */}
-
-          <AnimatePresence>
-            {step >= 3 && (
-              <motion.div
-                initial={{ opacity: 0, x: -8 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="flex gap-2 mb-4"
-              >
-                <span className="text-purple-400">
-                  $
-                </span>
-
-                <span className="text-gray-400">
-                  system ready
-                </span>
-
-                <span className="text-green-400 text-xs">
-                  [OK]
-                </span>
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* LINE 4 */}
-
-          <AnimatePresence>
-            {step >= 4 && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="mt-7"
-              >
-
-                <div className="flex gap-2 text-purple-400">
-                  <span>$</span>
-
-                  <span className="text-gray-200">
-                    welcome, Apurvasri.
-                  </span>
-                </div>
-
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-          {/* =================================
-              NAME REVEAL
-          ================================= */}
-
-          <AnimatePresence>
-            {step >= 5 && (
-              <motion.div
-                initial={{
-                  opacity: 0,
-                  y: 18,
-                  filter: 'blur(8px)',
-                }}
-                animate={{
-                  opacity: 1,
-                  y: 0,
-                  filter: 'blur(0px)',
-                }}
-                transition={{
-                  duration: 0.8,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="mt-8"
-              >
-
-                <h1 className="font-display font-black text-3xl sm:text-4xl tracking-[0.12em] text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white uppercase">
-                  APURVASRI K
-                </h1>
-
-                <div className="mt-3 flex items-center gap-3">
-
-                  <span className="w-8 h-px bg-purple-400/50" />
-
-                  <p className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-gray-500">
-                    Computer Science Engineer
-                  </p>
-
-                </div>
-
-              </motion.div>
-            )}
-          </AnimatePresence>
-
-        </div>
-
-        {/* =====================================
-            TERMINAL STATUS BAR
-        ===================================== */}
-
-        <div className="h-8 border-t border-white/[0.06] px-4 flex items-center justify-between text-[8px] font-mono text-gray-600 uppercase tracking-wider">
-
-          <span>
-            portfolio.exe
-          </span>
-
-          <span>
-            v1.0.0
-          </span>
-
-        </div>
-
-      </motion.div>
-
-      {/* =========================================
-          BOTTOM LOADING INDICATOR
-      ========================================= */}
-
-      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 w-32">
-
-        <div className="h-px bg-white/[0.08] overflow-hidden">
-
-          <motion.div
-            initial={{ width: '0%' }}
-            animate={{ width: '100%' }}
-            transition={{
-              duration: 4.2,
-              ease: 'linear',
-            }}
-            className="h-full bg-purple-400/70"
+        {/* Monogram Ring */}
+        <motion.div
+          animate={ringControls}
+          className="
+            relative
+            w-28 h-28
+            md:w-36 md:h-36
+            rounded-full
+            flex items-center justify-center
+          "
+        >
+          {/* Outer thin ring */}
+          <div
+            className="
+              absolute inset-0
+              rounded-full
+              border border-white/20
+            "
           />
 
-        </div>
+          {/* Purple accent ring */}
+          <div
+            className="
+              absolute inset-[5px]
+              rounded-full
+              border border-purple-400/50
+              shadow-[0_0_35px_rgba(139,92,246,0.22)]
+            "
+          />
 
-        <p className="mt-3 text-center text-[8px] uppercase tracking-[0.35em] text-gray-600 font-mono">
-          Loading
-        </p>
+          {/* Inner glass circle */}
+          <div
+            className="
+              absolute inset-[14px]
+              rounded-full
+              bg-white/[0.025]
+              border border-white/10
+              backdrop-blur-sm
+            "
+          />
 
+          {/* AK */}
+          <motion.div
+            animate={monogramControls}
+            className="
+              relative z-10
+              font-display
+              font-black
+              text-3xl
+              md:text-4xl
+              tracking-[0.08em]
+              text-white
+            "
+          >
+            AK
+          </motion.div>
+        </motion.div>
+
+        {/* Divider */}
+        <motion.div
+          animate={lineControls}
+          className="
+            mt-8
+            h-px
+            w-20 md:w-28
+            origin-center
+            bg-gradient-to-r
+            from-transparent
+            via-purple-400
+            to-transparent
+          "
+        />
+
+        {/* Name */}
+        <motion.h1
+          animate={nameControls}
+          className="
+            mt-7
+            font-display
+            font-black
+            text-white
+            text-2xl
+            md:text-4xl
+            uppercase
+            text-center
+            tracking-[0.22em]
+            pl-[0.22em]
+            whitespace-nowrap
+          "
+        >
+          APURVASRI K
+        </motion.h1>
+
+        {/* Role */}
+        <motion.p
+          animate={roleControls}
+          className="
+            mt-4
+            font-mono
+            text-[9px]
+            md:text-xs
+            uppercase
+            tracking-[0.32em]
+            text-white/45
+            text-center
+            pl-[0.32em]
+          "
+        >
+          Software Developer · AI / ML Enthusiast
+        </motion.p>
       </div>
 
+      {/* Bottom tiny indicator */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.35 }}
+        transition={{ delay: 1.8, duration: 0.5 }}
+        className="
+          absolute
+          bottom-8
+          left-1/2
+          -translate-x-1/2
+          font-mono
+          text-[8px]
+          uppercase
+          tracking-[0.35em]
+          text-white/30
+        "
+      >
+        Welcome
+      </motion.div>
     </motion.div>
   );
 }
-
