@@ -6,7 +6,9 @@ import Hero from './components/Hero';
 import SkillsTesseract from './components/SkillsTesseract';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
+import Highlights from './components/Highlights';
 import Contact from './components/Contact';
+
 
 export default function App() {
   const [introFinished, setIntroFinished] = useState(false);
@@ -36,8 +38,9 @@ export default function App() {
   <Hero />
   <SkillsTesseract />
   <Projects />
-  <Experience />
-  <Contact />
+<Experience />
+<Highlights />
+<Contact />
 </main>
           </motion.div>
         )}
