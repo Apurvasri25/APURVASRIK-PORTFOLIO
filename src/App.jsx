@@ -5,6 +5,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import SkillsTesseract from './components/SkillsTesseract';
 import Projects from './components/Projects';
+import Experience from './components/Experience';
 import Contact from './components/Contact';
 
 export default function App() {
@@ -31,12 +32,13 @@ export default function App() {
             <Navbar />
 
             {/* Page Sections */}
-            <main>
-              <Hero />
-              <SkillsTesseract />
-              <Projects />
-              <Contact />
-            </main>
+           <main>
+  <Hero />
+  <SkillsTesseract />
+  <Projects />
+  <Experience />
+  <Contact />
+</main>
           </motion.div>
         )}
       </AnimatePresence>
