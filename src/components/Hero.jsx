@@ -30,7 +30,6 @@ const skillGroups = [
       { name: 'C', icon: SiC },
     ],
   },
-
   {
     title: 'FRONTEND',
     skills: [
@@ -41,7 +40,6 @@ const skillGroups = [
       { name: 'Tailwind CSS', icon: SiTailwindcss },
     ],
   },
-
   {
     title: 'BACKEND',
     skills: [
@@ -49,14 +47,12 @@ const skillGroups = [
       { name: 'Express.js', icon: SiExpress },
     ],
   },
-
   {
     title: 'DATABASE',
     skills: [
       { name: 'MySQL', icon: SiMysql },
     ],
   },
-
   {
     title: 'TOOLS',
     skills: [
@@ -69,21 +65,14 @@ const skillGroups = [
   },
 ];
 
-/* =========================================
-   SKILL CARD
-========================================= */
-
-const SkillCard = ({ skill, index }) => {
+function SkillCard({ skill, index }) {
   const Icon = skill.icon;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 15 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{
-        once: true,
-        amount: 0.2,
-      }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
         duration: 0.35,
         delay: index * 0.03,
@@ -96,7 +85,7 @@ const SkillCard = ({ skill, index }) => {
         group
         relative
         flex
-        h-[105px]
+        h-[100px]
         flex-col
         items-center
         justify-center
@@ -114,9 +103,7 @@ const SkillCard = ({ skill, index }) => {
         hover:shadow-[0_0_25px_rgba(168,85,247,0.12)]
       "
     >
-
-      {/* Hover Glow */}
-
+      {/* Hover glow */}
       <div
         className="
           pointer-events-none
@@ -134,14 +121,13 @@ const SkillCard = ({ skill, index }) => {
         "
       />
 
-      {/* Logo */}
-
+      {/* Skill Logo */}
       <Icon
         className="
           relative
           z-10
           mb-2
-          text-[32px]
+          text-[30px]
           text-gray-300
           transition-all
           duration-300
@@ -150,8 +136,7 @@ const SkillCard = ({ skill, index }) => {
         "
       />
 
-      {/* Name */}
-
+      {/* Skill Name */}
       <span
         className="
           relative
@@ -168,41 +153,24 @@ const SkillCard = ({ skill, index }) => {
       >
         {skill.name}
       </span>
-
     </motion.div>
   );
-};
+}
 
-/* =========================================
-   SKILL GROUP
-========================================= */
-
-const SkillGroup = ({ group, groupIndex }) => {
+function SkillGroup({ group, groupIndex }) {
   return (
     <motion.div
-      initial={{
-        opacity: 0,
-        y: 20,
-      }}
-      whileInView={{
-        opacity: 1,
-        y: 0,
-      }}
-      viewport={{
-        once: true,
-        amount: 0.15,
-      }}
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
       transition={{
         duration: 0.45,
-        delay: groupIndex * 0.06,
+        delay: groupIndex * 0.05,
       }}
       className="relative"
     >
-
-      {/* Category Heading */}
-
+      {/* Category heading */}
       <div className="mb-4 flex items-center gap-3">
-
         <span className="h-px w-6 bg-purple-500/80" />
 
         <h3
@@ -218,11 +186,9 @@ const SkillGroup = ({ group, groupIndex }) => {
         </h3>
 
         <div className="h-px flex-1 bg-white/[0.06]" />
-
       </div>
 
-      {/* Logos */}
-
+      {/* Skill cards */}
       <div
         className="
           grid
@@ -241,14 +207,9 @@ const SkillGroup = ({ group, groupIndex }) => {
           />
         ))}
       </div>
-
     </motion.div>
   );
-};
-
-/* =========================================
-   MAIN SKILLS SECTION
-========================================= */
+}
 
 export default function SkillsTesseract() {
   return (
@@ -265,9 +226,7 @@ export default function SkillsTesseract() {
         lg:px-16
       "
     >
-
-      {/* Background Glow */}
-
+      {/* Background glow */}
       <div
         className="
           pointer-events-none
@@ -285,28 +244,15 @@ export default function SkillsTesseract() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
 
-        {/* ================= HEADER ================= */}
-
+        {/* Header */}
         <motion.div
-          initial={{
-            opacity: 0,
-            y: 20,
-          }}
-          whileInView={{
-            opacity: 1,
-            y: 0,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.5,
-          }}
-          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
         >
-
           <div className="mb-3 flex items-center gap-3">
-
             <span className="h-px w-8 bg-purple-500" />
 
             <span
@@ -319,7 +265,6 @@ export default function SkillsTesseract() {
             >
               MY TOOLKIT
             </span>
-
           </div>
 
           <h2
@@ -349,13 +294,10 @@ export default function SkillsTesseract() {
             Technologies and tools I use to build interactive,
             responsive and practical digital experiences.
           </p>
-
         </motion.div>
 
-        {/* ================= SKILLS ================= */}
-
-        <div className="space-y-10">
-
+        {/* Skills */}
+        <div className="space-y-9">
           {skillGroups.map((group, index) => (
             <SkillGroup
               key={group.title}
@@ -363,27 +305,16 @@ export default function SkillsTesseract() {
               groupIndex={index}
             />
           ))}
-
         </div>
 
-        {/* ================= BOTTOM ================= */}
-
+        {/* Bottom */}
         <motion.div
-          initial={{
-            opacity: 0,
-          }}
-          whileInView={{
-            opacity: 1,
-          }}
-          viewport={{
-            once: true,
-          }}
-          transition={{
-            duration: 0.5,
-          }}
-          className="mt-14 flex items-center gap-3"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+          className="mt-12 flex items-center gap-3"
         >
-
           <div className="h-px flex-1 bg-white/[0.07]" />
 
           <span
@@ -398,7 +329,6 @@ export default function SkillsTesseract() {
           </span>
 
           <div className="h-px flex-1 bg-white/[0.07]" />
-
         </motion.div>
 
       </div>
