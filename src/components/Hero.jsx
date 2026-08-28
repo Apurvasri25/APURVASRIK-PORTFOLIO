@@ -9,36 +9,21 @@ import CreepyButton from '@/components/ui/CreepyButton';
 export default function Hero() {
   const [resumeOpen, setResumeOpen] = useState(false);
 
- const dockItems = [
+const dockItems = [
   {
     title: 'LinkedIn',
-    icon: Linkedin,
-    onClick: () => {
-      window.open(
-        'https://www.linkedin.com/in/apurvasri-k-921876293/',
-        '_blank',
-        'noopener,noreferrer'
-      );
-    },
+    icon: () => null,
+    href: 'https://www.linkedin.com/in/apurvasri-k-921876293/',
   },
   {
     title: 'GitHub',
-    icon: Github,
-    onClick: () => {
-      window.open(
-        'https://github.com/Apurvasri25',
-        '_blank',
-        'noopener,noreferrer'
-      );
-    },
+    icon: () => null,
+    href: 'https://github.com/Apurvasri25',
   },
   {
     title: 'Email',
-    icon: Mail,
-    onClick: () => {
-      window.location.href =
-        'mailto:apurvasrikanakasabapathi@gmail.com';
-    },
+    icon: () => null,
+    href: 'mailto:apurvasrikanakasabapathi@gmail.com',
   },
 ];
 
