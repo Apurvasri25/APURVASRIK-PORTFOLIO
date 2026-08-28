@@ -330,34 +330,21 @@ export default function Hero() {
               <ArrowRight className="w-4 h-4 text-neonPurple" />
             </a>
 
-            <a
-              href="/resume.pdf"
-              download="Apurvasri_K_Resume.pdf"
-              className="inline-block"
-            >
-              <CreepyButton
-                coverClassName="
-                  bg-[#18181b]
-                  border
-                  border-white/20
-                  text-gray-200
-                  hover:text-white
-                  hover:border-white/40
-                  shadow-[0_0_15px_rgba(255,255,255,0.06)]
-                "
-              >
-                <div className="flex items-center gap-2 whitespace-nowrap">
-
-                  <FileText className="w-4 h-4 text-neonPurple" />
-
-                  <span className="whitespace-nowrap">
-                    Download Resume
-                  </span>
-
-                </div>
-              </CreepyButton>
-            </a>
-
+           <a
+  href="/resume.pdf"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="inline-block"
+>
+  <CreepyButton
+    coverClassName="bg-[#18181b] border border-white/20 text-gray-200 hover:text-white hover:border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.06)]"
+  >
+    <div className="flex items-center gap-2 whitespace-nowrap">
+      <FileText className="w-4 h-4 text-neonPurple" />
+      <span className="whitespace-nowrap">View Resume</span>
+    </div>
+  </CreepyButton>
+</a>
           </motion.div>
 
           {/* ================= SOCIAL DOCK ================= */}
