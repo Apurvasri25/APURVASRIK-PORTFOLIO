@@ -2,73 +2,51 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-import {
-  SiPython,
-  SiC,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiReact,
-  SiNodedotjs,
-  SiExpress,
-  SiMysql,
-  SiGit,
-  SiGithub,
-  SiTailwindcss,
-  SiFigma,
-  SiVite,
-  SiPostman,
-} from 'react-icons/si';
-
-import { FaJava } from 'react-icons/fa';
-
 const skillGroups = [
   {
     title: 'PROGRAMMING',
     skills: [
-      { name: 'Java', icon: FaJava },
-      { name: 'Python', icon: SiPython },
-      { name: 'C', icon: SiC },
+      { name: 'Java', icon: '☕' },
+      { name: 'Python', icon: '🐍' },
+      { name: 'C', icon: 'C' },
     ],
   },
   {
     title: 'FRONTEND',
     skills: [
-      { name: 'HTML5', icon: SiHtml5 },
-      { name: 'CSS3', icon: SiCss3 },
-      { name: 'JavaScript', icon: SiJavascript },
-      { name: 'React', icon: SiReact },
-      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      { name: 'HTML5', icon: 'HTML' },
+      { name: 'CSS3', icon: 'CSS' },
+      { name: 'JavaScript', icon: 'JS' },
+      { name: 'React', icon: '⚛' },
+      { name: 'Tailwind CSS', icon: 'TW' },
     ],
   },
   {
     title: 'BACKEND',
     skills: [
-      { name: 'Node.js', icon: SiNodedotjs },
-      { name: 'Express.js', icon: SiExpress },
+      { name: 'Node.js', icon: 'JS' },
+      { name: 'Express.js', icon: 'EX' },
     ],
   },
   {
     title: 'DATABASE',
     skills: [
-      { name: 'MySQL', icon: SiMysql },
+      { name: 'MySQL', icon: 'SQL' },
     ],
   },
   {
     title: 'TOOLS',
     skills: [
-      { name: 'Git', icon: SiGit },
-      { name: 'GitHub', icon: SiGithub },
-      { name: 'Postman', icon: SiPostman },
-      { name: 'Figma', icon: SiFigma },
-      { name: 'Vite', icon: SiVite },
+      { name: 'Git', icon: 'Git' },
+      { name: 'GitHub', icon: 'GH' },
+      { name: 'Postman', icon: 'PM' },
+      { name: 'Figma', icon: 'Fi' },
+      { name: 'Vite', icon: 'V' },
     ],
   },
 ];
 
 function SkillCard({ skill, index }) {
-  const Icon = skill.icon;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 8 }}
@@ -123,19 +101,26 @@ function SkillCard({ skill, index }) {
       />
 
       {/* Icon */}
-      <Icon
+      <div
         className="
           relative
           z-10
           mb-1
-          text-[23px]
+          flex
+          h-7
+          items-center
+          justify-center
+          text-[20px]
+          font-bold
           text-gray-400
           transition-all
           duration-300
           group-hover:scale-110
           group-hover:text-purple-300
         "
-      />
+      >
+        {skill.icon}
+      </div>
 
       {/* Name */}
       <span
@@ -337,4 +322,3 @@ export default function SkillsTesseract() {
     </section>
   );
 }
-
