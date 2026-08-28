@@ -26,15 +26,16 @@ import {
 const skillGroups = [
   {
     title: 'PROGRAMMING',
+    number: '01',
     skills: [
       { name: 'Java', icon: FaJava },
       { name: 'Python', icon: FaPython },
       { name: 'C', icon: SiC },
     ],
   },
-
   {
     title: 'FRONTEND',
+    number: '02',
     skills: [
       { name: 'HTML5', icon: FaHtml5 },
       { name: 'CSS3', icon: FaCss3Alt },
@@ -43,24 +44,24 @@ const skillGroups = [
       { name: 'Tailwind CSS', icon: SiTailwindcss },
     ],
   },
-
   {
     title: 'BACKEND',
+    number: '03',
     skills: [
       { name: 'Node.js', icon: FaNodeJs },
       { name: 'Express.js', icon: SiExpress },
     ],
   },
-
   {
     title: 'DATABASE',
+    number: '04',
     skills: [
       { name: 'MySQL', icon: SiMysql },
     ],
   },
-
   {
     title: 'TOOLS',
+    number: '05',
     skills: [
       { name: 'Git', icon: FaGitAlt },
       { name: 'GitHub', icon: FaGithub },
@@ -71,58 +72,53 @@ const skillGroups = [
   },
 ];
 
-/* ================================
-   SKILL CARD
-================================ */
-
-function SkillCard({ skill, index }) {
+function SkillItem({ skill, index }) {
   const Icon = skill.icon;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.15 }}
+      viewport={{ once: true, amount: 0.2 }}
       transition={{
-        duration: 0.3,
-        delay: index * 0.025,
+        duration: 0.35,
+        delay: index * 0.04,
       }}
       whileHover={{
-        y: -3,
+        y: -4,
         scale: 1.02,
       }}
       className="
         group
         relative
         flex
-        h-[82px]
-        flex-col
+        min-h-[88px]
         items-center
-        justify-center
+        gap-3
         overflow-hidden
-        rounded-lg
+        rounded-xl
         border
         border-white/[0.08]
         bg-white/[0.025]
-        px-2
-        py-2
-        backdrop-blur-md
+        px-4
+        py-3
+        backdrop-blur-xl
         transition-all
         duration-300
         hover:border-purple-400/40
-        hover:bg-purple-500/[0.05]
-        hover:shadow-[0_0_20px_rgba(168,85,247,0.12)]
+        hover:bg-purple-500/[0.055]
+        hover:shadow-[0_12px_35px_rgba(168,85,247,0.10)]
       "
     >
-      {/* Small hover glow */}
+      {/* Hover glow */}
       <div
         className="
           pointer-events-none
           absolute
-          -right-6
-          -top-6
-          h-14
-          w-14
+          -right-8
+          -top-8
+          h-20
+          w-20
           rounded-full
           bg-purple-500/0
           blur-2xl
@@ -132,89 +128,195 @@ function SkillCard({ skill, index }) {
         "
       />
 
-      {/* ORIGINAL LOGO */}
-      <Icon
+      {/* Icon */}
+      <div
         className="
           relative
           z-10
-          mb-1.5
-          text-[25px]
-          text-gray-300
+          flex
+          h-11
+          w-11
+          shrink-0
+          items-center
+          justify-center
+          rounded-lg
+          border
+          border-white/[0.08]
+          bg-black/40
           transition-all
           duration-300
-          group-hover:scale-110
-          group-hover:text-purple-300
-        "
-      />
-
-      {/* NAME */}
-      <span
-        className="
-          relative
-          z-10
-          text-center
-          text-[10px]
-          font-medium
-          tracking-wide
-          text-gray-400
-          transition-colors
-          duration-300
-          group-hover:text-white
+          group-hover:border-purple-400/30
+          group-hover:bg-purple-500/[0.08]
         "
       >
-        {skill.name}
+        <Icon
+          className="
+            text-[23px]
+            text-gray-400
+            transition-all
+            duration-300
+            group-hover:scale-110
+            group-hover:text-purple-300
+          "
+        />
+      </div>
+
+      {/* Text */}
+      <div className="relative z-10 min-w-0">
+        <p
+          className="
+            truncate
+            text-[12px]
+            font-semibold
+            tracking-wide
+            text-gray-300
+            transition-colors
+            duration-300
+            group-hover:text-white
+          "
+        >
+          {skill.name}
+        </p>
+
+        <p
+          className="
+            mt-0.5
+            font-mono
+            text-[8px]
+            uppercase
+            tracking-[0.18em]
+            text-gray-600
+            transition-colors
+            duration-300
+            group-hover:text-purple-400/70
+          "
+        >
+          Technology
+        </p>
+      </div>
+
+      {/* Arrow */}
+      <span
+        className="
+          absolute
+          right-3
+          top-3
+          text-[10px]
+          text-gray-700
+          opacity-0
+          transition-all
+          duration-300
+          group-hover:translate-x-0.5
+          group-hover:text-purple-400
+          group-hover:opacity-100
+        "
+      >
+        ↗
       </span>
     </motion.div>
   );
 }
 
-/* ================================
-   SKILL GROUP
-================================ */
-
 function SkillGroup({ group, groupIndex }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{
-        duration: 0.35,
-        delay: groupIndex * 0.04,
+        duration: 0.45,
+        delay: groupIndex * 0.06,
       }}
+      className="
+        group/category
+        relative
+        overflow-hidden
+        rounded-2xl
+        border
+        border-white/[0.08]
+        bg-white/[0.018]
+        p-5
+        backdrop-blur-xl
+        transition-all
+        duration-500
+        hover:border-purple-400/20
+        hover:bg-white/[0.025]
+      "
     >
-      {/* CATEGORY */}
-      <div className="mb-2.5 flex items-center gap-2">
-        <span className="h-px w-5 bg-purple-500/80" />
-
-        <h3
-          className="
-            font-mono
-            text-[9px]
-            font-semibold
-            tracking-[0.2em]
-            text-purple-300
-          "
-        >
-          {group.title}
-        </h3>
-
-        <div className="h-px flex-1 bg-white/[0.06]" />
-      </div>
-
-      {/* SKILLS */}
+      {/* Top glow */}
       <div
         className="
+          pointer-events-none
+          absolute
+          -top-20
+          left-1/2
+          h-32
+          w-64
+          -translate-x-1/2
+          rounded-full
+          bg-purple-500/[0.025]
+          blur-3xl
+          transition-all
+          duration-700
+          group-hover/category:bg-purple-500/[0.07]
+        "
+      />
+
+      {/* Category header */}
+      <div className="relative z-10 mb-5 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          <span
+            className="
+              font-mono
+              text-[9px]
+              tracking-[0.15em]
+              text-purple-500
+            "
+          >
+            {group.number}
+          </span>
+
+          <div className="h-4 w-px bg-white/10" />
+
+          <h3
+            className="
+              font-mono
+              text-[10px]
+              font-semibold
+              tracking-[0.25em]
+              text-gray-300
+            "
+          >
+            {group.title}
+          </h3>
+        </div>
+
+        <span
+          className="
+            font-mono
+            text-[8px]
+            tracking-widest
+            text-gray-700
+          "
+        >
+          {String(group.skills.length).padStart(2, '0')}
+        </span>
+      </div>
+
+      {/* Skill cards */}
+      <div
+        className="
+          relative
+          z-10
           grid
-          grid-cols-3
-          gap-1.5
-          sm:grid-cols-4
-          md:grid-cols-5
-          lg:grid-cols-6
+          grid-cols-1
+          gap-2
+          sm:grid-cols-2
+          lg:grid-cols-3
         "
       >
         {group.skills.map((skill, index) => (
-          <SkillCard
+          <SkillItem
             key={skill.name}
             skill={skill}
             index={index}
@@ -225,10 +327,6 @@ function SkillGroup({ group, groupIndex }) {
   );
 }
 
-/* ================================
-   MAIN SKILLS SECTION
-================================ */
-
 export default function SkillsTesseract() {
   return (
     <section
@@ -238,82 +336,156 @@ export default function SkillsTesseract() {
         overflow-hidden
         bg-black
         px-5
-        py-16
+        py-20
         sm:px-8
         lg:px-16
       "
     >
-      {/* BACKGROUND GLOW */}
+      {/* Background atmosphere */}
       <div
         className="
           pointer-events-none
           absolute
           left-1/2
-          top-10
-          h-[280px]
-          w-[280px]
+          top-20
+          h-[420px]
+          w-[420px]
           -translate-x-1/2
           rounded-full
-          bg-purple-600/[0.045]
-          blur-[100px]
+          bg-purple-600/[0.035]
+          blur-[130px]
         "
       />
 
-      <div className="relative z-10 mx-auto max-w-5xl">
+      <div
+        className="
+          pointer-events-none
+          absolute
+          right-0
+          top-1/2
+          h-[300px]
+          w-[300px]
+          rounded-full
+          bg-fuchsia-600/[0.025]
+          blur-[120px]
+        "
+      />
 
-        {/* HEADER */}
+      <div className="relative z-10 mx-auto max-w-6xl">
+
+        {/* Header */}
         <motion.div
-          initial={{ opacity: 0, y: 15 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mb-8"
+          transition={{ duration: 0.5 }}
+          className="mb-12"
         >
-          <div className="mb-2 flex items-center gap-2">
-            <span className="h-px w-6 bg-purple-500" />
+          <div className="mb-4 flex items-center gap-3">
+            <span className="h-px w-8 bg-purple-500" />
 
             <span
               className="
                 font-mono
                 text-[9px]
-                tracking-[0.25em]
+                font-semibold
+                tracking-[0.3em]
                 text-purple-400
               "
             >
               MY TOOLKIT
             </span>
+
+            <span className="h-px w-12 bg-white/[0.08]" />
           </div>
 
-          <h2
-            className="
-              text-4xl
-              font-extrabold
-              tracking-tight
-              text-white
-              sm:text-5xl
-              lg:text-6xl
-            "
-          >
-            Skills<span className="text-purple-500">.</span>
-          </h2>
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+            <div>
+              <h2
+                className="
+                  text-5xl
+                  font-black
+                  tracking-[-0.04em]
+                  text-white
+                  sm:text-6xl
+                  lg:text-7xl
+                "
+              >
+                Skills
+                <span className="text-purple-500">.</span>
+              </h2>
 
-          <p
-            className="
-              mt-2
-              max-w-lg
-              text-xs
-              leading-5
-              text-gray-500
-              sm:text-sm
-            "
-          >
-            Technologies and tools I use to build interactive,
-            responsive and practical digital experiences.
-          </p>
+              <p
+                className="
+                  mt-4
+                  max-w-xl
+                  text-sm
+                  leading-6
+                  text-gray-500
+                "
+              >
+                A collection of technologies and tools I use to
+                design, build and ship modern digital experiences.
+              </p>
+            </div>
+
+            {/* Small status box */}
+            <div
+              className="
+                flex
+                w-fit
+                items-center
+                gap-3
+                rounded-xl
+                border
+                border-white/[0.08]
+                bg-white/[0.02]
+                px-4
+                py-3
+              "
+            >
+              <span className="relative flex h-2 w-2">
+                <span
+                  className="
+                    absolute
+                    inline-flex
+                    h-full
+                    w-full
+                    animate-ping
+                    rounded-full
+                    bg-purple-400
+                    opacity-60
+                  "
+                />
+
+                <span
+                  className="
+                    relative
+                    inline-flex
+                    h-2
+                    w-2
+                    rounded-full
+                    bg-purple-500
+                  "
+                />
+              </span>
+
+              <span
+                className="
+                  font-mono
+                  text-[9px]
+                  tracking-[0.2em]
+                  text-gray-400
+                "
+              >
+                ALWAYS LEARNING
+              </span>
+            </div>
+          </div>
         </motion.div>
 
-        {/* SKILL GROUPS */}
-        <div className="space-y-6">
+        {/* Skill groups */}
+        <div className="grid gap-4 md:grid-cols-2">
           {skillGroups.map((group, index) => (
             <SkillGroup
               key={group.title}
@@ -321,15 +493,21 @@ export default function SkillsTesseract() {
               groupIndex={index}
             />
           ))}
+
+          {/* Full width tools */}
+          <div className="md:col-span-2">
+            {/* The last group is already rendered above,
+                so this remains intentionally empty for grid balance */}
+          </div>
         </div>
 
-        {/* BOTTOM */}
+        {/* Bottom line */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
-          className="mt-8 flex items-center gap-2"
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="mt-12 flex items-center gap-4"
         >
           <div className="h-px flex-1 bg-white/[0.07]" />
 
@@ -337,11 +515,11 @@ export default function SkillsTesseract() {
             className="
               font-mono
               text-[8px]
-              tracking-[0.25em]
-              text-gray-600
+              tracking-[0.3em]
+              text-gray-700
             "
           >
-            ALWAYS LEARNING
+            BUILD · LEARN · CREATE
           </span>
 
           <div className="h-px flex-1 bg-white/[0.07]" />
