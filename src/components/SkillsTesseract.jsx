@@ -3,7 +3,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 
 import {
-  SiJava,
   SiPython,
   SiC,
   SiHtml5,
@@ -21,11 +20,13 @@ import {
   SiPostman,
 } from 'react-icons/si';
 
+import { FaJava } from 'react-icons/fa';
+
 const skillGroups = [
   {
     title: 'PROGRAMMING',
     skills: [
-      { name: 'Java', icon: SiJava },
+      { name: 'Java', icon: FaJava },
       { name: 'Python', icon: SiPython },
       { name: 'C', icon: SiC },
     ],
