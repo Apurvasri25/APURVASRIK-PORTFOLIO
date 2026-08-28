@@ -4,6 +4,9 @@ import Pattern3DCard from '@/components/ui/Pattern3DCard';
 
 const FEATURED_PROJECTS = [
   {
+    id: 2,
+    number: '02',
+    category: 'PROJECT',
   title: "Smart Campus Pass",
   description:
     "A full-stack digital campus pass system using QR codes to track student outpass history and streamline gate verification. Emergency passes are flagged and prioritized for faster processing.",
@@ -19,7 +22,7 @@ const FEATURED_PROJECTS = [
   {
     id: 1,
     number: '01',
-    category: 'CV',
+    category: 'PROJECT',
     title: 'Hand Gesture Recognition System',
     description: 'A real-time hand gesture recognition system built with computer vision to enable touchless user interaction. Integrated MediaPipe landmark tracking with OpenCV processing, improving gesture detection accuracy and boosting interaction responsiveness by 30%.',
     tags: ['Python', 'OpenCV', 'MediaPipe', 'Computer Vision'],
