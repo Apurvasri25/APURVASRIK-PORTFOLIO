@@ -1,153 +1,408 @@
+```jsx
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FileText, ArrowRight } from 'lucide-react';
-import { SplineScene } from '@/components/ui/splite';
-import GlassDock from '@/components/ui/glass-dock';
-import CreepyButton from '@/components/ui/CreepyButton';
 
-export default function Hero() {
-  const dockItems = [
-    {
-      title: 'LinkedIn',
-      icon: () => null,
-      onClick: () => {
-        window.open('https://www.linkedin.com/in/apurvasri-k-921876293', '_blank');
-      }
-    },
-    {
-      title: 'GitHub',
-      icon: () => null,
-      onClick: () => {
-        window.open('https://github.com/Apurvasri25', '_blank');
-      }
-    },
-    {
-      title: 'Email',
-      icon: () => null,
-      onClick: () => {
-        window.location.href = 'mailto:apurvasrikanakasabapathi@gmail.com';
-      }
-    }
-  ];
+import {
+  SiJava,
+  SiPython,
+  SiC,
+  SiHtml5,
+  SiCss3,
+  SiJavascript,
+  SiReact,
+  SiNodedotjs,
+  SiExpress,
+  SiMysql,
+  SiGit,
+  SiGithub,
+  SiTailwindcss,
+  SiFigma,
+  SiVite,
+  SiPostman,
+} from 'react-icons/si';
+
+const skillGroups = [
+  {
+    title: 'PROGRAMMING',
+    skills: [
+      { name: 'Java', icon: SiJava },
+      { name: 'Python', icon: SiPython },
+      { name: 'C', icon: SiC },
+    ],
+  },
+
+  {
+    title: 'FRONTEND',
+    skills: [
+      { name: 'HTML5', icon: SiHtml5 },
+      { name: 'CSS3', icon: SiCss3 },
+      { name: 'JavaScript', icon: SiJavascript },
+      { name: 'React', icon: SiReact },
+      { name: 'Tailwind CSS', icon: SiTailwindcss },
+    ],
+  },
+
+  {
+    title: 'BACKEND',
+    skills: [
+      { name: 'Node.js', icon: SiNodedotjs },
+      { name: 'Express.js', icon: SiExpress },
+    ],
+  },
+
+  {
+    title: 'DATABASE',
+    skills: [
+      { name: 'MySQL', icon: SiMysql },
+    ],
+  },
+
+  {
+    title: 'TOOLS',
+    skills: [
+      { name: 'Git', icon: SiGit },
+      { name: 'GitHub', icon: SiGithub },
+      { name: 'Postman', icon: SiPostman },
+      { name: 'Figma', icon: SiFigma },
+      { name: 'Vite', icon: SiVite },
+    ],
+  },
+];
+
+/* =========================================
+   SKILL CARD
+========================================= */
+
+const SkillCard = ({ skill, index }) => {
+  const Icon = skill.icon;
 
   return (
-    <section id="about" className="relative min-h-screen flex flex-col justify-center items-center px-6 py-20 lg:py-0 overflow-hidden dots-bg">
-      {/* 3D Robot Background */}
-      <div className="absolute inset-y-0 left-0 w-full lg:w-[150vw] h-full z-0 pointer-events-auto mix-blend-screen opacity-50 sm:opacity-75 lg:opacity-100 transition-opacity duration-300">
-        <SplineScene
-          scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-          className="w-full h-full"
-          fallback={
-            <div className="absolute inset-0 bg-darkBg flex items-center justify-center">
-              <div className="absolute top-1/4 right-1/4 w-96 h-96 rounded-full bg-neonPurple/20 blur-3xl filter animate-pulse" />
-              <div className="absolute bottom-1/4 left-1/4 w-96 h-96 rounded-full bg-neonBlue/20 blur-3xl filter animate-pulse" />
-              <img
-                src="/hero_ai_graphic.png"
-                alt="AI Circuit Graphic"
-                className="max-w-2xl w-full h-auto opacity-45 filter brightness-95 contrast-105 border border-white/5 rounded-2xl"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                }}
-              />
-            </div>
-          }
-        />
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
+      transition={{
+        duration: 0.35,
+        delay: index * 0.03,
+      }}
+      whileHover={{
+        y: -4,
+        scale: 1.02,
+      }}
+      className="
+        group
+        relative
+        flex
+        h-[105px]
+        flex-col
+        items-center
+        justify-center
+        overflow-hidden
+        rounded-xl
+        border
+        border-white/[0.08]
+        bg-white/[0.025]
+        p-3
+        backdrop-blur-md
+        transition-all
+        duration-300
+        hover:border-purple-400/40
+        hover:bg-purple-500/[0.05]
+        hover:shadow-[0_0_25px_rgba(168,85,247,0.12)]
+      "
+    >
+
+      {/* Hover Glow */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -right-8
+          -top-8
+          h-20
+          w-20
+          rounded-full
+          bg-purple-500/0
+          blur-3xl
+          transition-all
+          duration-500
+          group-hover:bg-purple-500/20
+        "
+      />
+
+      {/* Logo */}
+
+      <Icon
+        className="
+          relative
+          z-10
+          mb-2
+          text-[32px]
+          text-gray-300
+          transition-all
+          duration-300
+          group-hover:scale-110
+          group-hover:text-purple-300
+        "
+      />
+
+      {/* Name */}
+
+      <span
+        className="
+          relative
+          z-10
+          text-center
+          text-xs
+          font-medium
+          tracking-wide
+          text-gray-400
+          transition-colors
+          duration-300
+          group-hover:text-white
+        "
+      >
+        {skill.name}
+      </span>
+
+    </motion.div>
+  );
+};
+
+/* =========================================
+   SKILL GROUP
+========================================= */
+
+const SkillGroup = ({ group, groupIndex }) => {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 20,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      transition={{
+        duration: 0.45,
+        delay: groupIndex * 0.06,
+      }}
+      className="relative"
+    >
+
+      {/* Category Heading */}
+
+      <div className="mb-4 flex items-center gap-3">
+
+        <span className="h-px w-6 bg-purple-500/80" />
+
+        <h3
+          className="
+            font-mono
+            text-[10px]
+            font-semibold
+            tracking-[0.22em]
+            text-purple-300
+          "
+        >
+          {group.title}
+        </h3>
+
+        <div className="h-px flex-1 bg-white/[0.06]" />
+
       </div>
 
-      {/* Main Content Overlay */}
-      <div className="w-full max-w-7xl mx-auto z-10 relative pointer-events-none">
-        {/* Left Side: Details */}
-        <div className="flex flex-col justify-center text-left w-full lg:w-1/2 pointer-events-none">
-          {/* Huge Name: APURVASRI K */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-2 w-full"
-          >
-            <h1 className="font-display font-black text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-550 uppercase break-words leading-none">
-              APURVASRI K
-            </h1>
-          </motion.div>
+      {/* Logos */}
 
-          {/* Subtitle Text */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="font-display font-bold text-lg sm:text-xl md:text-2xl tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-550 mb-6"
-          >
-            Computer Science Engineer
-          </motion.p>
+      <div
+        className="
+          grid
+          grid-cols-2
+          gap-2
+          sm:grid-cols-3
+          md:grid-cols-4
+          lg:grid-cols-5
+        "
+      >
+        {group.skills.map((skill, index) => (
+          <SkillCard
+            key={skill.name}
+            skill={skill}
+            index={index}
+          />
+        ))}
+      </div>
 
-          {/* Heading */}
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="font-display font-extrabold text-4xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-none mb-4"
-          >
-            Building <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6366F1] to-[#8B5CF6]">Practical</span> Software Solutions
-          </motion.h1>
+    </motion.div>
+  );
+};
 
-          {/* Updated Bio Paragraph */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-gray-300 text-sm sm:text-base leading-relaxed max-w-xl mb-8"
-          >
-            I'm a Computer Science Engineering undergraduate at V.S.B College of Engineering, passionate about applying my technical knowledge to build real-world software solutions. My experience spans full-stack web development, computer vision, and cloud computing, and I enjoy growing my skills through hands-on projects and internships that make a meaningful impact.
-          </motion.p>
+/* =========================================
+   MAIN SKILLS SECTION
+========================================= */
 
-          {/* Button Actions */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="flex flex-wrap gap-4 items-center pointer-events-auto"
-          >
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium text-sm text-white bg-[#18181b] border border-neonPurple/40 hover:border-neonPurple hover:bg-neonPurple/10 shadow-[0_0_15px_rgba(168,85,247,0.2)] transition-all duration-300 transform hover:-translate-y-0.5"
+export default function SkillsTesseract() {
+  return (
+    <section
+      id="skills"
+      className="
+        relative
+        min-h-screen
+        overflow-hidden
+        bg-black
+        px-5
+        py-20
+        sm:px-8
+        lg:px-16
+      "
+    >
+
+      {/* Background Glow */}
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-1/2
+          top-20
+          h-[350px]
+          w-[350px]
+          -translate-x-1/2
+          rounded-full
+          bg-purple-600/[0.05]
+          blur-[110px]
+        "
+      />
+
+      <div className="relative z-10 mx-auto max-w-6xl">
+
+        {/* ================= HEADER ================= */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+            y: 20,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+          className="mb-12"
+        >
+
+          <div className="mb-3 flex items-center gap-3">
+
+            <span className="h-px w-8 bg-purple-500" />
+
+            <span
+              className="
+                font-mono
+                text-[10px]
+                tracking-[0.28em]
+                text-purple-400
+              "
             >
-              Get In Touch
-              <ArrowRight className="w-4 h-4 text-neonPurple" />
-            </a>
+              MY TOOLKIT
+            </span>
 
-            <a
-              href="/resume.pdf"
-              download="Apurvasri_K_Resume.pdf"
-              className="inline-block"
-            >
-              <CreepyButton
-                coverClassName="bg-[#18181b] border border-white/20 text-gray-200 hover:text-white hover:border-white/40 shadow-[0_0_15px_rgba(255,255,255,0.06)]"
-              >
-                <div className="flex items-center gap-2 whitespace-nowrap">
-                  <FileText className="w-4 h-4 text-neonPurple" />
-                  <span className="whitespace-nowrap">Download Resume</span>
-                </div>
-              </CreepyButton>
-            </a>
-          </motion.div>
+          </div>
 
-          {/* Floating Glass Dock (integrated under Hero details) */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mt-14 sm:mt-16 pointer-events-auto"
+          <h2
+            className="
+              text-5xl
+              font-extrabold
+              tracking-tight
+              text-white
+              sm:text-6xl
+              lg:text-7xl
+            "
           >
-            <GlassDock items={dockItems} />
-          </motion.div>
+            Skills
+            <span className="text-purple-500">.</span>
+          </h2>
+
+          <p
+            className="
+              mt-4
+              max-w-xl
+              text-sm
+              leading-6
+              text-gray-500
+              sm:text-base
+            "
+          >
+            Technologies and tools I use to build interactive,
+            responsive and practical digital experiences.
+          </p>
+
+        </motion.div>
+
+        {/* ================= SKILLS ================= */}
+
+        <div className="space-y-10">
+
+          {skillGroups.map((group, index) => (
+            <SkillGroup
+              key={group.title}
+              group={group}
+              groupIndex={index}
+            />
+          ))}
+
         </div>
-      </div>
 
-      {/* High-contrast elegant scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 select-none pointer-events-none opacity-85">
-        <span className="text-[10px] uppercase font-mono tracking-widest text-gray-300 font-semibold">Scroll Down</span>
-        <div className="w-[1px] h-10 bg-gradient-to-b from-gray-300 via-neonPurple/60 to-transparent" />
+        {/* ================= BOTTOM ================= */}
+
+        <motion.div
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+          className="mt-14 flex items-center gap-3"
+        >
+
+          <div className="h-px flex-1 bg-white/[0.07]" />
+
+          <span
+            className="
+              font-mono
+              text-[9px]
+              tracking-[0.28em]
+              text-gray-600
+            "
+          >
+            ALWAYS LEARNING
+          </span>
+
+          <div className="h-px flex-1 bg-white/[0.07]" />
+
+        </motion.div>
+
       </div>
     </section>
   );
 }
+```
