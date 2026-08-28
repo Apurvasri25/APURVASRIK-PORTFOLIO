@@ -1,75 +1,104 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  SiJava,
-  SiPython,
-  SiC,
-  SiHtml5,
-  SiCss3,
-  SiJavascript,
-  SiReact,
-  SiNodedotjs,
-  SiExpress,
-  SiMysql,
-  SiGit,
-  SiGithub,
-  SiTailwindcss,
-  SiFigma,
-  SiVite,
-  SiPostman,
-} from "react-icons/si";
+import React from "react";
+import { motion } from "framer-motion";
 
 const skillGroups = [
   {
     title: "PROGRAMMING",
     skills: [
-      { name: "Java", icon: SiJava },
-      { name: "Python", icon: SiPython },
-      { name: "C", icon: SiC },
+      {
+        name: "Java",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg",
+      },
+      {
+        name: "Python",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg",
+      },
+      {
+        name: "C",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg",
+      },
     ],
   },
 
   {
     title: "FRONTEND",
     skills: [
-      { name: "HTML5", icon: SiHtml5 },
-      { name: "CSS3", icon: SiCss3 },
-      { name: "JavaScript", icon: SiJavascript },
-      { name: "React", icon: SiReact },
-      { name: "Tailwind CSS", icon: SiTailwindcss },
+      {
+        name: "HTML5",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg",
+      },
+      {
+        name: "CSS3",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg",
+      },
+      {
+        name: "JavaScript",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg",
+      },
+      {
+        name: "React",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg",
+      },
+      {
+        name: "Tailwind CSS",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg",
+      },
     ],
   },
 
   {
     title: "BACKEND",
     skills: [
-      { name: "Node.js", icon: SiNodedotjs },
-      { name: "Express.js", icon: SiExpress },
+      {
+        name: "Node.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg",
+      },
+      {
+        name: "Express.js",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg",
+      },
     ],
   },
 
   {
     title: "DATABASE",
     skills: [
-      { name: "MySQL", icon: SiMysql },
+      {
+        name: "MySQL",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg",
+      },
     ],
   },
 
   {
     title: "TOOLS",
     skills: [
-      { name: "Git", icon: SiGit },
-      { name: "GitHub", icon: SiGithub },
-      { name: "Postman", icon: SiPostman },
-      { name: "Figma", icon: SiFigma },
-      { name: "Vite", icon: SiVite },
+      {
+        name: "Git",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg",
+      },
+      {
+        name: "GitHub",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg",
+      },
+      {
+        name: "Postman",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+      },
+      {
+        name: "Figma",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
+      },
+      {
+        name: "Vite",
+        logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vitejs/vitejs-original.svg",
+      },
     ],
   },
 ];
-
 const SkillCard = ({ skill, index }) => {
-  const Icon = skill.icon;
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -79,9 +108,7 @@ const SkillCard = ({ skill, index }) => {
         duration: 0.5,
         delay: index * 0.06,
       }}
-      whileHover={{
-        y: -8,
-      }}
+      whileHover={{ y: -8 }}
       className="
         group
         relative
@@ -106,7 +133,7 @@ const SkillCard = ({ skill, index }) => {
         hover:shadow-[0_0_45px_rgba(168,85,247,0.18)]
       "
     >
-      {/* Purple glow behind logo */}
+      {/* Glow */}
       <div
         className="
           pointer-events-none
@@ -126,7 +153,7 @@ const SkillCard = ({ skill, index }) => {
         "
       />
 
-      {/* Actual technology logo */}
+      {/* ACTUAL LOGO */}
       <div
         className="
           relative
@@ -146,19 +173,21 @@ const SkillCard = ({ skill, index }) => {
           group-hover:bg-purple-500/[0.08]
         "
       >
-        <Icon
+        <img
+          src={skill.logo}
+          alt={`${skill.name} logo`}
           className="
-            text-[52px]
-            text-gray-300
+            h-12
+            w-12
+            object-contain
             transition-all
             duration-500
             group-hover:scale-110
-            group-hover:text-purple-300
           "
         />
       </div>
 
-      {/* Skill name */}
+      {/* NAME */}
       <span
         className="
           relative
@@ -176,7 +205,7 @@ const SkillCard = ({ skill, index }) => {
         {skill.name}
       </span>
 
-      {/* Bottom purple line */}
+      {/* Purple bottom line */}
       <div
         className="
           absolute
