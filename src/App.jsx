@@ -52,14 +52,14 @@ export default function App() {
             <div className="portfolio-content">
               <Navbar />
 
-              <main>
-                <Hero />
-                <SkillsTesseract />
-                <Projects />
-                <Experience />
-                <Highlights />
-                <Contact />
-              </main>
+            <main className="portfolio-ambient">
+  <Hero />
+  <SkillsTesseract />
+  <Projects />
+  <Experience />
+  <Highlights />
+  <Contact />
+</main>
             </div>
           </motion.div>
         )}
