@@ -1,313 +1,312 @@
 
 import React, { useEffect, useState } from 'react';
-import { motion, useAnimation } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function HollowPurpleIntro({ onComplete }) {
-  const leftControls = useAnimation();
-  const rightControls = useAnimation();
-  const logoControls = useAnimation();
-  const textControls = useAnimation();
-  const overlayControls = useAnimation();
+  const [step, setStep] = useState(0);
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    let cancelled = false;
+    const timers = [];
 
-    async function sequence() {
-      // Initial positions
-      leftControls.set({
-        x: -120,
-        y: 0,
-        scale: 0.7,
-        opacity: 0,
-      });
+    timers.push(
+      setTimeout(() => setStep(1), 500)
+    );
 
-      rightControls.set({
-        x: 120,
-        y: 0,
-        scale: 0.7,
-        opacity: 0,
-      });
+    timers.push(
+      setTimeout(() => setStep(2), 1200)
+    );
 
-      logoControls.set({
-        scale: 0.85,
-        opacity: 0,
-      });
+    timers.push(
+      setTimeout(() => setStep(3), 1900)
+    );
 
-      textControls.set({
-        y: 20,
-        opacity: 0,
-      });
+    timers.push(
+      setTimeout(() => setStep(4), 2600)
+    );
 
-      // ------------------------------------------------
-      // 1. A + K enter smoothly
-      // ------------------------------------------------
+    timers.push(
+      setTimeout(() => setStep(5), 3300)
+    );
 
-      await Promise.all([
-        leftControls.start({
-          x: -58,
-          opacity: 1,
-          scale: 1,
-          transition: {
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        }),
-
-        rightControls.start({
-          x: 58,
-          opacity: 1,
-          scale: 1,
-          transition: {
-            duration: 0.9,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        }),
-      ]);
-
-      if (cancelled) return;
-
-      // ------------------------------------------------
-      // 2. Small breathing movement
-      // ------------------------------------------------
-
-      await new Promise((resolve) => setTimeout(resolve, 500));
-
-      if (cancelled) return;
-
-      // ------------------------------------------------
-      // 3. A + K move toward center
-      // ------------------------------------------------
-
-      await Promise.all([
-        leftControls.start({
-          x: -12,
-          scale: 0.92,
-          transition: {
-            duration: 0.7,
-            ease: [0.76, 0, 0.24, 1],
-          },
-        }),
-
-        rightControls.start({
-          x: 12,
-          scale: 0.92,
-          transition: {
-            duration: 0.7,
-            ease: [0.76, 0, 0.24, 1],
-          },
-        }),
-      ]);
-
-      if (cancelled) return;
-
-      // ------------------------------------------------
-      // 4. Fade A/K and reveal monogram
-      // ------------------------------------------------
-
-      await Promise.all([
-        leftControls.start({
-          opacity: 0,
-          scale: 0.8,
-          x: -8,
-          transition: {
-            duration: 0.35,
-            ease: 'easeOut',
-          },
-        }),
-
-        rightControls.start({
-          opacity: 0,
-          scale: 0.8,
-          x: 8,
-          transition: {
-            duration: 0.35,
-            ease: 'easeOut',
-          },
-        }),
-
-        logoControls.start({
-          scale: [0.8, 1.08, 1],
-          opacity: 1,
-          transition: {
-            duration: 0.65,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        }),
-      ]);
-
-      if (cancelled) return;
-
-      // ------------------------------------------------
-      // 5. Reveal name
-      // ------------------------------------------------
-
-      await textControls.start({
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.65,
-          ease: [0.22, 1, 0.36, 1],
-        },
-      });
-
-      await new Promise((resolve) => setTimeout(resolve, 650));
-
-      if (cancelled) return;
-
-      // ------------------------------------------------
-      // 6. Fade entire intro
-      // ------------------------------------------------
-
-      await overlayControls.start({
-        opacity: 0,
-        transition: {
-          duration: 0.65,
-          ease: 'easeInOut',
-        },
-      });
-
-      if (!cancelled) {
+    timers.push(
+      setTimeout(() => {
         setShow(false);
         onComplete?.();
-      }
-    }
-
-    sequence();
+      }, 4400)
+    );
 
     return () => {
-      cancelled = true;
+      timers.forEach(clearTimeout);
     };
-  }, [
-    leftControls,
-    rightControls,
-    logoControls,
-    textControls,
-    overlayControls,
-    onComplete,
-  ]);
+  }, [onComplete]);
 
   if (!show) return null;
 
   return (
     <motion.div
-      animate={overlayControls}
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#050507] overflow-hidden select-none"
+      initial={{ opacity: 1 }}
+      animate={{ opacity: show ? 1 : 0 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.6 }}
+      className="fixed inset-0 z-[9999] bg-[#050507] flex items-center justify-center overflow-hidden"
     >
-      {/* ------------------------------------------------
-          Background Glow
-      ------------------------------------------------ */}
+
+      {/* =========================================
+          SUBTLE BACKGROUND GLOW
+      ========================================= */}
 
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-purple-500/[0.08] blur-[100px]" />
 
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_55%)]" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-purple-600/[0.06] blur-[120px]" />
+
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.07),transparent_60%)]" />
+
       </div>
 
-      {/* ------------------------------------------------
-          Subtle Grid
-      ------------------------------------------------ */}
+      {/* =========================================
+          SUBTLE GRID
+      ========================================= */}
 
       <div
-        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        className="absolute inset-0 opacity-[0.025] pointer-events-none"
         style={{
           backgroundImage:
-            'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
-          backgroundSize: '45px 45px',
+            'linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)',
+          backgroundSize: '50px 50px',
         }}
       />
 
-      {/* ------------------------------------------------
-          A Circle
-      ------------------------------------------------ */}
+      {/* =========================================
+          TERMINAL
+      ========================================= */}
 
       <motion.div
-        animate={leftControls}
-        className="absolute w-[88px] h-[88px] md:w-[104px] md:h-[104px] rounded-full flex items-center justify-center border border-white/[0.18] bg-white/[0.035] backdrop-blur-xl shadow-[0_0_45px_rgba(139,92,246,0.12)]"
+        initial={{ opacity: 0, y: 15, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        }}
+        className="relative w-[90%] max-w-[620px] rounded-xl border border-white/[0.08] bg-[#09090c]/90 backdrop-blur-xl shadow-[0_0_80px_rgba(139,92,246,0.12)] overflow-hidden"
       >
-        <span className="text-2xl md:text-3xl font-display font-semibold text-white tracking-tight">
-          A
-        </span>
 
-        <div className="absolute inset-[7px] rounded-full border border-purple-400/[0.15]" />
-      </motion.div>
+        {/* =====================================
+            TERMINAL HEADER
+        ===================================== */}
 
-      {/* ------------------------------------------------
-          K Circle
-      ------------------------------------------------ */}
+        <div className="h-11 flex items-center px-4 border-b border-white/[0.07] bg-white/[0.025]">
 
-      <motion.div
-        animate={rightControls}
-        className="absolute w-[88px] h-[88px] md:w-[104px] md:h-[104px] rounded-full flex items-center justify-center border border-white/[0.18] bg-white/[0.035] backdrop-blur-xl shadow-[0_0_45px_rgba(139,92,246,0.12)]"
-      >
-        <span className="text-2xl md:text-3xl font-display font-semibold text-white tracking-tight">
-          K
-        </span>
+          <div className="flex gap-1.5">
 
-        <div className="absolute inset-[7px] rounded-full border border-purple-400/[0.15]" />
-      </motion.div>
+            <span className="w-2.5 h-2.5 rounded-full bg-white/20" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/15" />
+            <span className="w-2.5 h-2.5 rounded-full bg-white/10" />
 
-      {/* ------------------------------------------------
-          Center Monogram
-      ------------------------------------------------ */}
+          </div>
 
-      <motion.div
-        animate={logoControls}
-        className="relative w-[96px] h-[96px] md:w-[112px] md:h-[112px] rounded-full flex items-center justify-center border border-purple-300/30 bg-white/[0.04] backdrop-blur-xl shadow-[0_0_60px_rgba(139,92,246,0.22)]"
-      >
-        <span className="font-display font-black text-2xl md:text-3xl tracking-[-0.08em] text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white">
-          AK
-        </span>
+          <div className="absolute left-1/2 -translate-x-1/2 text-[10px] text-gray-500 font-mono tracking-wider">
+            apurvasri@portfolio
+          </div>
 
-        <div className="absolute inset-[7px] rounded-full border border-white/[0.08]" />
-
-        <div className="absolute -inset-3 rounded-full border border-purple-400/[0.08]" />
-      </motion.div>
-
-      {/* ------------------------------------------------
-          Name + Profession
-      ------------------------------------------------ */}
-
-      <motion.div
-        animate={textControls}
-        className="absolute top-[calc(50%+105px)] md:top-[calc(50%+125px)] text-center px-6"
-      >
-        <h1 className="font-display font-black text-xl md:text-2xl tracking-[0.28em] uppercase text-white">
-          APURVASRI K
-        </h1>
-
-        <div className="mt-3 flex items-center justify-center gap-3">
-          <span className="w-8 h-px bg-purple-400/50" />
-
-          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.32em] text-gray-400 font-mono">
-            Computer Science Engineer
-          </p>
-
-          <span className="w-8 h-px bg-purple-400/50" />
         </div>
+
+        {/* =====================================
+            TERMINAL CONTENT
+        ===================================== */}
+
+        <div className="p-6 sm:p-8 font-mono text-sm sm:text-[15px] min-h-[270px]">
+
+          {/* LINE 1 */}
+
+          <AnimatePresence>
+            {step >= 1 && (
+              <motion.div
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex gap-2 mb-4"
+              >
+                <span className="text-purple-400">
+                  $
+                </span>
+
+                <span className="text-gray-300">
+                  initializing portfolio...
+                </span>
+
+                <motion.span
+                  animate={{ opacity: [0, 1, 0] }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 0.8,
+                  }}
+                  className="text-purple-400"
+                >
+                  ▌
+                </motion.span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* LINE 2 */}
+
+          <AnimatePresence>
+            {step >= 2 && (
+              <motion.div
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex gap-2 mb-4"
+              >
+                <span className="text-purple-400">
+                  $
+                </span>
+
+                <span className="text-gray-400">
+                  loading components...
+                </span>
+
+                <span className="text-green-400 text-xs">
+                  [OK]
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* LINE 3 */}
+
+          <AnimatePresence>
+            {step >= 3 && (
+              <motion.div
+                initial={{ opacity: 0, x: -8 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="flex gap-2 mb-4"
+              >
+                <span className="text-purple-400">
+                  $
+                </span>
+
+                <span className="text-gray-400">
+                  system ready
+                </span>
+
+                <span className="text-green-400 text-xs">
+                  [OK]
+                </span>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* LINE 4 */}
+
+          <AnimatePresence>
+            {step >= 4 && (
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="mt-7"
+              >
+
+                <div className="flex gap-2 text-purple-400">
+                  <span>$</span>
+
+                  <span className="text-gray-200">
+                    welcome, Apurvasri.
+                  </span>
+                </div>
+
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* =================================
+              NAME REVEAL
+          ================================= */}
+
+          <AnimatePresence>
+            {step >= 5 && (
+              <motion.div
+                initial={{
+                  opacity: 0,
+                  y: 18,
+                  filter: 'blur(8px)',
+                }}
+                animate={{
+                  opacity: 1,
+                  y: 0,
+                  filter: 'blur(0px)',
+                }}
+                transition={{
+                  duration: 0.8,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="mt-8"
+              >
+
+                <h1 className="font-display font-black text-3xl sm:text-4xl tracking-[0.12em] text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white uppercase">
+                  APURVASRI K
+                </h1>
+
+                <div className="mt-3 flex items-center gap-3">
+
+                  <span className="w-8 h-px bg-purple-400/50" />
+
+                  <p className="text-[9px] sm:text-[10px] tracking-[0.3em] uppercase text-gray-500">
+                    Computer Science Engineer
+                  </p>
+
+                </div>
+
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+        </div>
+
+        {/* =====================================
+            TERMINAL STATUS BAR
+        ===================================== */}
+
+        <div className="h-8 border-t border-white/[0.06] px-4 flex items-center justify-between text-[8px] font-mono text-gray-600 uppercase tracking-wider">
+
+          <span>
+            portfolio.exe
+          </span>
+
+          <span>
+            v1.0.0
+          </span>
+
+        </div>
+
       </motion.div>
 
-      {/* ------------------------------------------------
-          Bottom Loading Line
-      ------------------------------------------------ */}
+      {/* =========================================
+          BOTTOM LOADING INDICATOR
+      ========================================= */}
 
-      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-32">
+      <div className="absolute bottom-9 left-1/2 -translate-x-1/2 w-32">
+
         <div className="h-px bg-white/[0.08] overflow-hidden">
+
           <motion.div
-            initial={{ width: 0 }}
+            initial={{ width: '0%' }}
             animate={{ width: '100%' }}
             transition={{
-              duration: 3.8,
-              ease: 'easeInOut',
+              duration: 4.2,
+              ease: 'linear',
             }}
             className="h-full bg-purple-400/70"
           />
+
         </div>
 
-        <p className="mt-3 text-[8px] uppercase tracking-[0.35em] text-gray-600 text-center font-mono">
-          Welcome
+        <p className="mt-3 text-center text-[8px] uppercase tracking-[0.35em] text-gray-600 font-mono">
+          Loading
         </p>
+
       </div>
+
     </motion.div>
   );
 }
