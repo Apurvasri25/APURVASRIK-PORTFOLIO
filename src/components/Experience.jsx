@@ -1,4 +1,4 @@
-```jsx
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Briefcase, ExternalLink } from 'lucide-react';
@@ -240,4 +240,3 @@ export default function Experience() {
     </section>
   );
 }
-```
