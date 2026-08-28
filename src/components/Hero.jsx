@@ -1,4 +1,3 @@
-```jsx
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FileText, ArrowRight } from 'lucide-react';
@@ -59,7 +58,6 @@ export default function Hero() {
       <div className="w-full max-w-7xl mx-auto z-10 relative pointer-events-none">
         {/* Left Side: Details */}
         <div className="flex flex-col justify-center text-left w-full lg:w-1/2 pointer-events-none">
-
           {/* Huge Name: APURVASRI K */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
@@ -133,7 +131,7 @@ export default function Hero() {
             </a>
           </motion.div>
 
-          {/* Floating Glass Dock */}
+          {/* Floating Glass Dock (integrated under Hero details) */}
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
@@ -145,14 +143,11 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* High-contrast elegant scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 select-none pointer-events-none opacity-85">
-        <span className="text-[10px] uppercase font-mono tracking-widest text-gray-300 font-semibold">
-          Scroll Down
-        </span>
+        <span className="text-[10px] uppercase font-mono tracking-widest text-gray-300 font-semibold">Scroll Down</span>
         <div className="w-[1px] h-10 bg-gradient-to-b from-gray-300 via-neonPurple/60 to-transparent" />
       </div>
     </section>
   );
 }
-```
