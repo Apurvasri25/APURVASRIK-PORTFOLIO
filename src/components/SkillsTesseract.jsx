@@ -88,125 +88,68 @@ const skillGroups = [
 const SkillCard = ({ skill, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{
-        duration: 0.5,
-        delay: index * 0.06,
+        duration: 0.4,
+        delay: index * 0.04,
       }}
-      whileHover={{ y: -8 }}
+      whileHover={{ y: -4 }}
       className="
         group
         relative
         flex
-        min-h-[170px]
+        h-[115px]
         cursor-pointer
         flex-col
         items-center
         justify-center
         overflow-hidden
-        rounded-2xl
+        rounded-xl
         border
         border-white/[0.08]
         bg-white/[0.025]
-        px-5
-        py-7
-        backdrop-blur-md
+        p-3
         transition-all
-        duration-500
-        hover:border-purple-400/50
-        hover:bg-purple-500/[0.06]
-        hover:shadow-[0_0_45px_rgba(168,85,247,0.18)]
+        duration-300
+        hover:border-purple-400/40
+        hover:bg-purple-500/[0.05]
+        hover:shadow-[0_0_25px_rgba(168,85,247,0.12)]
       "
     >
-      {/* Glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          left-1/2
-          top-1/2
-          h-24
-          w-24
-          -translate-x-1/2
-          -translate-y-1/2
-          rounded-full
-          bg-purple-500/0
-          blur-3xl
-          transition-all
-          duration-500
-          group-hover:bg-purple-500/20
-        "
-      />
-
-      {/* ACTUAL LOGO */}
-      <div
+      {/* Logo */}
+      <img
+        src={skill.logo}
+        alt={`${skill.name} logo`}
         className="
           relative
           z-10
-          flex
-          h-20
-          w-20
-          items-center
-          justify-center
-          rounded-2xl
-          border
-          border-white/[0.06]
-          bg-black/40
-          transition-all
-          duration-500
-          group-hover:border-purple-400/30
-          group-hover:bg-purple-500/[0.08]
+          h-10
+          w-10
+          object-contain
+          transition-transform
+          duration-300
+          group-hover:scale-110
         "
-      >
-        <img
-          src={skill.logo}
-          alt={`${skill.name} logo`}
-          className="
-            h-12
-            w-12
-            object-contain
-            transition-all
-            duration-500
-            group-hover:scale-110
-          "
-        />
-      </div>
+      />
 
-      {/* NAME */}
+      {/* Name */}
       <span
         className="
           relative
           z-10
-          mt-5
-          text-sm
-          font-semibold
-          tracking-wide
+          mt-2
+          text-xs
+          font-medium
           text-gray-400
-          transition-all
+          transition-colors
           duration-300
           group-hover:text-white
         "
       >
         {skill.name}
       </span>
-
-      {/* Purple bottom line */}
-      <div
-        className="
-          absolute
-          bottom-0
-          left-1/2
-          h-[2px]
-          w-0
-          -translate-x-1/2
-          bg-purple-500
-          transition-all
-          duration-500
-          group-hover:w-1/2
-        "
-      />
     </motion.div>
   );
 };
@@ -236,11 +179,7 @@ const SkillGroup = ({ group, groupIndex }) => {
       {/* Logos */}
       <div
         className="
-          grid
-          grid-cols-2
-          gap-3
-          sm:grid-cols-3
-          lg:grid-cols-4
+         grid grid-cols-2 gap-2.5 sm:grid-cols-3 lg:grid-cols-5
         "
       >
         {group.skills.map((skill, index) => (
