@@ -1,144 +1,314 @@
+```jsx
 import React, { useEffect, useState } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 
 export default function HollowPurpleIntro({ onComplete }) {
-  const blueOrbControls = useAnimation();
-  const redOrbControls = useAnimation();
-  const titleControls = useAnimation();
-  const blastControls = useAnimation();
+  const leftControls = useAnimation();
+  const rightControls = useAnimation();
+  const logoControls = useAnimation();
+  const textControls = useAnimation();
   const overlayControls = useAnimation();
   const [show, setShow] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
+
     async function sequence() {
-      // 1. Spawn Orbs and Title
-      blueOrbControls.set({ x: '-150vw', opacity: 0, scale: 0.5 });
-      redOrbControls.set({ x: '150vw', opacity: 0, scale: 0.5 });
-      titleControls.set({ y: -50, opacity: 0, scale: 0.9 });
-      
-      // Animate them to starting positions
+      // Initial positions
+      leftControls.set({
+        x: -120,
+        y: 0,
+        scale: 0.7,
+        opacity: 0,
+      });
+
+      rightControls.set({
+        x: 120,
+        y: 0,
+        scale: 0.7,
+        opacity: 0,
+      });
+
+      logoControls.set({
+        scale: 0.85,
+        opacity: 0,
+      });
+
+      textControls.set({
+        y: 20,
+        opacity: 0,
+      });
+
+      // ------------------------------------------------
+      // 1. A + K enter smoothly
+      // ------------------------------------------------
+
       await Promise.all([
-        blueOrbControls.start({
-          x: '-20vw',
+        leftControls.start({
+          x: -58,
           opacity: 1,
           scale: 1,
-          transition: { type: 'spring', damping: 14, stiffness: 50 }
+          transition: {
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          },
         }),
-        redOrbControls.start({
-          x: '20vw',
+
+        rightControls.start({
+          x: 58,
           opacity: 1,
           scale: 1,
-          transition: { type: 'spring', damping: 14, stiffness: 50 }
+          transition: {
+            duration: 0.9,
+            ease: [0.22, 1, 0.36, 1],
+          },
         }),
-        titleControls.start({
-          y: 0,
-          opacity: 1,
-          scale: 1,
-          transition: { duration: 0.8, ease: 'easeOut' }
-        })
       ]);
 
-      // Float effect for 1.2 seconds to build tension
-      blueOrbControls.start({
-        y: [0, -12, 0],
-        transition: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
-      });
-      redOrbControls.start({
-        y: [0, 12, 0],
-        transition: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
-      });
+      if (cancelled) return;
 
-      await new Promise(resolve => setTimeout(resolve, 1200));
+      // ------------------------------------------------
+      // 2. Small breathing movement
+      // ------------------------------------------------
 
-      // Stop floating
-      blueOrbControls.stop();
-      redOrbControls.stop();
+      await new Promise((resolve) => setTimeout(resolve, 500));
 
-      // 2. Merge: accelerating towards the center
+      if (cancelled) return;
+
+      // ------------------------------------------------
+      // 3. A + K move toward center
+      // ------------------------------------------------
+
       await Promise.all([
-        blueOrbControls.start({
-          x: '0vw',
-          y: 0,
-          scale: 1.2,
-          transition: { duration: 0.7, ease: [0.74, 0.0, 0.19, 1.02] }
+        leftControls.start({
+          x: -12,
+          scale: 0.92,
+          transition: {
+            duration: 0.7,
+            ease: [0.76, 0, 0.24, 1],
+          },
         }),
-        redOrbControls.start({
-          x: '0vw',
-          y: 0,
-          scale: 1.2,
-          transition: { duration: 0.7, ease: [0.74, 0.0, 0.19, 1.02] }
-        })
+
+        rightControls.start({
+          x: 12,
+          scale: 0.92,
+          transition: {
+            duration: 0.7,
+            ease: [0.76, 0, 0.24, 1],
+          },
+        }),
       ]);
 
-      // Hide the incoming orbs and title just as blast expands
-      blueOrbControls.start({ opacity: 0, scale: 0, transition: { duration: 0.05 } });
-      redOrbControls.start({ opacity: 0, scale: 0, transition: { duration: 0.05 } });
-      titleControls.start({ opacity: 0, scale: 0.8, transition: { duration: 0.05 } });
+      if (cancelled) return;
 
-      // 3. Blast: Blinding Purple/White flash scaling up to 50
-      await blastControls.start({
-        scale: [0, 50],
-        opacity: [1, 1, 0.9],
-        transition: { duration: 1.0, ease: "easeOut" }
+      // ------------------------------------------------
+      // 4. Fade A/K and reveal monogram
+      // ------------------------------------------------
+
+      await Promise.all([
+        leftControls.start({
+          opacity: 0,
+          scale: 0.8,
+          x: -8,
+          transition: {
+            duration: 0.35,
+            ease: 'easeOut',
+          },
+        }),
+
+        rightControls.start({
+          opacity: 0,
+          scale: 0.8,
+          x: 8,
+          transition: {
+            duration: 0.35,
+            ease: 'easeOut',
+          },
+        }),
+
+        logoControls.start({
+          scale: [0.8, 1.08, 1],
+          opacity: 1,
+          transition: {
+            duration: 0.65,
+            ease: [0.22, 1, 0.36, 1],
+          },
+        }),
+      ]);
+
+      if (cancelled) return;
+
+      // ------------------------------------------------
+      // 5. Reveal name
+      // ------------------------------------------------
+
+      await textControls.start({
+        y: 0,
+        opacity: 1,
+        transition: {
+          duration: 0.65,
+          ease: [0.22, 1, 0.36, 1],
+        },
       });
 
-      // 4. Fade out entire overlay
+      await new Promise((resolve) => setTimeout(resolve, 650));
+
+      if (cancelled) return;
+
+      // ------------------------------------------------
+      // 6. Fade entire intro
+      // ------------------------------------------------
+
       await overlayControls.start({
         opacity: 0,
-        transition: { duration: 0.5, ease: "easeInOut" }
+        transition: {
+          duration: 0.65,
+          ease: 'easeInOut',
+        },
       });
 
-      setShow(false);
-      if (onComplete) onComplete();
+      if (!cancelled) {
+        setShow(false);
+        onComplete?.();
+      }
     }
 
     sequence();
-  }, [blueOrbControls, redOrbControls, titleControls, blastControls, overlayControls, onComplete]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [
+    leftControls,
+    rightControls,
+    logoControls,
+    textControls,
+    overlayControls,
+    onComplete,
+  ]);
 
   if (!show) return null;
 
   return (
     <motion.div
       animate={overlayControls}
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black overflow-hidden select-none"
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-[#050507] overflow-hidden select-none"
     >
-      {/* Background subtle neon radial gradient */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(168,85,247,0.1)_0%,_transparent_65%)]" />
+      {/* ------------------------------------------------
+          Background Glow
+      ------------------------------------------------ */}
 
-      {/* Domain Expansion Text */}
-      <motion.div
-        animate={titleControls}
-        className="absolute top-20 md:top-28 text-center z-10 px-4 select-none pointer-events-none"
-      >
-        <h1 className="font-display text-white text-3xl md:text-5xl font-black tracking-[0.35em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white drop-shadow-[0_0_15px_rgba(168,85,247,0.4)]">
-          Apurvasri K
-        </h1>
-      </motion.div>
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[420px] rounded-full bg-purple-500/[0.08] blur-[100px]" />
 
-      {/* Blue Orb (AI) */}
-      <motion.div
-        animate={blueOrbControls}
-        className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full flex items-center justify-center font-display font-bold text-xl md:text-2xl text-blue-100 shadow-[0_0_50px_rgba(59,130,246,0.8),_0_0_20px_rgba(59,130,246,0.4)] border border-blue-400 bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-800"
-      >
-        <span className="relative z-10 select-none tracking-wider">A</span>
-        <div className="absolute inset-0 rounded-full bg-blue-400 opacity-20 blur-md animate-pulse" />
-      </motion.div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_55%)]" />
+      </div>
 
-      {/* Red Orb (ML) */}
-      <motion.div
-        animate={redOrbControls}
-        className="absolute w-28 h-28 md:w-36 md:h-36 rounded-full flex items-center justify-center font-display font-bold text-xl md:text-2xl text-red-100 shadow-[0_0_50px_rgba(239,68,68,0.8),_0_0_20px_rgba(239,68,68,0.4)] border border-red-400 bg-gradient-to-br from-red-600 via-red-500 to-pink-800"
-      >
-        <span className="relative z-10 select-none tracking-wider">K</span>
-        <div className="absolute inset-0 rounded-full bg-red-400 opacity-20 blur-md animate-pulse" />
-      </motion.div>
+      {/* ------------------------------------------------
+          Subtle Grid
+      ------------------------------------------------ */}
 
-      {/* Hollow Purple Blast Circle */}
-      <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={blastControls}
-        className="absolute w-12 h-12 rounded-full bg-gradient-to-r from-purple-400 via-white to-fuchsia-500 shadow-[0_0_80px_rgba(168,85,247,1)] filter blur-[2px] pointer-events-none"
+      <div
+        className="absolute inset-0 opacity-[0.035] pointer-events-none"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)',
+          backgroundSize: '45px 45px',
+        }}
       />
+
+      {/* ------------------------------------------------
+          A Circle
+      ------------------------------------------------ */}
+
+      <motion.div
+        animate={leftControls}
+        className="absolute w-[88px] h-[88px] md:w-[104px] md:h-[104px] rounded-full flex items-center justify-center border border-white/[0.18] bg-white/[0.035] backdrop-blur-xl shadow-[0_0_45px_rgba(139,92,246,0.12)]"
+      >
+        <span className="text-2xl md:text-3xl font-display font-semibold text-white tracking-tight">
+          A
+        </span>
+
+        <div className="absolute inset-[7px] rounded-full border border-purple-400/[0.15]" />
+      </motion.div>
+
+      {/* ------------------------------------------------
+          K Circle
+      ------------------------------------------------ */}
+
+      <motion.div
+        animate={rightControls}
+        className="absolute w-[88px] h-[88px] md:w-[104px] md:h-[104px] rounded-full flex items-center justify-center border border-white/[0.18] bg-white/[0.035] backdrop-blur-xl shadow-[0_0_45px_rgba(139,92,246,0.12)]"
+      >
+        <span className="text-2xl md:text-3xl font-display font-semibold text-white tracking-tight">
+          K
+        </span>
+
+        <div className="absolute inset-[7px] rounded-full border border-purple-400/[0.15]" />
+      </motion.div>
+
+      {/* ------------------------------------------------
+          Center Monogram
+      ------------------------------------------------ */}
+
+      <motion.div
+        animate={logoControls}
+        className="relative w-[96px] h-[96px] md:w-[112px] md:h-[112px] rounded-full flex items-center justify-center border border-purple-300/30 bg-white/[0.04] backdrop-blur-xl shadow-[0_0_60px_rgba(139,92,246,0.22)]"
+      >
+        <span className="font-display font-black text-2xl md:text-3xl tracking-[-0.08em] text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white">
+          AK
+        </span>
+
+        <div className="absolute inset-[7px] rounded-full border border-white/[0.08]" />
+
+        <div className="absolute -inset-3 rounded-full border border-purple-400/[0.08]" />
+      </motion.div>
+
+      {/* ------------------------------------------------
+          Name + Profession
+      ------------------------------------------------ */}
+
+      <motion.div
+        animate={textControls}
+        className="absolute top-[calc(50%+105px)] md:top-[calc(50%+125px)] text-center px-6"
+      >
+        <h1 className="font-display font-black text-xl md:text-2xl tracking-[0.28em] uppercase text-white">
+          APURVASRI K
+        </h1>
+
+        <div className="mt-3 flex items-center justify-center gap-3">
+          <span className="w-8 h-px bg-purple-400/50" />
+
+          <p className="text-[9px] md:text-[10px] uppercase tracking-[0.32em] text-gray-400 font-mono">
+            Computer Science Engineer
+          </p>
+
+          <span className="w-8 h-px bg-purple-400/50" />
+        </div>
+      </motion.div>
+
+      {/* ------------------------------------------------
+          Bottom Loading Line
+      ------------------------------------------------ */}
+
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-32">
+        <div className="h-px bg-white/[0.08] overflow-hidden">
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: '100%' }}
+            transition={{
+              duration: 3.8,
+              ease: 'easeInOut',
+            }}
+            className="h-full bg-purple-400/70"
+          />
+        </div>
+
+        <p className="mt-3 text-[8px] uppercase tracking-[0.35em] text-gray-600 text-center font-mono">
+          Welcome
+        </p>
+      </div>
     </motion.div>
   );
 }
+```
