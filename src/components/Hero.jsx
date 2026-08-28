@@ -13,17 +13,32 @@ const dockItems = [
   {
     title: 'LinkedIn',
     icon: () => null,
-    href: 'https://www.linkedin.com/in/apurvasri-k-921876293/',
+    onClick: () => {
+      window.open(
+        'https://www.linkedin.com/in/apurvasri-k-921876293',
+        '_blank',
+        'noopener,noreferrer'
+      );
+    },
   },
   {
     title: 'GitHub',
     icon: () => null,
-    href: 'https://github.com/Apurvasri25',
+    onClick: () => {
+      window.open(
+        'https://github.com/Apurvasri25',
+        '_blank',
+        'noopener,noreferrer'
+      );
+    },
   },
   {
     title: 'Email',
     icon: () => null,
-    href: 'mailto:apurvasrikanakasabapathi@gmail.com',
+    onClick: () => {
+      window.location.href =
+        'mailto:apurvasrikanakasabapathi@gmail.com';
+    },
   },
 ];
 
