@@ -11,7 +11,7 @@ const FEATURED_PROJECTS = [
     description:
       'A full-stack digital campus pass system using QR codes to track student outpass history and streamline gate verification. Emergency passes are flagged and prioritized for faster processing.',
     tags: ['TypeScript', 'React', 'Vite', 'Supabase'],
-    githubUrl: 'https://github.com/Apurvasri25',
+    githubUrl: 'https://github.com/Apurvasri25/smart-campus-pass',
     boxBg: 'linear-gradient(135deg, #312e81 0%, #7c3aed 100%)',
     textColor: '#ffffff',
     accentBorder: '#a78bfa',
@@ -25,7 +25,7 @@ const FEATURED_PROJECTS = [
     description:
       'A real-time hand gesture recognition system built with computer vision to enable touchless user interaction. Integrated MediaPipe landmark tracking with OpenCV processing, improving gesture detection accuracy and boosting interaction responsiveness by 30%.',
     tags: ['Python', 'OpenCV', 'MediaPipe', 'Computer Vision'],
-    githubUrl: 'https://github.com/Apurvasri25',
+    githubUrl: 'https://github.com/Apurvasri25/Gesture-Vision',
     boxBg: 'linear-gradient(135deg, #1e3a8a 0%, #2563eb 100%)',
     textColor: '#ffffff',
     accentBorder: '#60a5fa',
