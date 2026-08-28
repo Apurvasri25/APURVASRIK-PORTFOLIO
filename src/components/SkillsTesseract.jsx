@@ -60,7 +60,7 @@ function SkillNode({ name, icon, color, x, y, z }) {
         <div className="flex flex-col items-center gap-2 select-none">
           {/* Logo Disc itself replaces the 3D cube */}
           <div 
-            className="w-12 h-12 rounded-full flex items-center justify-center border shadow-lg transition-transform duration-300"
+           className="w-16 h-16 rounded-full flex items-center justify-center border shadow-lg transition-transform duration-300"
             style={{ 
               background: 'rgba(10, 10, 10, 0.9)',
               borderColor: `${color}80`,
@@ -70,7 +70,7 @@ function SkillNode({ name, icon, color, x, y, z }) {
             {logoUrl ? (
               <img 
                 src={logoUrl} 
-                className="w-7 h-7 object-contain" 
+            className="w-10 h-10 object-contain"
                 alt={name} 
                 onError={(e) => { 
                   // Fallback to pulsing brand dot if SVG is missing
@@ -91,7 +91,7 @@ function SkillNode({ name, icon, color, x, y, z }) {
           
           {/* Skill Title under the logo */}
           <span 
-            className="px-2.5 py-0.5 rounded text-[10px] font-mono font-bold text-white border whitespace-nowrap"
+            className="px-3 py-1 rounded text-sm font-mono font-bold text-white border whitespace-nowrap"
             style={{ 
               background: 'rgba(10, 10, 10, 0.8)',
               borderColor: `${color}25`
