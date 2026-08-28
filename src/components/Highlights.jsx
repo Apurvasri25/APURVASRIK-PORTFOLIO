@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
 import {
   GraduationCap,
   Award,
@@ -9,11 +8,12 @@ import {
   Medal,
   CalendarDays,
   Sparkles,
+  ExternalLink,
 } from 'lucide-react';
 
-/* =========================================================
+/* =========================================
    DATA
-========================================================= */
+========================================= */
 
 const education = [
   {
@@ -75,29 +75,25 @@ const activities = [
   'Technical Paper Presentation — Bannari Amman Institute of Technology',
 ];
 
-/* =========================================================
-   SMALL SECTION LABEL
-========================================================= */
+/* =========================================
+   SMALL SECTION TAG
+========================================= */
 
-function SectionLabel({ icon: Icon, children }) {
+function Tag({ children }) {
   return (
-    <div className="mb-7 flex items-center gap-3">
-      <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/[0.07]">
-        <Icon className="h-4 w-4 text-purple-400" />
-      </div>
+    <div className="mb-4 flex items-center gap-2">
+      <span className="h-px w-6 bg-purple-500" />
 
-      <span className="font-mono text-[10px] font-semibold tracking-[0.25em] text-purple-400">
+      <span className="font-mono text-[9px] font-semibold tracking-[0.25em] text-purple-400">
         {children}
       </span>
-
-      <div className="h-px flex-1 bg-white/[0.07]" />
     </div>
   );
 }
 
-/* =========================================================
+/* =========================================
    EDUCATION CARD
-========================================================= */
+========================================= */
 
 function EducationCard({ item, index }) {
   return (
@@ -112,138 +108,117 @@ function EducationCard({ item, index }) {
       }}
       viewport={{
         once: true,
-        amount: 0.2,
+        amount: 0.15,
       }}
       transition={{
         duration: 0.55,
         delay: index * 0.12,
       }}
       whileHover={{
-        y: -5,
+        y: -6,
       }}
       className="
         group
         relative
         overflow-hidden
-        rounded-2xl
+        rounded-3xl
         border
         border-white/[0.08]
-        bg-gradient-to-br
-        from-white/[0.045]
-        to-white/[0.015]
+        bg-white/[0.025]
         p-6
         backdrop-blur-xl
         transition-all
-        duration-300
+        duration-500
         hover:border-purple-400/30
+        hover:bg-purple-500/[0.035]
         hover:shadow-[0_20px_60px_rgba(168,85,247,0.10)]
       "
     >
-      {/* Glow */}
+      {/* Background glow */}
+
       <div
         className="
           pointer-events-none
           absolute
           -right-20
           -top-20
-          h-48
-          w-48
+          h-52
+          w-52
           rounded-full
           bg-purple-500/0
           blur-3xl
           transition-all
-          duration-500
+          duration-700
           group-hover:bg-purple-500/10
         "
       />
 
+      {/* Number */}
+
+      <div className="absolute right-6 top-5 font-mono text-[10px] tracking-[0.2em] text-white/20">
+        0{index + 1}
+      </div>
+
       <div className="relative z-10">
 
-        {/* TOP ROW */}
-        <div className="flex items-center justify-between">
+        {/* Icon + Duration */}
 
-          <div className="flex items-center gap-3">
+        <div className="mb-7 flex items-center justify-between">
 
-            <div
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-xl
-                border
-                border-purple-400/20
-                bg-purple-500/[0.08]
-              "
-            >
-              <GraduationCap className="h-5 w-5 text-purple-400" />
-            </div>
-
-            <div>
-              <p className="font-mono text-[8px] tracking-[0.2em] text-purple-400/70">
-                ACADEMIC
-              </p>
-
-              <p className="mt-1 font-mono text-[9px] tracking-wider text-gray-500">
-                {item.duration}
-              </p>
-            </div>
-
+          <div
+            className="
+              flex
+              h-12
+              w-12
+              items-center
+              justify-center
+              rounded-2xl
+              border
+              border-purple-400/20
+              bg-purple-500/[0.07]
+            "
+          >
+            <GraduationCap className="h-5 w-5 text-purple-400" />
           </div>
 
-          <CalendarDays className="h-4 w-4 text-gray-700" />
+          <div className="flex items-center gap-2">
+            <CalendarDays className="h-3.5 w-3.5 text-gray-600" />
+
+            <span className="font-mono text-[9px] tracking-wider text-gray-500">
+              {item.duration}
+            </span>
+          </div>
 
         </div>
 
-        {/* DEGREE */}
-        <h3
-          className="
-            mt-7
-            text-lg
-            font-bold
-            leading-snug
-            text-white
-            sm:text-xl
-          "
-        >
+        {/* Degree */}
+
+        <h3 className="max-w-md text-xl font-bold leading-snug text-white">
           {item.degree}
         </h3>
 
-        {/* INSTITUTION */}
-        <p className="mt-3 text-sm leading-6 text-gray-400">
+        {/* Institution */}
+
+        <p className="mt-3 text-sm leading-6 text-gray-500">
           {item.institution}
         </p>
 
-        {/* BOTTOM */}
-        <div
-          className="
-            mt-7
-            flex
-            items-end
-            justify-between
-            border-t
-            border-white/[0.07]
-            pt-5
-          "
-        >
+        {/* Bottom */}
+
+        <div className="mt-8 flex items-end justify-between border-t border-white/[0.07] pt-5">
 
           <div>
             <p className="font-mono text-[8px] tracking-[0.2em] text-gray-600">
               {item.scoreLabel}
             </p>
 
-            <p className="mt-1 text-2xl font-black text-purple-300">
+            <p className="mt-1 text-3xl font-black text-purple-300">
               {item.score}
             </p>
           </div>
 
           <div className="text-right">
-            <p className="font-mono text-[8px] tracking-[0.15em] text-gray-600">
-              LOCATION
-            </p>
-
-            <p className="mt-1 text-[10px] text-gray-500">
+            <p className="text-[10px] text-gray-600">
               {item.location}
             </p>
           </div>
@@ -255,105 +230,73 @@ function EducationCard({ item, index }) {
   );
 }
 
-/* =========================================================
+/* =========================================
    CERTIFICATION CARD
-========================================================= */
+========================================= */
 
 function CertificationCard({ text, index }) {
   return (
     <motion.div
       initial={{
         opacity: 0,
-        y: 15,
+        x: 15,
       }}
       whileInView={{
         opacity: 1,
-        y: 0,
+        x: 0,
       }}
       viewport={{
         once: true,
-        amount: 0.15,
       }}
       transition={{
         duration: 0.35,
         delay: index * 0.05,
       }}
       whileHover={{
-        y: -3,
+        x: 4,
       }}
       className="
         group
-        relative
-        overflow-hidden
+        flex
+        items-center
+        gap-3
         rounded-xl
         border
-        border-white/[0.07]
-        bg-white/[0.025]
-        p-4
+        border-white/[0.06]
+        bg-black/20
+        px-4
+        py-3.5
         transition-all
         duration-300
         hover:border-purple-400/25
         hover:bg-purple-500/[0.04]
       "
     >
-
       <div
         className="
-          absolute
-          -right-8
-          -top-8
-          h-20
-          w-20
-          rounded-full
-          bg-purple-500/0
-          blur-2xl
-          transition-all
-          duration-500
-          group-hover:bg-purple-500/10
+          flex
+          h-7
+          w-7
+          shrink-0
+          items-center
+          justify-center
+          rounded-lg
+          bg-purple-500/[0.08]
         "
-      />
-
-      <div className="relative z-10 flex items-start gap-3">
-
-        <div
-          className="
-            flex
-            h-8
-            w-8
-            shrink-0
-            items-center
-            justify-center
-            rounded-lg
-            border
-            border-purple-400/15
-            bg-purple-500/[0.07]
-          "
-        >
-          <Award className="h-3.5 w-3.5 text-purple-400" />
-        </div>
-
-        <span
-          className="
-            pt-1
-            text-xs
-            leading-5
-            text-gray-400
-            transition-colors
-            group-hover:text-gray-200
-          "
-        >
-          {text}
-        </span>
-
+      >
+        <Award className="h-3.5 w-3.5 text-purple-400" />
       </div>
 
+      <span className="text-xs leading-5 text-gray-400 transition-colors group-hover:text-gray-200">
+        {text}
+      </span>
     </motion.div>
   );
 }
 
-/* =========================================================
+/* =========================================
    ACHIEVEMENT CARD
-========================================================= */
+========================================= */
 
 function AchievementCard({ item, index }) {
   return (
@@ -368,11 +311,10 @@ function AchievementCard({ item, index }) {
       }}
       viewport={{
         once: true,
-        amount: 0.15,
       }}
       transition={{
         duration: 0.4,
-        delay: index * 0.07,
+        delay: index * 0.06,
       }}
       whileHover={{
         y: -4,
@@ -384,35 +326,31 @@ function AchievementCard({ item, index }) {
         rounded-2xl
         border
         border-white/[0.07]
-        bg-gradient-to-br
-        from-white/[0.035]
-        to-white/[0.015]
+        bg-white/[0.025]
         p-5
         transition-all
         duration-300
         hover:border-purple-400/25
-        hover:shadow-[0_15px_45px_rgba(168,85,247,0.08)]
+        hover:bg-purple-500/[0.035]
       "
     >
-
       <div
         className="
-          pointer-events-none
           absolute
-          -bottom-10
           -right-10
-          h-28
-          w-28
+          -top-10
+          h-24
+          w-24
           rounded-full
           bg-purple-500/0
-          blur-3xl
+          blur-2xl
           transition-all
           duration-500
           group-hover:bg-purple-500/10
         "
       />
 
-      <div className="relative z-10 flex items-start gap-4">
+      <div className="relative z-10 flex gap-4">
 
         <div
           className="
@@ -425,48 +363,47 @@ function AchievementCard({ item, index }) {
             rounded-xl
             border
             border-purple-400/15
-            bg-purple-500/[0.07]
+            bg-purple-500/[0.06]
           "
         >
           <Trophy className="h-4 w-4 text-purple-400" />
         </div>
 
         <div>
-
-          <h4 className="text-sm font-bold text-gray-200">
+          <h4 className="text-sm font-bold text-white">
             {item.title}
           </h4>
 
-          <p className="mt-2 text-xs leading-5 text-gray-500">
+          <p className="mt-1.5 text-xs leading-5 text-gray-500">
             {item.description}
           </p>
 
           {item.detail && (
-            <div className="mt-3 inline-flex rounded-md border border-purple-400/10 bg-purple-500/[0.05] px-2 py-1">
-              <span className="font-mono text-[8px] tracking-wider text-purple-400/80">
+            <div className="mt-3 flex items-center gap-2">
+              <span className="h-1 w-1 rounded-full bg-purple-400" />
+
+              <span className="font-mono text-[8px] tracking-wider text-purple-400/70">
                 {item.detail}
               </span>
             </div>
           )}
-
         </div>
 
       </div>
-
     </motion.div>
   );
 }
 
-/* =========================================================
+/* =========================================
    ACTIVITY CARD
-========================================================= */
+========================================= */
 
 function ActivityCard({ activity, index }) {
   return (
     <motion.div
       initial={{
         opacity: 0,
-        x: -15,
+        x: -12,
       }}
       whileInView={{
         opacity: 1,
@@ -474,14 +411,10 @@ function ActivityCard({ activity, index }) {
       }}
       viewport={{
         once: true,
-        amount: 0.15,
       }}
       transition={{
         duration: 0.35,
         delay: index * 0.05,
-      }}
-      whileHover={{
-        x: 4,
       }}
       className="
         group
@@ -491,29 +424,29 @@ function ActivityCard({ activity, index }) {
         rounded-xl
         border
         border-white/[0.06]
-        bg-white/[0.02]
+        bg-black/20
         px-4
-        py-4
+        py-3.5
         transition-all
         duration-300
-        hover:border-purple-400/20
+        hover:border-purple-400/25
         hover:bg-purple-500/[0.035]
       "
     >
-
-      <Medal className="mt-0.5 h-4 w-4 shrink-0 text-purple-400" />
+      <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-lg bg-purple-500/[0.07]">
+        <Medal className="h-3.5 w-3.5 text-purple-400" />
+      </div>
 
       <span className="text-xs leading-5 text-gray-400 transition-colors group-hover:text-gray-200">
         {activity}
       </span>
-
     </motion.div>
   );
 }
 
-/* =========================================================
+/* =========================================
    MAIN
-========================================================= */
+========================================= */
 
 export default function Highlights() {
   return (
@@ -524,15 +457,15 @@ export default function Highlights() {
         overflow-hidden
         bg-black
         px-5
-        py-20
+        py-24
         sm:px-8
         lg:px-16
       "
     >
 
-      {/* =====================================================
+      {/* =====================================
           BACKGROUND
-      ===================================================== */}
+      ===================================== */}
 
       <div
         className="
@@ -553,21 +486,21 @@ export default function Highlights() {
         className="
           pointer-events-none
           absolute
+          bottom-0
           left-0
-          top-1/2
           h-[300px]
           w-[300px]
           rounded-full
-          bg-purple-600/[0.025]
+          bg-purple-700/[0.025]
           blur-[120px]
         "
       />
 
       <div className="relative z-10 mx-auto max-w-6xl">
 
-        {/* =================================================
-            MAIN TITLE
-        ================================================= */}
+        {/* =====================================
+            HEADER
+        ===================================== */}
 
         <motion.div
           initial={{
@@ -584,52 +517,70 @@ export default function Highlights() {
           transition={{
             duration: 0.55,
           }}
-          className="mb-12"
+          className="mb-16"
         >
 
-          <div className="mb-3 flex items-center gap-3">
+          <Tag>MY JOURNEY</Tag>
 
-            <span className="h-px w-8 bg-purple-500" />
+          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
 
-            <span className="font-mono text-[10px] tracking-[0.28em] text-purple-400">
-              MY JOURNEY
-            </span>
+            <div>
+              <h2 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+                Education
+                <span className="text-purple-500">.</span>
+              </h2>
+
+              <p className="mt-4 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
+                Academic background, certifications and experiences
+                that shaped my journey as a Computer Science Engineer.
+              </p>
+            </div>
+
+            {/* Small status */}
+
+            <div
+              className="
+                flex
+                w-fit
+                items-center
+                gap-2
+                rounded-full
+                border
+                border-white/[0.08]
+                bg-white/[0.025]
+                px-4
+                py-2
+                backdrop-blur-md
+              "
+            >
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-purple-400" />
+
+              <span className="font-mono text-[9px] tracking-[0.2em] text-gray-500">
+                2023 — PRESENT
+              </span>
+            </div>
 
           </div>
 
-          <h2
-            className="
-              text-5xl
-              font-extrabold
-              tracking-tight
-              text-white
-              sm:text-6xl
-              lg:text-7xl
-            "
-          >
-            Education
-            <span className="text-purple-500">.</span>
-          </h2>
-
-          <p className="mt-4 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
-            Academic background, learning milestones and experiences
-            that shaped my journey in computer science.
-          </p>
-
         </motion.div>
 
-        {/* =================================================
+        {/* =====================================
             EDUCATION
-        ================================================= */}
+        ===================================== */}
 
-        <div className="mb-24">
+        <div className="mb-28">
 
-          <SectionLabel icon={GraduationCap}>
-            EDUCATION
-          </SectionLabel>
+          <div className="mb-7 flex items-center gap-3">
+            <GraduationCap className="h-4 w-4 text-purple-400" />
+
+            <span className="font-mono text-[10px] font-semibold tracking-[0.25em] text-gray-400">
+              EDUCATION
+            </span>
+
+            <div className="h-px flex-1 bg-white/[0.07]" />
+          </div>
 
           <div className="grid gap-5 md:grid-cols-2">
-
             {education.map((item, index) => (
               <EducationCard
                 key={item.institution}
@@ -637,14 +588,13 @@ export default function Highlights() {
                 index={index}
               />
             ))}
-
           </div>
 
         </div>
 
-        {/* =================================================
-            HIGHLIGHTS TITLE
-        ================================================= */}
+        {/* =====================================
+            HIGHLIGHTS HEADER
+        ===================================== */}
 
         <motion.div
           initial={{
@@ -661,120 +611,367 @@ export default function Highlights() {
           transition={{
             duration: 0.55,
           }}
-          className="mb-12"
+          className="mb-10"
         >
 
-          <div className="mb-3 flex items-center gap-3">
+          <Tag>BEYOND CODE</Tag>
 
-            <span className="h-px w-8 bg-purple-500" />
+          <div className="flex items-center gap-4">
 
-            <span className="font-mono text-[10px] tracking-[0.28em] text-purple-400">
-              BEYOND CODE
-            </span>
-
-          </div>
-
-          <div className="flex items-center gap-3">
-
-            <h2
-              className="
-                text-5xl
-                font-extrabold
-                tracking-tight
-                text-white
-                sm:text-6xl
-              "
-            >
+            <h2 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
               Highlights
               <span className="text-purple-500">.</span>
             </h2>
 
-            <Sparkles className="mt-2 h-6 w-6 text-purple-400 opacity-70" />
+            <Sparkles className="hidden h-6 w-6 text-purple-400 sm:block" />
 
           </div>
 
-          <p className="mt-4 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
-            Certifications, achievements, hackathons and activities
-            beyond my core technical skills.
+          <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500">
+            Things I've built, participated in and achieved beyond
+            everyday development.
           </p>
 
         </motion.div>
 
-        {/* =================================================
-            CERTIFICATIONS
-        ================================================= */}
+        {/* =====================================
+            BENTO GRID
+        ===================================== */}
 
-        <div className="mb-16">
+        <div className="grid gap-5 lg:grid-cols-12">
 
-          <SectionLabel icon={Award}>
-            CERTIFICATIONS
-          </SectionLabel>
+          {/* ===================================
+              FEATURED PATENT
+          =================================== */}
 
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.55,
+            }}
+            whileHover={{
+              y: -5,
+            }}
+            className="
+              group
+              relative
+              min-h-[300px]
+              overflow-hidden
+              rounded-3xl
+              border
+              border-purple-400/15
+              bg-gradient-to-br
+              from-purple-500/[0.10]
+              via-white/[0.025]
+              to-transparent
+              p-7
+              lg:col-span-7
+            "
+          >
 
-            {certifications.map((cert, index) => (
-              <CertificationCard
-                key={cert}
-                text={cert}
-                index={index}
-              />
-            ))}
+            {/* Giant background number */}
 
-          </div>
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -bottom-10
+                -right-4
+                text-[180px]
+                font-black
+                leading-none
+                text-purple-500/[0.035]
+              "
+            >
+              01
+            </div>
+
+            {/* Glow */}
+
+            <div
+              className="
+                pointer-events-none
+                absolute
+                -right-20
+                -top-20
+                h-60
+                w-60
+                rounded-full
+                bg-purple-500/0
+                blur-3xl
+                transition-all
+                duration-700
+                group-hover:bg-purple-500/15
+              "
+            />
+
+            <div className="relative z-10 flex h-full flex-col justify-between">
+
+              <div>
+
+                <div className="mb-8 flex items-center justify-between">
+
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-purple-400/20 bg-purple-500/[0.08]">
+                    <Trophy className="h-5 w-5 text-purple-300" />
+                  </div>
+
+                  <span className="font-mono text-[9px] tracking-[0.25em] text-purple-400">
+                    FEATURED ACHIEVEMENT
+                  </span>
+
+                </div>
+
+                <h3 className="text-3xl font-black tracking-tight text-white sm:text-4xl">
+                  HybrionX
+                  <br />
+                  <span className="text-purple-300">
+                    Patent
+                  </span>
+                </h3>
+
+                <p className="mt-4 max-w-lg text-sm leading-6 text-gray-500">
+                  Published patent for a Hybrid Energy Switching
+                  E-Vehicle concept, combining innovation with
+                  sustainable transportation.
+                </p>
+
+              </div>
+
+              <div className="mt-8 flex items-center justify-between border-t border-white/[0.07] pt-5">
+
+                <span className="font-mono text-[9px] tracking-[0.15em] text-purple-400/70">
+                  PATENT NO. 202541016688 A
+                </span>
+
+                <ExternalLink className="h-4 w-4 text-gray-600 transition-colors group-hover:text-purple-400" />
+
+              </div>
+
+            </div>
+
+          </motion.div>
+
+          {/* ===================================
+              CERTIFICATIONS
+          =================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.55,
+              delay: 0.08,
+            }}
+            className="
+              rounded-3xl
+              border
+              border-white/[0.07]
+              bg-white/[0.02]
+              p-6
+              lg:col-span-5
+            "
+          >
+
+            <div className="mb-5 flex items-center justify-between">
+
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/[0.07]">
+                  <Award className="h-4 w-4 text-purple-400" />
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-white">
+                    Certifications
+                  </p>
+
+                  <p className="font-mono text-[8px] tracking-wider text-gray-600">
+                    06 CREDENTIALS
+                  </p>
+                </div>
+              </div>
+
+              <span className="text-2xl font-black text-white/10">
+                02
+              </span>
+
+            </div>
+
+            <div className="space-y-2">
+              {certifications.map((cert, index) => (
+                <CertificationCard
+                  key={cert}
+                  text={cert}
+                  index={index}
+                />
+              ))}
+            </div>
+
+          </motion.div>
+
+          {/* ===================================
+              ACHIEVEMENTS
+          =================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.55,
+              delay: 0.12,
+            }}
+            className="
+              rounded-3xl
+              border
+              border-white/[0.07]
+              bg-white/[0.02]
+              p-6
+              lg:col-span-7
+            "
+          >
+
+            <div className="mb-6 flex items-center justify-between">
+
+              <div className="flex items-center gap-3">
+
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/[0.07]">
+                  <Trophy className="h-4 w-4 text-purple-400" />
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-white">
+                    Achievements
+                  </p>
+
+                  <p className="font-mono text-[8px] tracking-wider text-gray-600">
+                    RECOGNITION & LEADERSHIP
+                  </p>
+                </div>
+
+              </div>
+
+              <span className="font-mono text-[9px] text-white/10">
+                03
+              </span>
+
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-2">
+              {achievements.map((item, index) => (
+                <AchievementCard
+                  key={item.title}
+                  item={item}
+                  index={index}
+                />
+              ))}
+            </div>
+
+          </motion.div>
+
+          {/* ===================================
+              HACKATHONS
+          =================================== */}
+
+          <motion.div
+            initial={{
+              opacity: 0,
+              y: 25,
+            }}
+            whileInView={{
+              opacity: 1,
+              y: 0,
+            }}
+            viewport={{
+              once: true,
+            }}
+            transition={{
+              duration: 0.55,
+              delay: 0.16,
+            }}
+            className="
+              rounded-3xl
+              border
+              border-white/[0.07]
+              bg-gradient-to-br
+              from-white/[0.03]
+              to-transparent
+              p-6
+              lg:col-span-5
+            "
+          >
+
+            <div className="mb-6 flex items-center justify-between">
+
+              <div className="flex items-center gap-3">
+
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-purple-500/[0.07]">
+                  <Code2 className="h-4 w-4 text-purple-400" />
+                </div>
+
+                <div>
+                  <p className="text-sm font-bold text-white">
+                    Activities
+                  </p>
+
+                  <p className="font-mono text-[8px] tracking-wider text-gray-600">
+                    HACKATHONS & EVENTS
+                  </p>
+                </div>
+
+              </div>
+
+              <span className="font-mono text-[9px] text-white/10">
+                04
+              </span>
+
+            </div>
+
+            <div className="space-y-2">
+
+              {activities.map((activity, index) => (
+                <ActivityCard
+                  key={activity}
+                  activity={activity}
+                  index={index}
+                />
+              ))}
+
+            </div>
+
+          </motion.div>
 
         </div>
 
-        {/* =================================================
-            ACHIEVEMENTS
-        ================================================= */}
-
-        <div className="mb-16">
-
-          <SectionLabel icon={Trophy}>
-            ACHIEVEMENTS & POSITIONS
-          </SectionLabel>
-
-          <div className="grid gap-4 md:grid-cols-2">
-
-            {achievements.map((item, index) => (
-              <AchievementCard
-                key={item.title}
-                item={item}
-                index={index}
-              />
-            ))}
-
-          </div>
-
-        </div>
-
-        {/* =================================================
-            HACKATHONS
-        ================================================= */}
-
-        <div>
-
-          <SectionLabel icon={Code2}>
-            HACKATHONS & ACTIVITIES
-          </SectionLabel>
-
-          <div className="grid gap-3 md:grid-cols-2">
-
-            {activities.map((activity, index) => (
-              <ActivityCard
-                key={activity}
-                activity={activity}
-                index={index}
-              />
-            ))}
-
-          </div>
-
-        </div>
-
-        {/* =================================================
+        {/* =====================================
             BOTTOM
-        ================================================= */}
+        ===================================== */}
 
         <motion.div
           initial={{
@@ -787,16 +984,24 @@ export default function Highlights() {
             once: true,
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.6,
           }}
-          className="mt-16 flex items-center gap-3"
+          className="mt-20 flex items-center gap-4"
         >
 
           <div className="h-px flex-1 bg-white/[0.07]" />
 
-          <span className="font-mono text-[9px] tracking-[0.28em] text-gray-600">
-            KEEP LEARNING • KEEP BUILDING
-          </span>
+          <div className="flex items-center gap-2">
+
+            <span className="h-1 w-1 rounded-full bg-purple-500" />
+
+            <span className="font-mono text-[8px] tracking-[0.3em] text-gray-600">
+              KEEP LEARNING • KEEP BUILDING
+            </span>
+
+            <span className="h-1 w-1 rounded-full bg-purple-500" />
+
+          </div>
 
           <div className="h-px flex-1 bg-white/[0.07]" />
 
