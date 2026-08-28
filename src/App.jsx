@@ -55,7 +55,7 @@ export default function App() {
               className="portfolio-sparkles"
               aria-hidden="true"
             >
-              {Array.from({ length: 28 }).map((_, i) => (
+              {Array.from({ length: 40 }).map((_, i) => (
                 <span
                   key={i}
                   className="sparkle"
