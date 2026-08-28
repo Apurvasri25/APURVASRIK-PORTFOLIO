@@ -59,26 +59,39 @@ export default function Hero() {
         {/* Left Side: Details */}
         <div className="flex flex-col justify-center text-left w-full lg:w-1/2 pointer-events-none">
           {/* Huge Name: APURVASRI K */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="mb-2 w-full"
-          >
-            <h1 className="font-display font-black text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-550 uppercase break-words leading-none">
-              APURVASRI K
-            </h1>
-          </motion.div>
+         {/* Greeting */}
+<motion.div
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.4 }}
+  className="mb-3"
+>
+  <span className="font-mono text-sm sm:text-base tracking-[0.3em] text-gray-400 uppercase">
+    HI, I'M
+  </span>
+</motion.div>
+
+{/* Name */}
+<motion.div
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.45, delay: 0.05 }}
+  className="mb-3 w-full"
+>
+  <h1 className="font-display font-black text-5xl md:text-6xl lg:text-7xl xl:text-[5rem] tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-550 uppercase break-words leading-none">
+    APURVASRI K
+  </h1>
+</motion.div>
 
           {/* Subtitle Text */}
-          <motion.p
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05 }}
-            className="font-display font-bold text-lg sm:text-xl md:text-2xl tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-550 mb-6"
-          >
-            Computer Science Engineer
-          </motion.p>
+      <motion.p
+  initial={{ opacity: 0, y: 15 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.45, delay: 0.1 }}
+  className="font-display font-bold text-lg sm:text-xl md:text-2xl tracking-wider uppercase text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-300 to-gray-550 mb-6"
+>
+  FULL STACK DEVELOPER
+</motion.p>
 
           {/* Heading */}
           <motion.h1
