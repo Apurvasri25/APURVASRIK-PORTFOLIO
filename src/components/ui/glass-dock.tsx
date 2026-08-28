@@ -529,14 +529,13 @@ export const GlassDock = React.forwardRef<HTMLDivElement, GlassDockProps>(
                         const isHovered = hoveredIndex === index;
                         const isActive = isHovered;
 
-                        const handleClick = () => {
-                            if (el.onClick) {
-                                el.onClick();
-                            } else if (el.href) {
-                                window.location.href = el.href;
-                            }
-                        };
-
+                       const handleClick = () => {
+    if (el.onClick) {
+        el.onClick();
+    } else if (el.href) {
+        window.open(el.href, '_blank', 'noopener,noreferrer');
+    }
+};
                         const type = el.title.toLowerCase();
                         const isAnimated = ['home', 'blog', 'marker', 'email', 'linkedin', 'x', 'github'].includes(type);
 
