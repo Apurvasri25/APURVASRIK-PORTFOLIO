@@ -338,7 +338,7 @@ export default function HollowPurpleIntro({ onComplete }) {
             pl-[0.32em]
           "
         >
-          Software Developer · AI / ML Enthusiast
+          Software Developer
         </motion.p>
       </div>
 
