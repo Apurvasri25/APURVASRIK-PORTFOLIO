@@ -54,7 +54,7 @@ function SkillNode({ name, icon, color, x, y, z }) {
       <Html
         position={[x, y, z]}
         center
-        distanceFactor={7}
+        distanceFactor={4.5}
         className="pointer-events-none select-none"
       >
         <div className="flex flex-col items-center gap-2 select-none">
