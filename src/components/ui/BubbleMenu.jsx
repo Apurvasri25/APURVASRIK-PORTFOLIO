@@ -19,18 +19,39 @@ const DEFAULT_ITEMS = [
     hoverStyles: { bgColor: '#10b981', textColor: '#ffffff' }
   },
   {
+    label: 'experience',
+    href: '#experience',
+    ariaLabel: 'Experience',
+    rotation: -8,
+    hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
+  },
+  {
+    label: 'education',
+    href: '#education',
+    ariaLabel: 'Education',
+    rotation: 8,
+    hoverStyles: { bgColor: '#ec4899', textColor: '#ffffff' }
+  },
+  {
+    label: 'highlights',
+    href: '#highlights',
+    ariaLabel: 'Highlights',
+    rotation: -8,
+    hoverStyles: { bgColor: '#06b6d4', textColor: '#ffffff' }
+  },
+  {
     label: 'projects',
     href: '#projects',
     ariaLabel: 'Projects',
     rotation: 8,
-    hoverStyles: { bgColor: '#f59e0b', textColor: '#ffffff' }
+    hoverStyles: { bgColor: '#8b5cf6', textColor: '#ffffff' }
   },
   {
     label: 'contact',
     href: '#contact',
     ariaLabel: 'Contact',
     rotation: -8,
-    hoverStyles: { bgColor: '#8b5cf6', textColor: '#ffffff' }
+    hoverStyles: { bgColor: '#ef4444', textColor: '#ffffff' }
   }
 ];
 
