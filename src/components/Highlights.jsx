@@ -1,6 +1,6 @@
-
 import React from 'react';
 import { motion } from 'framer-motion';
+
 import {
   GraduationCap,
   Award,
@@ -8,11 +8,12 @@ import {
   Code2,
   Medal,
   CalendarDays,
+  Sparkles,
 } from 'lucide-react';
 
-/* =========================================
-   EDUCATION
-========================================= */
+/* =========================================================
+   DATA
+========================================================= */
 
 const education = [
   {
@@ -33,10 +34,6 @@ const education = [
   },
 ];
 
-/* =========================================
-   CERTIFICATIONS
-========================================= */
-
 const certifications = [
   'NPTEL — Computer Networks and Internet Protocol',
   'NPTEL — Cloud Computing',
@@ -45,10 +42,6 @@ const certifications = [
   'ServiceNow — Virtual Internship Completion',
   'HackerRank — Frontend Developer (React)',
 ];
-
-/* =========================================
-   ACHIEVEMENTS
-========================================= */
 
 const achievements = [
   {
@@ -74,10 +67,6 @@ const achievements = [
   },
 ];
 
-/* =========================================
-   HACKATHONS / ACTIVITIES
-========================================= */
-
 const activities = [
   'Women Who Master Hackathon — Logitech & Aspire For Her',
   'TenzorX National AI Hackathon 2026 — Poonawalla Fincorp',
@@ -86,14 +75,14 @@ const activities = [
   'Technical Paper Presentation — Bannari Amman Institute of Technology',
 ];
 
-/* =========================================
-   SECTION LABEL
-========================================= */
+/* =========================================================
+   SMALL SECTION LABEL
+========================================================= */
 
 function SectionLabel({ icon: Icon, children }) {
   return (
     <div className="mb-7 flex items-center gap-3">
-      <div className="flex h-9 w-9 items-center justify-center rounded-lg border border-purple-500/20 bg-purple-500/[0.06]">
+      <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/[0.07]">
         <Icon className="h-4 w-4 text-purple-400" />
       </div>
 
@@ -106,19 +95,31 @@ function SectionLabel({ icon: Icon, children }) {
   );
 }
 
-/* =========================================
+/* =========================================================
    EDUCATION CARD
-========================================= */
+========================================================= */
 
 function EducationCard({ item, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: index === 0 ? -20 : 20 }}
-      whileInView={{ opacity: 1, x: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      initial={{
+        opacity: 0,
+        y: 30,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
       transition={{
-        duration: 0.5,
+        duration: 0.55,
         delay: index * 0.12,
+      }}
+      whileHover={{
+        y: -5,
       }}
       className="
         group
@@ -127,14 +128,15 @@ function EducationCard({ item, index }) {
         rounded-2xl
         border
         border-white/[0.08]
-        bg-white/[0.025]
+        bg-gradient-to-br
+        from-white/[0.045]
+        to-white/[0.015]
         p-6
-        backdrop-blur-md
+        backdrop-blur-xl
         transition-all
         duration-300
         hover:border-purple-400/30
-        hover:bg-purple-500/[0.025]
-        hover:shadow-[0_0_35px_rgba(168,85,247,0.08)]
+        hover:shadow-[0_20px_60px_rgba(168,85,247,0.10)]
       "
     >
       {/* Glow */}
@@ -142,10 +144,10 @@ function EducationCard({ item, index }) {
         className="
           pointer-events-none
           absolute
-          -right-16
-          -top-16
-          h-40
-          w-40
+          -right-20
+          -top-20
+          h-48
+          w-48
           rounded-full
           bg-purple-500/0
           blur-3xl
@@ -157,48 +159,94 @@ function EducationCard({ item, index }) {
 
       <div className="relative z-10">
 
-        {/* Top */}
-        <div className="mb-6 flex items-start justify-between gap-4">
+        {/* TOP ROW */}
+        <div className="flex items-center justify-between">
 
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-purple-500/20 bg-purple-500/[0.06]">
+
+            <div
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-xl
+                border
+                border-purple-400/20
+                bg-purple-500/[0.08]
+              "
+            >
               <GraduationCap className="h-5 w-5 text-purple-400" />
             </div>
 
-            <span className="font-mono text-[9px] tracking-[0.18em] text-gray-500">
-              {item.duration}
-            </span>
+            <div>
+              <p className="font-mono text-[8px] tracking-[0.2em] text-purple-400/70">
+                ACADEMIC
+              </p>
+
+              <p className="mt-1 font-mono text-[9px] tracking-wider text-gray-500">
+                {item.duration}
+              </p>
+            </div>
+
           </div>
 
-          <CalendarDays className="h-4 w-4 text-gray-600" />
+          <CalendarDays className="h-4 w-4 text-gray-700" />
+
         </div>
 
-        {/* Degree */}
-        <h3 className="text-lg font-bold leading-tight text-white sm:text-xl">
+        {/* DEGREE */}
+        <h3
+          className="
+            mt-7
+            text-lg
+            font-bold
+            leading-snug
+            text-white
+            sm:text-xl
+          "
+        >
           {item.degree}
         </h3>
 
-        {/* Institution */}
-        <p className="mt-2 text-sm font-medium text-gray-400">
+        {/* INSTITUTION */}
+        <p className="mt-3 text-sm leading-6 text-gray-400">
           {item.institution}
         </p>
 
-        {/* Bottom */}
-        <div className="mt-7 flex items-end justify-between border-t border-white/[0.06] pt-5">
+        {/* BOTTOM */}
+        <div
+          className="
+            mt-7
+            flex
+            items-end
+            justify-between
+            border-t
+            border-white/[0.07]
+            pt-5
+          "
+        >
 
           <div>
             <p className="font-mono text-[8px] tracking-[0.2em] text-gray-600">
               {item.scoreLabel}
             </p>
 
-            <p className="mt-1 text-2xl font-extrabold text-purple-300">
+            <p className="mt-1 text-2xl font-black text-purple-300">
               {item.score}
             </p>
           </div>
 
-          <p className="text-right text-[10px] text-gray-600">
-            {item.location}
-          </p>
+          <div className="text-right">
+            <p className="font-mono text-[8px] tracking-[0.15em] text-gray-600">
+              LOCATION
+            </p>
+
+            <p className="mt-1 text-[10px] text-gray-500">
+              {item.location}
+            </p>
+          </div>
 
         </div>
 
@@ -207,103 +255,265 @@ function EducationCard({ item, index }) {
   );
 }
 
-/* =========================================
-   CERTIFICATION ITEM
-========================================= */
+/* =========================================================
+   CERTIFICATION CARD
+========================================================= */
 
-function CertificationItem({ text, index }) {
+function CertificationCard({ text, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={{
+        opacity: 0,
+        y: 15,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
       transition={{
-        duration: 0.3,
-        delay: index * 0.04,
+        duration: 0.35,
+        delay: index * 0.05,
+      }}
+      whileHover={{
+        y: -3,
       }}
       className="
         group
-        flex
-        items-center
-        gap-3
-        rounded-lg
+        relative
+        overflow-hidden
+        rounded-xl
         border
-        border-white/[0.06]
-        bg-white/[0.02]
-        px-4
-        py-3
+        border-white/[0.07]
+        bg-white/[0.025]
+        p-4
         transition-all
         duration-300
-        hover:border-purple-400/20
-        hover:bg-purple-500/[0.03]
+        hover:border-purple-400/25
+        hover:bg-purple-500/[0.04]
       "
     >
-      <Award className="h-3.5 w-3.5 shrink-0 text-purple-400" />
 
-      <span className="text-xs leading-5 text-gray-400 transition-colors group-hover:text-gray-200">
-        {text}
-      </span>
+      <div
+        className="
+          absolute
+          -right-8
+          -top-8
+          h-20
+          w-20
+          rounded-full
+          bg-purple-500/0
+          blur-2xl
+          transition-all
+          duration-500
+          group-hover:bg-purple-500/10
+        "
+      />
+
+      <div className="relative z-10 flex items-start gap-3">
+
+        <div
+          className="
+            flex
+            h-8
+            w-8
+            shrink-0
+            items-center
+            justify-center
+            rounded-lg
+            border
+            border-purple-400/15
+            bg-purple-500/[0.07]
+          "
+        >
+          <Award className="h-3.5 w-3.5 text-purple-400" />
+        </div>
+
+        <span
+          className="
+            pt-1
+            text-xs
+            leading-5
+            text-gray-400
+            transition-colors
+            group-hover:text-gray-200
+          "
+        >
+          {text}
+        </span>
+
+      </div>
+
     </motion.div>
   );
 }
 
-/* =========================================
-   ACHIEVEMENT ITEM
-========================================= */
+/* =========================================================
+   ACHIEVEMENT CARD
+========================================================= */
 
-function AchievementItem({ item, index }) {
+function AchievementCard({ item, index }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      initial={{
+        opacity: 0,
+        y: 15,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
       transition={{
-        duration: 0.3,
-        delay: index * 0.05,
+        duration: 0.4,
+        delay: index * 0.07,
+      }}
+      whileHover={{
+        y: -4,
       }}
       className="
         group
-        rounded-xl
+        relative
+        overflow-hidden
+        rounded-2xl
         border
-        border-white/[0.06]
-        bg-white/[0.02]
-        p-4
+        border-white/[0.07]
+        bg-gradient-to-br
+        from-white/[0.035]
+        to-white/[0.015]
+        p-5
         transition-all
         duration-300
-        hover:border-purple-400/20
-        hover:bg-purple-500/[0.03]
+        hover:border-purple-400/25
+        hover:shadow-[0_15px_45px_rgba(168,85,247,0.08)]
       "
     >
-      <div className="flex items-start gap-3">
 
-        <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-purple-500/[0.07]">
-          <Trophy className="h-3.5 w-3.5 text-purple-400" />
+      <div
+        className="
+          pointer-events-none
+          absolute
+          -bottom-10
+          -right-10
+          h-28
+          w-28
+          rounded-full
+          bg-purple-500/0
+          blur-3xl
+          transition-all
+          duration-500
+          group-hover:bg-purple-500/10
+        "
+      />
+
+      <div className="relative z-10 flex items-start gap-4">
+
+        <div
+          className="
+            flex
+            h-10
+            w-10
+            shrink-0
+            items-center
+            justify-center
+            rounded-xl
+            border
+            border-purple-400/15
+            bg-purple-500/[0.07]
+          "
+        >
+          <Trophy className="h-4 w-4 text-purple-400" />
         </div>
 
         <div>
-          <h4 className="text-sm font-semibold text-gray-200">
+
+          <h4 className="text-sm font-bold text-gray-200">
             {item.title}
           </h4>
 
-          <p className="mt-1 text-xs leading-5 text-gray-500">
+          <p className="mt-2 text-xs leading-5 text-gray-500">
             {item.description}
           </p>
 
           {item.detail && (
-            <p className="mt-2 font-mono text-[9px] tracking-wider text-purple-400/70">
-              {item.detail}
-            </p>
+            <div className="mt-3 inline-flex rounded-md border border-purple-400/10 bg-purple-500/[0.05] px-2 py-1">
+              <span className="font-mono text-[8px] tracking-wider text-purple-400/80">
+                {item.detail}
+              </span>
+            </div>
           )}
+
         </div>
 
       </div>
+
     </motion.div>
   );
 }
 
-/* =========================================
+/* =========================================================
+   ACTIVITY CARD
+========================================================= */
+
+function ActivityCard({ activity, index }) {
+  return (
+    <motion.div
+      initial={{
+        opacity: 0,
+        x: -15,
+      }}
+      whileInView={{
+        opacity: 1,
+        x: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.15,
+      }}
+      transition={{
+        duration: 0.35,
+        delay: index * 0.05,
+      }}
+      whileHover={{
+        x: 4,
+      }}
+      className="
+        group
+        flex
+        items-start
+        gap-3
+        rounded-xl
+        border
+        border-white/[0.06]
+        bg-white/[0.02]
+        px-4
+        py-4
+        transition-all
+        duration-300
+        hover:border-purple-400/20
+        hover:bg-purple-500/[0.035]
+      "
+    >
+
+      <Medal className="mt-0.5 h-4 w-4 shrink-0 text-purple-400" />
+
+      <span className="text-xs leading-5 text-gray-400 transition-colors group-hover:text-gray-200">
+        {activity}
+      </span>
+
+    </motion.div>
+  );
+}
+
+/* =========================================================
    MAIN
-========================================= */
+========================================================= */
 
 export default function Highlights() {
   return (
@@ -320,66 +530,106 @@ export default function Highlights() {
       "
     >
 
-      {/* Background Glow */}
+      {/* =====================================================
+          BACKGROUND
+      ===================================================== */}
 
       <div
         className="
           pointer-events-none
           absolute
           left-1/2
-          top-20
-          h-[400px]
-          w-[400px]
+          top-0
+          h-[500px]
+          w-[500px]
           -translate-x-1/2
           rounded-full
-          bg-purple-600/[0.04]
+          bg-purple-600/[0.035]
+          blur-[140px]
+        "
+      />
+
+      <div
+        className="
+          pointer-events-none
+          absolute
+          left-0
+          top-1/2
+          h-[300px]
+          w-[300px]
+          rounded-full
+          bg-purple-600/[0.025]
           blur-[120px]
         "
       />
 
       <div className="relative z-10 mx-auto max-w-6xl">
 
-        {/* =====================================
-            MAIN HEADER
-        ===================================== */}
+        {/* =================================================
+            MAIN TITLE
+        ================================================= */}
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-14"
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.55,
+          }}
+          className="mb-12"
         >
+
           <div className="mb-3 flex items-center gap-3">
+
             <span className="h-px w-8 bg-purple-500" />
 
             <span className="font-mono text-[10px] tracking-[0.28em] text-purple-400">
               MY JOURNEY
             </span>
+
           </div>
 
-          <h2 className="text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-7xl">
+          <h2
+            className="
+              text-5xl
+              font-extrabold
+              tracking-tight
+              text-white
+              sm:text-6xl
+              lg:text-7xl
+            "
+          >
             Education
             <span className="text-purple-500">.</span>
           </h2>
 
           <p className="mt-4 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
-            Academic background and achievements built throughout my
-            computer science journey.
+            Academic background, learning milestones and experiences
+            that shaped my journey in computer science.
           </p>
+
         </motion.div>
 
-        {/* =====================================
-            EDUCATION — SEPARATE DESIGN
-        ===================================== */}
+        {/* =================================================
+            EDUCATION
+        ================================================= */}
 
-        <div className="mb-20">
+        <div className="mb-24">
 
           <SectionLabel icon={GraduationCap}>
             EDUCATION
           </SectionLabel>
 
           <div className="grid gap-5 md:grid-cols-2">
+
             {education.map((item, index) => (
               <EducationCard
                 key={item.institution}
@@ -387,87 +637,120 @@ export default function Highlights() {
                 index={index}
               />
             ))}
+
           </div>
 
         </div>
 
-        {/* =====================================
-            HIGHLIGHTS HEADER
-        ===================================== */}
+        {/* =================================================
+            HIGHLIGHTS TITLE
+        ================================================= */}
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-10"
+          initial={{
+            opacity: 0,
+            y: 25,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.55,
+          }}
+          className="mb-12"
         >
+
           <div className="mb-3 flex items-center gap-3">
+
             <span className="h-px w-8 bg-purple-500" />
 
             <span className="font-mono text-[10px] tracking-[0.28em] text-purple-400">
               BEYOND CODE
             </span>
+
           </div>
 
-          <h2 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl">
-            Highlights
-            <span className="text-purple-500">.</span>
-          </h2>
+          <div className="flex items-center gap-3">
 
-          <p className="mt-3 max-w-xl text-sm leading-6 text-gray-500">
-            Certifications, achievements and activities that complement
-            my technical skills.
+            <h2
+              className="
+                text-5xl
+                font-extrabold
+                tracking-tight
+                text-white
+                sm:text-6xl
+              "
+            >
+              Highlights
+              <span className="text-purple-500">.</span>
+            </h2>
+
+            <Sparkles className="mt-2 h-6 w-6 text-purple-400 opacity-70" />
+
+          </div>
+
+          <p className="mt-4 max-w-xl text-sm leading-6 text-gray-500 sm:text-base">
+            Certifications, achievements, hackathons and activities
+            beyond my core technical skills.
           </p>
+
         </motion.div>
 
-        {/* =====================================
+        {/* =================================================
             CERTIFICATIONS
-        ===================================== */}
+        ================================================= */}
 
-        <div className="mb-12">
+        <div className="mb-16">
 
           <SectionLabel icon={Award}>
             CERTIFICATIONS
           </SectionLabel>
 
-          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+
             {certifications.map((cert, index) => (
-              <CertificationItem
+              <CertificationCard
                 key={cert}
                 text={cert}
                 index={index}
               />
             ))}
+
           </div>
 
         </div>
 
-        {/* =====================================
+        {/* =================================================
             ACHIEVEMENTS
-        ===================================== */}
+        ================================================= */}
 
-        <div className="mb-12">
+        <div className="mb-16">
 
           <SectionLabel icon={Trophy}>
             ACHIEVEMENTS & POSITIONS
           </SectionLabel>
 
-          <div className="grid gap-3 md:grid-cols-2">
+          <div className="grid gap-4 md:grid-cols-2">
+
             {achievements.map((item, index) => (
-              <AchievementItem
+              <AchievementCard
                 key={item.title}
                 item={item}
                 index={index}
               />
             ))}
+
           </div>
 
         </div>
 
-        {/* =====================================
-            HACKATHONS & ACTIVITIES
-        ===================================== */}
+        {/* =================================================
+            HACKATHONS
+        ================================================= */}
 
         <div>
 
@@ -475,56 +758,40 @@ export default function Highlights() {
             HACKATHONS & ACTIVITIES
           </SectionLabel>
 
-          <div className="grid gap-2 md:grid-cols-2">
-            {activities.map((activity, index) => (
-              <motion.div
-                key={activity}
-                initial={{ opacity: 0, x: -10 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.3,
-                  delay: index * 0.04,
-                }}
-                className="
-                  group
-                  flex
-                  items-start
-                  gap-3
-                  rounded-lg
-                  border
-                  border-white/[0.06]
-                  bg-white/[0.02]
-                  px-4
-                  py-3
-                  transition-all
-                  duration-300
-                  hover:border-purple-400/20
-                  hover:bg-purple-500/[0.03]
-                "
-              >
-                <Medal className="mt-0.5 h-3.5 w-3.5 shrink-0 text-purple-400" />
+          <div className="grid gap-3 md:grid-cols-2">
 
-                <span className="text-xs leading-5 text-gray-400 group-hover:text-gray-200">
-                  {activity}
-                </span>
-              </motion.div>
+            {activities.map((activity, index) => (
+              <ActivityCard
+                key={activity}
+                activity={activity}
+                index={index}
+              />
             ))}
+
           </div>
 
         </div>
 
-        {/* =====================================
+        {/* =================================================
             BOTTOM
-        ===================================== */}
+        ================================================= */}
 
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-14 flex items-center gap-3"
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+          className="mt-16 flex items-center gap-3"
         >
+
           <div className="h-px flex-1 bg-white/[0.07]" />
 
           <span className="font-mono text-[9px] tracking-[0.28em] text-gray-600">
@@ -532,6 +799,7 @@ export default function Highlights() {
           </span>
 
           <div className="h-px flex-1 bg-white/[0.07]" />
+
         </motion.div>
 
       </div>
