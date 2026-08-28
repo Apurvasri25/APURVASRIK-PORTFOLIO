@@ -810,17 +810,15 @@ canvas ~ div {
 /* Individual sparkle */
 .light-sparkle {
   position: absolute;
-
-  width: 2px;
-  height: 2px;
-
+  width: 1.5px;
+  height: 1.5px;
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.55);
 
   box-shadow:
-    0 0 4px rgba(255, 255, 255, 0.8),
-    0 0 9px rgba(255, 255, 255, 0.35);
+    0 0 3px rgba(255, 255, 255, 0.35),
+    0 0 6px rgba(255, 255, 255, 0.15);
 
   opacity: 0;
 
@@ -833,30 +831,19 @@ canvas ~ div {
 @keyframes lightSparkle {
   0% {
     opacity: 0;
-    transform: scale(0.3);
-  }
-
-  25% {
-    opacity: 0.35;
-    transform: scale(0.7);
+    transform: scale(0.4);
   }
 
   50% {
-    opacity: 0.85;
+    opacity: 0.45;
     transform: scale(1);
-  }
-
-  70% {
-    opacity: 0.3;
-    transform: scale(0.7);
   }
 
   100% {
     opacity: 0;
-    transform: scale(0.3);
+    transform: scale(0.4);
   }
 }
-
 /* Portfolio content stays above sparkles */
 .portfolio-content > main {
   position: relative;
