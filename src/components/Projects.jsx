@@ -4,6 +4,19 @@ import Pattern3DCard from '@/components/ui/Pattern3DCard';
 
 const FEATURED_PROJECTS = [
   {
+  title: "Smart Campus Pass",
+  description:
+    "A full-stack digital campus pass system using QR codes to track student outpass history and streamline gate verification. Emergency passes are flagged and prioritized for faster processing.",
+  tech: ["TypeScript", "React", "Vite", "Supabase"],
+  date: "June 2026 – July 2026",
+  features: [
+    "QR-based student outpass tracking",
+    "Emergency gate pass prioritization",
+    "Real-time authentication and database management",
+    "Deployed on Vercel for live access tracking",
+  ],
+},
+  {
     id: 1,
     number: '01',
     category: 'CV',
