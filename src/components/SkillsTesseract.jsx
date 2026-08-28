@@ -65,9 +65,7 @@ const skillGroups = [
     skills: [
       { name: 'Git', icon: FaGitAlt },
       { name: 'GitHub', icon: FaGithub },
-      { name: 'Postman', icon: SiPostman },
-      { name: 'Figma', icon: FaFigma },
-      { name: 'Vite', icon: SiVite },
+     
     ],
   },
 ];
