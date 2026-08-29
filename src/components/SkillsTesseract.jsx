@@ -470,12 +470,12 @@ export default function SkillsTesseract() {
            
 <h2
   className="
-    text-5xl
-    font-black
-    tracking-[-0.04em]
-    text-white
-    sm:text-6xl
-    lg:text-7xl
+   text-5xl
+font-extrabold
+tracking-[-0.055em]
+text-white
+sm:text-6xl
+lg:text-7xl
   "
 >
   Skills
