@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -11,7 +12,6 @@ import {
   FaNodeJs,
   FaGitAlt,
   FaGithub,
-  FaFigma,
 } from 'react-icons/fa';
 
 import {
@@ -19,8 +19,6 @@ import {
   SiExpress,
   SiMysql,
   SiTailwindcss,
-  SiVite,
-  SiPostman,
 } from 'react-icons/si';
 
 const skillGroups = [
@@ -28,138 +26,238 @@ const skillGroups = [
     title: 'PROGRAMMING',
     number: '01',
     skills: [
-      { name: 'Java', icon: FaJava },
-      { name: 'Python', icon: FaPython },
-      { name: 'C', icon: SiC },
+      {
+        name: 'Java',
+        icon: FaJava,
+        color: 'text-orange-400',
+        bg: 'bg-orange-400/10',
+        hoverBorder: 'hover:border-orange-400/30',
+        hoverBg: 'hover:bg-orange-400/[0.04]',
+      },
+      {
+        name: 'Python',
+        icon: FaPython,
+        color: 'text-blue-400',
+        bg: 'bg-blue-400/10',
+        hoverBorder: 'hover:border-blue-400/30',
+        hoverBg: 'hover:bg-blue-400/[0.04]',
+      },
+      {
+        name: 'C',
+        icon: SiC,
+        color: 'text-blue-300',
+        bg: 'bg-blue-300/10',
+        hoverBorder: 'hover:border-blue-300/30',
+        hoverBg: 'hover:bg-blue-300/[0.04]',
+      },
     ],
   },
+
   {
     title: 'FRONTEND',
     number: '02',
     skills: [
-      { name: 'HTML5', icon: FaHtml5 },
-      { name: 'CSS3', icon: FaCss3Alt },
-      { name: 'JavaScript', icon: FaJs },
-      { name: 'React', icon: FaReact },
-      { name: 'Tailwind CSS', icon: SiTailwindcss },
+      {
+        name: 'HTML5',
+        icon: FaHtml5,
+        color: 'text-orange-500',
+        bg: 'bg-orange-500/10',
+        hoverBorder: 'hover:border-orange-500/30',
+        hoverBg: 'hover:bg-orange-500/[0.04]',
+      },
+      {
+        name: 'CSS3',
+        icon: FaCss3Alt,
+        color: 'text-blue-500',
+        bg: 'bg-blue-500/10',
+        hoverBorder: 'hover:border-blue-500/30',
+        hoverBg: 'hover:bg-blue-500/[0.04]',
+      },
+      {
+        name: 'JavaScript',
+        icon: FaJs,
+        color: 'text-yellow-400',
+        bg: 'bg-yellow-400/10',
+        hoverBorder: 'hover:border-yellow-400/30',
+        hoverBg: 'hover:bg-yellow-400/[0.04]',
+      },
+      {
+        name: 'React',
+        icon: FaReact,
+        color: 'text-cyan-400',
+        bg: 'bg-cyan-400/10',
+        hoverBorder: 'hover:border-cyan-400/30',
+        hoverBg: 'hover:bg-cyan-400/[0.04]',
+      },
+      {
+        name: 'Tailwind CSS',
+        icon: SiTailwindcss,
+        color: 'text-cyan-300',
+        bg: 'bg-cyan-300/10',
+        hoverBorder: 'hover:border-cyan-300/30',
+        hoverBg: 'hover:bg-cyan-300/[0.04]',
+      },
     ],
   },
+
   {
     title: 'BACKEND',
     number: '03',
     skills: [
-      { name: 'Node.js', icon: FaNodeJs },
-      { name: 'Express.js', icon: SiExpress },
+      {
+        name: 'Node.js',
+        icon: FaNodeJs,
+        color: 'text-green-400',
+        bg: 'bg-green-400/10',
+        hoverBorder: 'hover:border-green-400/30',
+        hoverBg: 'hover:bg-green-400/[0.04]',
+      },
+      {
+        name: 'Express.js',
+        icon: SiExpress,
+        color: 'text-gray-200',
+        bg: 'bg-white/10',
+        hoverBorder: 'hover:border-white/20',
+        hoverBg: 'hover:bg-white/[0.03]',
+      },
     ],
   },
+
   {
     title: 'DATABASE',
     number: '04',
     skills: [
-      { name: 'MySQL', icon: SiMysql },
+      {
+        name: 'MySQL',
+        icon: SiMysql,
+        color: 'text-sky-400',
+        bg: 'bg-sky-400/10',
+        hoverBorder: 'hover:border-sky-400/30',
+        hoverBg: 'hover:bg-sky-400/[0.04]',
+      },
     ],
   },
+
   {
     title: 'TOOLS',
     number: '05',
     skills: [
-      { name: 'Git', icon: FaGitAlt },
-      { name: 'GitHub', icon: FaGithub },
-     
+      {
+        name: 'Git',
+        icon: FaGitAlt,
+        color: 'text-orange-500',
+        bg: 'bg-orange-500/10',
+        hoverBorder: 'hover:border-orange-500/30',
+        hoverBg: 'hover:bg-orange-500/[0.04]',
+      },
+      {
+        name: 'GitHub',
+        icon: FaGithub,
+        color: 'text-white',
+        bg: 'bg-white/10',
+        hoverBorder: 'hover:border-white/20',
+        hoverBg: 'hover:bg-white/[0.03]',
+      },
     ],
   },
 ];
+
+/* -------------------------------------------------------
+   SKILL ITEM
+------------------------------------------------------- */
 
 function SkillItem({ skill, index }) {
   const Icon = skill.icon;
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={{ opacity: 0, y: 10 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
       transition={{
         duration: 0.35,
         delay: index * 0.04,
+        ease: 'easeOut',
       }}
       whileHover={{
-        y: -4,
-        scale: 1.02,
+        y: -3,
       }}
-      className="
+      className={`
         group
         relative
         flex
-        min-h-[88px]
+        min-h-[68px]
         items-center
         gap-3
         overflow-hidden
         rounded-xl
         border
-        border-white/[0.08]
-        bg-white/[0.025]
-        px-4
+        border-white/[0.07]
+        bg-[#090909]
+        px-3.5
         py-3
         backdrop-blur-xl
         transition-all
         duration-300
-        hover:border-purple-400/40
-        hover:bg-purple-500/[0.055]
-        hover:shadow-[0_12px_35px_rgba(168,85,247,0.10)]
-      "
+        ${skill.hoverBorder}
+        ${skill.hoverBg}
+        hover:shadow-[0_10px_30px_rgba(0,0,0,0.35)]
+      `}
     >
-      {/* Hover glow */}
+      {/* Subtle hover light */}
       <div
         className="
           pointer-events-none
           absolute
-          -right-8
-          -top-8
+          -right-10
+          -top-10
           h-20
           w-20
           rounded-full
-          bg-purple-500/0
+          bg-white/[0.025]
+          opacity-0
           blur-2xl
-          transition-all
+          transition-opacity
           duration-500
-          group-hover:bg-purple-500/20
+          group-hover:opacity-100
         "
       />
 
       {/* Icon */}
       <div
-        className="
+        className={`
           relative
           z-10
           flex
-          h-11
-          w-11
+          h-10
+          w-10
           shrink-0
           items-center
           justify-center
           rounded-lg
           border
-          border-white/[0.08]
-          bg-black/40
+          border-white/[0.06]
+          ${skill.bg}
           transition-all
           duration-300
-          group-hover:border-purple-400/30
-          group-hover:bg-purple-500/[0.08]
-        "
+          group-hover:scale-105
+        `}
       >
         <Icon
-          className="
-            text-[23px]
-            text-gray-400
-            transition-all
+          className={`
+            text-[21px]
+            ${skill.color}
+            transition-transform
             duration-300
             group-hover:scale-110
-            group-hover:text-purple-300
-          "
+          `}
         />
       </div>
 
-      {/* Text */}
+      {/* Skill information */}
       <div className="relative z-10 min-w-0">
         <p
           className="
@@ -179,116 +277,97 @@ function SkillItem({ skill, index }) {
         <p
           className="
             mt-0.5
-            font-mono
             text-[8px]
+            font-medium
             uppercase
             tracking-[0.18em]
             text-gray-600
-            transition-colors
-            duration-300
-            group-hover:text-purple-400/70
           "
         >
           Technology
         </p>
       </div>
 
-      {/* Arrow */}
+      {/* Minimal status dot */}
       <span
         className="
-          absolute
-          right-3
-          top-3
-          text-[10px]
-          text-gray-700
-          opacity-0
+          relative
+          z-10
+          ml-auto
+          h-1.5
+          w-1.5
+          shrink-0
+          rounded-full
+          bg-gray-800
           transition-all
           duration-300
-          group-hover:translate-x-0.5
-          group-hover:text-purple-400
-          group-hover:opacity-100
+          group-hover:bg-purple-400
+          group-hover:shadow-[0_0_8px_rgba(168,85,247,0.7)]
         "
-      >
-        ↗
-      </span>
+      />
     </motion.div>
   );
 }
 
+/* -------------------------------------------------------
+   SKILL GROUP
+------------------------------------------------------- */
+
 function SkillGroup({ group, groupIndex }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
+      initial={{
+        opacity: 0,
+        y: 15,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.1,
+      }}
       transition={{
         duration: 0.45,
-        delay: groupIndex * 0.06,
+        delay: groupIndex * 0.05,
+        ease: 'easeOut',
       }}
-      className="
-        group/category
-        relative
-        overflow-hidden
-        rounded-2xl
-        border
-        border-white/[0.08]
-        bg-white/[0.018]
-        p-5
-        backdrop-blur-xl
-        transition-all
-        duration-500
-        hover:border-purple-400/20
-        hover:bg-white/[0.025]
-      "
+      className="relative"
     >
-      {/* Top glow */}
-      <div
-        className="
-          pointer-events-none
-          absolute
-          -top-20
-          left-1/2
-          h-32
-          w-64
-          -translate-x-1/2
-          rounded-full
-          bg-purple-500/[0.025]
-          blur-3xl
-          transition-all
-          duration-700
-          group-hover/category:bg-purple-500/[0.07]
-        "
-      />
-
       {/* Category header */}
-      <div className="relative z-10 mb-5 flex items-center justify-between">
-        <div className="flex items-center gap-3">
+      <div className="mb-3 flex items-center justify-between">
+        <div className="flex items-center gap-2.5">
+          {/* Number */}
           <span
             className="
               font-mono
               text-[9px]
-              tracking-[0.15em]
-              text-purple-500
+              font-medium
+              tracking-[0.18em]
+              text-purple-500/70
             "
           >
             {group.number}
           </span>
 
-          <div className="h-4 w-px bg-white/10" />
+          {/* Divider */}
+          <span className="h-3 w-px bg-white/10" />
 
+          {/* Category */}
           <h3
             className="
-              font-mono
-              text-[10px]
+              text-[9px]
               font-semibold
               tracking-[0.25em]
-              text-gray-300
+              text-gray-400
             "
           >
             {group.title}
           </h3>
         </div>
 
+        {/* Count */}
         <span
           className="
             font-mono
@@ -301,16 +380,13 @@ function SkillGroup({ group, groupIndex }) {
         </span>
       </div>
 
-      {/* Skill cards */}
+      {/* Skills */}
       <div
         className="
-          relative
-          z-10
           grid
           grid-cols-1
           gap-2
           sm:grid-cols-2
-          lg:grid-cols-3
         "
       >
         {group.skills.map((skill, index) => (
@@ -324,6 +400,10 @@ function SkillGroup({ group, groupIndex }) {
     </motion.div>
   );
 }
+
+/* -------------------------------------------------------
+   MAIN SKILLS SECTION
+------------------------------------------------------- */
 
 export default function SkillsTesseract() {
   return (
@@ -345,12 +425,12 @@ export default function SkillsTesseract() {
           pointer-events-none
           absolute
           left-1/2
-          top-20
-          h-[420px]
-          w-[420px]
+          top-0
+          h-[380px]
+          w-[380px]
           -translate-x-1/2
           rounded-full
-          bg-purple-600/[0.035]
+          bg-purple-600/[0.025]
           blur-[130px]
         "
       />
@@ -359,28 +439,56 @@ export default function SkillsTesseract() {
         className="
           pointer-events-none
           absolute
-          right-0
+          right-[-100px]
           top-1/2
-          h-[300px]
-          w-[300px]
+          h-[280px]
+          w-[280px]
           rounded-full
-          bg-fuchsia-600/[0.025]
+          bg-fuchsia-600/[0.018]
           blur-[120px]
         "
       />
 
-      <div className="relative z-10 mx-auto max-w-6xl">
+      {/* Main container */}
+      <div
+        className="
+          relative
+          z-10
+          mx-auto
+          max-w-5xl
+        "
+      >
 
-        {/* Header */}
+        {/* ------------------------------------------------
+            HEADER
+        ------------------------------------------------- */}
+
         <motion.div
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mb-12"
+          initial={{
+            opacity: 0,
+            y: 15,
+          }}
+          whileInView={{
+            opacity: 1,
+            y: 0,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+          }}
+          className="mb-10"
         >
+          {/* Small label */}
           <div className="mb-4 flex items-center gap-3">
-            <span className="h-px w-8 bg-purple-500" />
+            <span
+              className="
+                h-px
+                w-7
+                bg-purple-500
+              "
+            />
 
             <span
               className="
@@ -394,19 +502,36 @@ export default function SkillsTesseract() {
               MY TOOLKIT
             </span>
 
-            <span className="h-px w-12 bg-white/[0.08]" />
+            <span
+              className="
+                h-px
+                w-10
+                bg-white/[0.07]
+              "
+            />
           </div>
 
-          <div className="flex flex-col justify-between gap-5 md:flex-row md:items-end">
+          {/* Heading + status */}
+          <div
+            className="
+              flex
+              flex-col
+              justify-between
+              gap-5
+              md:flex-row
+              md:items-end
+            "
+          >
+            {/* Heading */}
             <div>
               <h2
                 className="
-                  text-5xl
+                  text-4xl
                   font-black
-                  tracking-[-0.04em]
+                  tracking-[-0.045em]
                   text-white
-                  sm:text-6xl
-                  lg:text-7xl
+                  sm:text-5xl
+                  lg:text-6xl
                 "
               >
                 Skills
@@ -415,55 +540,53 @@ export default function SkillsTesseract() {
 
               <p
                 className="
-                  mt-4
-                  max-w-xl
+                  mt-3
+                  max-w-lg
                   text-sm
                   leading-6
-                  text-gray-500
+                  text-gray-600
                 "
               >
-                A collection of technologies and tools I use to
-                design, build and ship modern digital experiences.
+                Technologies and tools I use to build
+                modern, scalable digital experiences.
               </p>
             </div>
 
-            {/* Small status box */}
+            {/* Status */}
             <div
               className="
                 flex
                 w-fit
                 items-center
-                gap-3
-                rounded-xl
+                gap-2.5
+                rounded-full
                 border
-                border-white/[0.08]
+                border-white/[0.07]
                 bg-white/[0.02]
-                px-4
-                py-3
+                px-3.5
+                py-2
               "
             >
-              <span className="relative flex h-2 w-2">
+              <span className="relative flex h-1.5 w-1.5">
                 <span
                   className="
                     absolute
-                    inline-flex
                     h-full
                     w-full
                     animate-ping
                     rounded-full
-                    bg-purple-400
-                    opacity-60
+                    bg-green-400
+                    opacity-50
                   "
                 />
 
                 <span
                   className="
                     relative
-                    inline-flex
-                    h-2
-                    w-2
+                    h-1.5
+                    w-1.5
                     rounded-full
-                    bg-purple-500
+                    bg-green-400
                   "
                 />
               </span>
@@ -471,9 +594,9 @@ export default function SkillsTesseract() {
               <span
                 className="
                   font-mono
-                  text-[9px]
+                  text-[8px]
                   tracking-[0.2em]
-                  text-gray-400
+                  text-gray-500
                 "
               >
                 ALWAYS LEARNING
@@ -482,8 +605,18 @@ export default function SkillsTesseract() {
           </div>
         </motion.div>
 
-        {/* Skill groups */}
-        <div className="grid gap-4 md:grid-cols-2">
+        {/* ------------------------------------------------
+            SKILL GROUPS
+        ------------------------------------------------- */}
+
+        <div
+          className="
+            grid
+            gap-x-10
+            gap-y-9
+            md:grid-cols-2
+          "
+        >
           {skillGroups.map((group, index) => (
             <SkillGroup
               key={group.title}
@@ -491,23 +624,40 @@ export default function SkillsTesseract() {
               groupIndex={index}
             />
           ))}
-
-          {/* Full width tools */}
-          <div className="md:col-span-2">
-            {/* The last group is already rendered above,
-                so this remains intentionally empty for grid balance */}
-          </div>
         </div>
 
-        {/* Bottom line */}
+        {/* ------------------------------------------------
+            BOTTOM DIVIDER
+        ------------------------------------------------- */}
+
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="mt-12 flex items-center gap-4"
+          initial={{
+            opacity: 0,
+          }}
+          whileInView={{
+            opacity: 1,
+          }}
+          viewport={{
+            once: true,
+          }}
+          transition={{
+            duration: 0.5,
+            delay: 0.2,
+          }}
+          className="
+            mt-12
+            flex
+            items-center
+            gap-4
+          "
         >
-          <div className="h-px flex-1 bg-white/[0.07]" />
+          <div
+            className="
+              h-px
+              flex-1
+              bg-white/[0.06]
+            "
+          />
 
           <span
             className="
@@ -520,10 +670,17 @@ export default function SkillsTesseract() {
             BUILD · LEARN · CREATE
           </span>
 
-          <div className="h-px flex-1 bg-white/[0.07]" />
+          <div
+            className="
+              h-px
+              flex-1
+              bg-white/[0.06]
+            "
+          />
         </motion.div>
 
       </div>
     </section>
   );
 }
+
