@@ -90,7 +90,7 @@ export default function Contact() {
 
                     {/* OAuth Quick Connect Buttons */}
                     <a
-                      href="mailto:apurvasrikanakasabapathi@gmail.com"
+                      href="https://mail.google.com/mail/?view=cm&fs=1&to=apurvasrikanakasabapathi@gmail.com"
                       className="deoxy-button group"
                     >
                       <svg className="w-5 h-5" viewBox="0 0 24 24">
