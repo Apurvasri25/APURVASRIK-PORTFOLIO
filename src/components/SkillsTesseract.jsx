@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { motion } from 'framer-motion';
 
@@ -15,13 +16,11 @@ import {
 
 import {
   SiC,
-  SiExpress,
   SiMysql,
-  SiTailwindcss,
 } from 'react-icons/si';
 
 /* =========================================================
-   SKILLS
+   SKILLS DATA
 ========================================================= */
 
 const skillGroups = [
@@ -71,7 +70,6 @@ const skillGroups = [
         icon: FaReact,
         color: 'text-cyan-400',
       },
-      
     ],
   },
 
@@ -84,7 +82,6 @@ const skillGroups = [
         icon: FaNodeJs,
         color: 'text-green-400',
       },
-      
     ],
   },
 
@@ -119,84 +116,120 @@ const skillGroups = [
 ];
 
 /* =========================================================
-   INDIVIDUAL SKILL
+   SKILL ROW
 ========================================================= */
 
-function SkillItem({ skill, index }) {
+function SkillRow({ skill, index }) {
   const Icon = skill.icon;
 
   return (
     <motion.div
       initial={{
         opacity: 0,
-        y: 8,
+        x: -10,
       }}
       whileInView={{
         opacity: 1,
-        y: 0,
+        x: 0,
       }}
       viewport={{
         once: true,
-        amount: 0.2,
+        amount: 0.3,
       }}
       transition={{
-        duration: 0.35,
-        delay: index * 0.04,
+        duration: 0.45,
+        delay: index * 0.06,
+        ease: 'easeOut',
       }}
       className="
         group
-        inline-flex
-        w-fit
+        relative
+        flex
         cursor-default
         items-center
-        gap-2.5
+        justify-between
         border-b
-        border-transparent
-        pb-1.5
+        border-white/[0.055]
+        py-4
         transition-all
         duration-300
-        hover:border-white/[0.12]
       "
     >
-      {/* Icon */}
-      <Icon
-        className={`
-          text-[20px]
-          ${skill.color}
-          opacity-80
-          transition-all
-          duration-300
-          group-hover:scale-110
-          group-hover:opacity-100
-        `}
-      />
+      {/* Left */}
+      <div className="flex items-center gap-4 sm:gap-6">
 
-      {/* Name */}
+        {/* Icon */}
+        <div
+          className="
+            flex
+            h-8
+            w-8
+            items-center
+            justify-center
+            opacity-50
+            transition-all
+            duration-300
+            group-hover:opacity-100
+          "
+        >
+          <Icon
+            className={`
+              text-[21px]
+              ${skill.color}
+              transition-transform
+              duration-300
+              group-hover:scale-110
+            `}
+          />
+        </div>
+
+        {/* Skill name */}
+        <span
+          className="
+            text-[15px]
+            font-medium
+            tracking-wide
+            text-gray-500
+            transition-all
+            duration-300
+            group-hover:translate-x-1
+            group-hover:text-white
+            sm:text-[16px]
+          "
+        >
+          {skill.name}
+        </span>
+      </div>
+
+      {/* Right arrow */}
       <span
         className="
-          text-[13px]
-          font-medium
-          tracking-wide
-          text-gray-500
-          transition-colors
+          translate-x-[-8px]
+          text-sm
+          text-gray-700
+          opacity-0
+          transition-all
           duration-300
-          group-hover:text-white
+          group-hover:translate-x-0
+          group-hover:text-purple-400
+          group-hover:opacity-100
         "
       >
-        {skill.name}
+        ↗
       </span>
 
-      {/* Tiny dot */}
-      <span
+      {/* Hover line */}
+      <div
         className="
-          ml-0.5
-          h-1
-          w-1
-          rounded-full
-          bg-white/10
+          absolute
+          bottom-[-1px]
+          left-0
+          h-px
+          w-0
+          bg-purple-500
           transition-all
-          duration-300
-          group-hover:bg-purple-400
+          duration-500
+          group-hover:w-full
         "
       />
     </motion.div>
@@ -204,7 +237,7 @@ function SkillItem({ skill, index }) {
 }
 
 /* =========================================================
-   SKILL GROUP
+   SKILL CATEGORY
 ========================================================= */
 
 function SkillGroup({ group, groupIndex }) {
@@ -212,7 +245,7 @@ function SkillGroup({ group, groupIndex }) {
     <motion.div
       initial={{
         opacity: 0,
-        y: 12,
+        y: 18,
       }}
       whileInView={{
         opacity: 1,
@@ -223,59 +256,64 @@ function SkillGroup({ group, groupIndex }) {
         amount: 0.15,
       }}
       transition={{
-        duration: 0.45,
+        duration: 0.5,
         delay: groupIndex * 0.05,
       }}
       className="
         grid
-        grid-cols-[110px_1fr]
+        grid-cols-1
         gap-6
-        border-t
-        border-white/[0.06]
-        py-6
-        sm:grid-cols-[140px_1fr]
-        sm:gap-10
+        py-10
+        sm:grid-cols-[150px_1fr]
+        sm:gap-12
+        lg:grid-cols-[180px_1fr]
+        lg:gap-20
       "
     >
-      {/* Category */}
-      <div className="flex items-start gap-2.5">
+      {/* Category information */}
+      <div className="flex items-start gap-3">
         <span
           className="
-            pt-0.5
+            pt-1
             font-mono
-            text-[8px]
-            tracking-[0.15em]
-            text-purple-500/70
+            text-[9px]
+            tracking-[0.2em]
+            text-purple-500
           "
         >
           {group.number}
         </span>
 
-        <span
-          className="
-            pt-0.5
-            text-[9px]
-            font-semibold
-            tracking-[0.22em]
-            text-gray-600
-          "
-        >
-          {group.title}
-        </span>
+        <div>
+          <p
+            className="
+              text-[10px]
+              font-semibold
+              tracking-[0.28em]
+              text-gray-500
+            "
+          >
+            {group.title}
+          </p>
+
+          <p
+            className="
+              mt-2
+              text-[8px]
+              uppercase
+              tracking-[0.15em]
+              text-gray-700
+            "
+          >
+            {String(group.skills.length).padStart(2, '0')} SKILLS
+          </p>
+        </div>
       </div>
 
       {/* Skills */}
-      <div
-        className="
-          flex
-          flex-wrap
-          items-center
-          gap-x-7
-          gap-y-4
-        "
-      >
+      <div>
         {group.skills.map((skill, index) => (
-          <SkillItem
+          <SkillRow
             key={skill.name}
             skill={skill}
             index={index}
@@ -287,7 +325,7 @@ function SkillGroup({ group, groupIndex }) {
 }
 
 /* =========================================================
-   MAIN COMPONENT
+   MAIN SKILLS SECTION
 ========================================================= */
 
 export default function SkillsTesseract() {
@@ -299,13 +337,15 @@ export default function SkillsTesseract() {
         overflow-hidden
         bg-black
         px-5
-        py-20
+        py-24
         sm:px-8
+        sm:py-28
         lg:px-16
+        lg:py-32
       "
     >
       {/* ===================================================
-          SUBTLE BACKGROUND
+          BACKGROUND
       =================================================== */}
 
       <div
@@ -314,12 +354,12 @@ export default function SkillsTesseract() {
           absolute
           left-1/2
           top-0
-          h-[400px]
-          w-[400px]
+          h-[500px]
+          w-[500px]
           -translate-x-1/2
           rounded-full
           bg-purple-600/[0.025]
-          blur-[140px]
+          blur-[160px]
         "
       />
 
@@ -332,7 +372,7 @@ export default function SkillsTesseract() {
           relative
           z-10
           mx-auto
-          max-w-5xl
+          max-w-6xl
         "
       >
 
@@ -343,7 +383,7 @@ export default function SkillsTesseract() {
         <motion.div
           initial={{
             opacity: 0,
-            y: 15,
+            y: 20,
           }}
           whileInView={{
             opacity: 1,
@@ -353,16 +393,16 @@ export default function SkillsTesseract() {
             once: true,
           }}
           transition={{
-            duration: 0.5,
+            duration: 0.6,
           }}
-          className="mb-12"
+          className="mb-20"
         >
-          {/* Small label */}
-          <div className="mb-4 flex items-center gap-3">
+          {/* Eyebrow */}
+          <div className="mb-7 flex items-center gap-4">
             <span
               className="
                 h-px
-                w-7
+                w-10
                 bg-purple-500
               "
             />
@@ -371,8 +411,8 @@ export default function SkillsTesseract() {
               className="
                 font-mono
                 text-[9px]
-                font-semibold
-                tracking-[0.3em]
+                font-medium
+                tracking-[0.35em]
                 text-purple-400
               "
             >
@@ -385,14 +425,13 @@ export default function SkillsTesseract() {
             className="
               flex
               flex-col
-              gap-5
-              md:flex-row
-              md:items-end
-              md:justify-between
+              justify-between
+              gap-8
+              lg:flex-row
+              lg:items-end
             "
           >
             <div>
-              {/* Your Skills heading — unchanged */}
               <h2
                 className="
                   text-5xl
@@ -409,76 +448,56 @@ export default function SkillsTesseract() {
 
               <p
                 className="
-                  mt-4
-                  max-w-xl
+                  mt-6
+                  max-w-lg
                   text-sm
-                  leading-6
+                  leading-7
                   text-gray-600
+                  sm:text-[15px]
                 "
               >
-                A collection of technologies and tools I use
-                to design, build and ship modern digital
-                experiences.
+                Technologies and tools I use to transform
+                ideas into functional digital experiences.
               </p>
             </div>
 
-            {/* Status */}
+            {/* Side text */}
             <div
               className="
-                flex
-                w-fit
-                items-center
-                gap-2.5
-                rounded-full
-                border
-                border-white/[0.07]
-                px-3.5
-                py-2
+                max-w-[220px]
+                border-l
+                border-white/[0.08]
+                pl-5
               "
             >
-              <span className="relative flex h-1.5 w-1.5">
-                <span
-                  className="
-                    absolute
-                    h-full
-                    w-full
-                    animate-ping
-                    rounded-full
-                    bg-green-400
-                    opacity-50
-                  "
-                />
-
-                <span
-                  className="
-                    relative
-                    h-1.5
-                    w-1.5
-                    rounded-full
-                    bg-green-400
-                  "
-                />
-              </span>
-
-              <span
+              <p
                 className="
                   font-mono
                   text-[8px]
-                  tracking-[0.2em]
-                  text-gray-600
+                  uppercase
+                  leading-5
+                  tracking-[0.18em]
+                  text-gray-700
                 "
               >
-                ALWAYS LEARNING
-              </span>
+                Continuously learning,
+                experimenting and
+                building better.
+              </p>
             </div>
           </div>
         </motion.div>
 
         {/* =================================================
-            SKILLS
+            SKILL LIST
         ================================================= */}
 
-        <div>
+        <div
+          className="
+            border-t
+            border-white/[0.08]
+          "
+        >
           {skillGroups.map((group, index) => (
             <SkillGroup
               key={group.title}
@@ -486,19 +505,10 @@ export default function SkillsTesseract() {
               groupIndex={index}
             />
           ))}
-
-          {/* Bottom border */}
-          <div
-            className="
-              h-px
-              w-full
-              bg-white/[0.06]
-            "
-          />
         </div>
 
         {/* =================================================
-            FOOTER
+            BOTTOM
         ================================================= */}
 
         <motion.div
@@ -513,13 +523,19 @@ export default function SkillsTesseract() {
           }}
           transition={{
             duration: 0.5,
-            delay: 0.2,
+            delay: 0.3,
           }}
           className="
-            mt-10
+            mt-14
             flex
-            items-center
-            justify-between
+            flex-col
+            gap-3
+            border-t
+            border-white/[0.06]
+            pt-6
+            sm:flex-row
+            sm:items-center
+            sm:justify-between
           "
         >
           <span
