@@ -163,7 +163,7 @@ function SkillItem({ skill, index }) {
         `}
       />
 
-      {/* Name */}
+      {/* Skill Name */}
       <span
         className="
           text-[13px]
@@ -179,7 +179,7 @@ function SkillItem({ skill, index }) {
         {skill.name}
       </span>
 
-      {/* Small dot */}
+      {/* Small Accent Dot */}
       <span
         className="
           h-1
@@ -192,7 +192,7 @@ function SkillItem({ skill, index }) {
         "
       />
 
-      {/* Hover underline */}
+      {/* Hover Underline */}
       <span
         className="
           absolute
@@ -295,7 +295,7 @@ function SkillGroup({ group, groupIndex }) {
 }
 
 /* =========================================================
-   MAIN COMPONENT
+   MAIN SKILLS COMPONENT
 ========================================================= */
 
 export default function SkillsTesseract() {
@@ -315,11 +315,12 @@ export default function SkillsTesseract() {
         lg:py-24
       "
     >
+
       {/* ===================================================
           BACKGROUND ATMOSPHERE
       =================================================== */}
 
-      {/* Purple glow */}
+      {/* Purple Glow */}
       <div
         className="
           pointer-events-none
@@ -334,7 +335,7 @@ export default function SkillsTesseract() {
         "
       />
 
-      {/* Blue glow */}
+      {/* Blue Glow */}
       <div
         className="
           pointer-events-none
@@ -349,7 +350,7 @@ export default function SkillsTesseract() {
         "
       />
 
-      {/* Pink glow */}
+      {/* Pink Glow */}
       <div
         className="
           pointer-events-none
@@ -364,7 +365,7 @@ export default function SkillsTesseract() {
         "
       />
 
-      {/* Center glow */}
+      {/* Center Indigo Glow */}
       <div
         className="
           pointer-events-none
@@ -381,7 +382,7 @@ export default function SkillsTesseract() {
         "
       />
 
-      {/* Subtle grid */}
+      {/* Subtle Grid */}
       <div
         className="
           pointer-events-none
@@ -394,7 +395,7 @@ export default function SkillsTesseract() {
       />
 
       {/* ===================================================
-          CONTENT
+          MAIN CONTENT
       =================================================== */}
 
       <div
@@ -430,6 +431,7 @@ export default function SkillsTesseract() {
 
           {/* Label */}
           <div className="mb-4 flex items-center gap-3">
+
             <span
               className="
                 h-px
@@ -451,9 +453,10 @@ export default function SkillsTesseract() {
             >
               MY TOOLKIT
             </span>
+
           </div>
 
-          {/* Heading */}
+          {/* Heading + Description */}
           <div
             className="
               flex
@@ -467,23 +470,25 @@ export default function SkillsTesseract() {
 
             <div>
 
-           
-<h2
-  className="
-    font-['Space_Grotesk']
-    text-5xl
-    font-extrabold
-    tracking-[-0.055em]
-    text-white
-    sm:text-6xl
-    lg:text-7xl
-  "
->
-  Skills
-  <span className="text-purple-400">.</span>
-</h2>
+              {/* =================================================
+                  SKILLS HEADING
+                  ONLY THIS USES SPACE GROTESK
+              ================================================= */}
 
-
+              <h2
+                className="
+                  skills-title
+                  text-5xl
+                  text-white
+                  sm:text-6xl
+                  lg:text-7xl
+                "
+              >
+                Skills
+                <span className="text-purple-400">
+                  .
+                </span>
+              </h2>
 
               <p
                 className="
@@ -500,7 +505,7 @@ export default function SkillsTesseract() {
 
             </div>
 
-            {/* Side statement */}
+            {/* Side Statement */}
             <div
               className="
                 hidden
@@ -511,6 +516,7 @@ export default function SkillsTesseract() {
                 md:block
               "
             >
+
               <p
                 className="
                   font-mono
@@ -525,9 +531,11 @@ export default function SkillsTesseract() {
                 experimenting and
                 building better.
               </p>
+
             </div>
 
           </div>
+
         </motion.div>
 
         {/* =================================================
@@ -614,3 +622,4 @@ export default function SkillsTesseract() {
     </section>
   );
 }
+
