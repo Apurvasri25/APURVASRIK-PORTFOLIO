@@ -467,19 +467,49 @@ export default function SkillsTesseract() {
 
             <div>
 
-              <h2
-                className="
-                  text-5xl
-                  font-black
-                  tracking-[-0.04em]
-                  text-white
-                  sm:text-6xl
-                  lg:text-7xl
-                "
-              >
-                Skills
-                <span className="text-purple-400">.</span>
-              </h2>
+           
+<h2
+  className="
+    relative
+    inline-block
+    text-6xl
+    font-black
+    uppercase
+    leading-none
+    tracking-[-0.07em]
+    text-white
+    sm:text-7xl
+    lg:text-[7.5rem]
+  "
+>
+  Skills
+  <span
+    className="
+      ml-1
+      text-purple-400
+      drop-shadow-[0_0_25px_rgba(168,85,247,0.45)]
+    "
+  >
+    .
+  </span>
+
+  {/* subtle accent line */}
+  <span
+    className="
+      absolute
+      -bottom-3
+      left-0
+      h-[2px]
+      w-14
+      bg-gradient-to-r
+      from-purple-500
+      to-transparent
+      sm:w-20
+    "
+  />
+</h2>
+
+
 
               <p
                 className="
