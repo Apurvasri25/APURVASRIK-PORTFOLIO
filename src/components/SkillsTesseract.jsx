@@ -21,13 +21,13 @@ import {
 } from 'react-icons/si';
 
 /* =========================================================
-   SKILLS DATA
+   SKILLS
 ========================================================= */
 
 const skillGroups = [
   {
-    title: 'PROGRAMMING',
     number: '01',
+    title: 'PROGRAMMING',
     skills: [
       {
         name: 'Java',
@@ -48,8 +48,8 @@ const skillGroups = [
   },
 
   {
-    title: 'FRONTEND',
     number: '02',
+    title: 'FRONTEND',
     skills: [
       {
         name: 'HTML5',
@@ -80,8 +80,8 @@ const skillGroups = [
   },
 
   {
-    title: 'BACKEND',
     number: '03',
+    title: 'BACKEND',
     skills: [
       {
         name: 'Node.js',
@@ -91,14 +91,14 @@ const skillGroups = [
       {
         name: 'Express.js',
         icon: SiExpress,
-        color: 'text-gray-200',
+        color: 'text-gray-300',
       },
     ],
   },
 
   {
-    title: 'DATABASE',
     number: '04',
+    title: 'DATABASE',
     skills: [
       {
         name: 'MySQL',
@@ -109,8 +109,8 @@ const skillGroups = [
   },
 
   {
-    title: 'TOOLS',
     number: '05',
+    title: 'TOOLS',
     skills: [
       {
         name: 'Git',
@@ -127,7 +127,7 @@ const skillGroups = [
 ];
 
 /* =========================================================
-   SKILL ITEM
+   INDIVIDUAL SKILL
 ========================================================= */
 
 function SkillItem({ skill, index }) {
@@ -137,7 +137,7 @@ function SkillItem({ skill, index }) {
     <motion.div
       initial={{
         opacity: 0,
-        y: 10,
+        y: 8,
       }}
       whileInView={{
         opacity: 1,
@@ -151,60 +151,41 @@ function SkillItem({ skill, index }) {
         duration: 0.35,
         delay: index * 0.04,
       }}
-      whileHover={{
-        y: -2,
-      }}
       className="
         group
-        flex
+        inline-flex
+        w-fit
+        cursor-default
         items-center
-        gap-3
-        rounded-xl
-        border
-        border-white/[0.06]
-        bg-white/[0.015]
-        px-3.5
-        py-3
+        gap-2.5
+        border-b
+        border-transparent
+        pb-1.5
         transition-all
         duration-300
-        hover:border-white/[0.13]
-        hover:bg-white/[0.035]
+        hover:border-white/[0.12]
       "
     >
-      {/* Icon container */}
-      <div
-        className="
-          flex
-          h-9
-          w-9
-          shrink-0
-          items-center
-          justify-center
-          rounded-lg
-          bg-white/[0.035]
+      {/* Icon */}
+      <Icon
+        className={`
+          text-[20px]
+          ${skill.color}
+          opacity-80
           transition-all
           duration-300
-          group-hover:bg-white/[0.06]
-        "
-      >
-        <Icon
-          className={`
-            text-[20px]
-            ${skill.color}
-            transition-transform
-            duration-300
-            group-hover:scale-110
-          `}
-        />
-      </div>
+          group-hover:scale-110
+          group-hover:opacity-100
+        `}
+      />
 
-      {/* Skill name */}
+      {/* Name */}
       <span
         className="
-          text-[12px]
+          text-[13px]
           font-medium
           tracking-wide
-          text-gray-400
+          text-gray-500
           transition-colors
           duration-300
           group-hover:text-white
@@ -213,10 +194,10 @@ function SkillItem({ skill, index }) {
         {skill.name}
       </span>
 
-      {/* Tiny indicator */}
+      {/* Tiny dot */}
       <span
         className="
-          ml-auto
+          ml-0.5
           h-1
           w-1
           rounded-full
@@ -224,7 +205,6 @@ function SkillItem({ skill, index }) {
           transition-all
           duration-300
           group-hover:bg-purple-400
-          group-hover:shadow-[0_0_7px_rgba(168,85,247,0.7)]
         "
       />
     </motion.div>
@@ -240,7 +220,7 @@ function SkillGroup({ group, groupIndex }) {
     <motion.div
       initial={{
         opacity: 0,
-        y: 14,
+        y: 12,
       }}
       whileInView={{
         opacity: 1,
@@ -248,20 +228,31 @@ function SkillGroup({ group, groupIndex }) {
       }}
       viewport={{
         once: true,
-        amount: 0.1,
+        amount: 0.15,
       }}
       transition={{
-        duration: 0.4,
+        duration: 0.45,
         delay: groupIndex * 0.05,
       }}
+      className="
+        grid
+        grid-cols-[110px_1fr]
+        gap-6
+        border-t
+        border-white/[0.06]
+        py-6
+        sm:grid-cols-[140px_1fr]
+        sm:gap-10
+      "
     >
-      {/* Category title */}
-      <div className="mb-3 flex items-center gap-3">
+      {/* Category */}
+      <div className="flex items-start gap-2.5">
         <span
           className="
+            pt-0.5
             font-mono
             text-[8px]
-            tracking-[0.2em]
+            tracking-[0.15em]
             text-purple-500/70
           "
         >
@@ -270,31 +261,25 @@ function SkillGroup({ group, groupIndex }) {
 
         <span
           className="
-            h-px
-            w-5
-            bg-white/[0.08]
-          "
-        />
-
-        <h3
-          className="
+            pt-0.5
             text-[9px]
             font-semibold
-            tracking-[0.25em]
-            text-gray-500
+            tracking-[0.22em]
+            text-gray-600
           "
         >
           {group.title}
-        </h3>
+        </span>
       </div>
 
       {/* Skills */}
       <div
         className="
-          grid
-          grid-cols-1
-          gap-2
-          sm:grid-cols-2
+          flex
+          flex-wrap
+          items-center
+          gap-x-7
+          gap-y-4
         "
       >
         {group.skills.map((skill, index) => (
@@ -328,7 +313,7 @@ export default function SkillsTesseract() {
       "
     >
       {/* ===================================================
-          BACKGROUND
+          SUBTLE BACKGROUND
       =================================================== */}
 
       <div
@@ -336,32 +321,18 @@ export default function SkillsTesseract() {
           pointer-events-none
           absolute
           left-1/2
-          top-10
-          h-[350px]
-          w-[350px]
+          top-0
+          h-[400px]
+          w-[400px]
           -translate-x-1/2
           rounded-full
           bg-purple-600/[0.025]
-          blur-[130px]
-        "
-      />
-
-      <div
-        className="
-          pointer-events-none
-          absolute
-          bottom-0
-          right-[-100px]
-          h-[250px]
-          w-[250px]
-          rounded-full
-          bg-purple-500/[0.015]
-          blur-[110px]
+          blur-[140px]
         "
       />
 
       {/* ===================================================
-          CONTAINER
+          MAIN CONTAINER
       =================================================== */}
 
       <div
@@ -429,7 +400,7 @@ export default function SkillsTesseract() {
             "
           >
             <div>
-              {/* KEEPING YOUR ORIGINAL SKILLS FONT STYLE */}
+              {/* Your Skills heading — unchanged */}
               <h2
                 className="
                   text-5xl
@@ -469,7 +440,6 @@ export default function SkillsTesseract() {
                 rounded-full
                 border
                 border-white/[0.07]
-                bg-white/[0.02]
                 px-3.5
                 py-2
               "
@@ -503,7 +473,7 @@ export default function SkillsTesseract() {
                   font-mono
                   text-[8px]
                   tracking-[0.2em]
-                  text-gray-500
+                  text-gray-600
                 "
               >
                 ALWAYS LEARNING
@@ -513,17 +483,10 @@ export default function SkillsTesseract() {
         </motion.div>
 
         {/* =================================================
-            SKILLS GRID
+            SKILLS
         ================================================= */}
 
-        <div
-          className="
-            grid
-            gap-x-12
-            gap-y-10
-            md:grid-cols-2
-          "
-        >
+        <div>
           {skillGroups.map((group, index) => (
             <SkillGroup
               key={group.title}
@@ -531,10 +494,19 @@ export default function SkillsTesseract() {
               groupIndex={index}
             />
           ))}
+
+          {/* Bottom border */}
+          <div
+            className="
+              h-px
+              w-full
+              bg-white/[0.06]
+            "
+          />
         </div>
 
         {/* =================================================
-            BOTTOM LINE
+            FOOTER
         ================================================= */}
 
         <motion.div
@@ -549,22 +521,25 @@ export default function SkillsTesseract() {
           }}
           transition={{
             duration: 0.5,
-            delay: 0.25,
+            delay: 0.2,
           }}
           className="
-            mt-14
+            mt-10
             flex
             items-center
-            gap-4
+            justify-between
           "
         >
-          <div
+          <span
             className="
-              h-px
-              flex-1
-              bg-white/[0.06]
+              font-mono
+              text-[8px]
+              tracking-[0.25em]
+              text-gray-700
             "
-          />
+          >
+            05 CATEGORIES
+          </span>
 
           <span
             className="
@@ -576,14 +551,6 @@ export default function SkillsTesseract() {
           >
             BUILD · LEARN · CREATE
           </span>
-
-          <div
-            className="
-              h-px
-              flex-1
-              bg-white/[0.06]
-            "
-          />
         </motion.div>
 
       </div>
