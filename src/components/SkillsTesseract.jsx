@@ -472,14 +472,14 @@ export default function SkillsTesseract() {
   className="
     relative
     inline-block
-    text-6xl
+    text-5xl
     font-black
     uppercase
     leading-none
-    tracking-[-0.07em]
+    tracking-[-0.06em]
     text-white
-    sm:text-7xl
-    lg:text-[7.5rem]
+    sm:text-6xl
+    lg:text-7xl
   "
 >
   Skills
@@ -487,24 +487,23 @@ export default function SkillsTesseract() {
     className="
       ml-1
       text-purple-400
-      drop-shadow-[0_0_25px_rgba(168,85,247,0.45)]
+      drop-shadow-[0_0_20px_rgba(168,85,247,0.4)]
     "
   >
     .
   </span>
 
-  {/* subtle accent line */}
   <span
     className="
       absolute
-      -bottom-3
+      -bottom-2
       left-0
       h-[2px]
-      w-14
+      w-12
       bg-gradient-to-r
       from-purple-500
       to-transparent
-      sm:w-20
+      sm:w-16
     "
   />
 </h2>
