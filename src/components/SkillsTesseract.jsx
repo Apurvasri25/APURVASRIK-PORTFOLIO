@@ -71,11 +71,7 @@ const skillGroups = [
         icon: FaReact,
         color: 'text-cyan-400',
       },
-      {
-        name: 'Tailwind CSS',
-        icon: SiTailwindcss,
-        color: 'text-cyan-300',
-      },
+      
     ],
   },
 
@@ -88,11 +84,7 @@ const skillGroups = [
         icon: FaNodeJs,
         color: 'text-green-400',
       },
-      {
-        name: 'Express.js',
-        icon: SiExpress,
-        color: 'text-gray-300',
-      },
+      
     ],
   },
 
